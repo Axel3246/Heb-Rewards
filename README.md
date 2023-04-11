@@ -98,8 +98,8 @@ The technologies that made possible this project are shown below.
 
 Here you'll find the team that made possible this project. Feel free to check out their GitHub profiles too!
 
-<a target="_blank" href="https://github.com/Axel3246/HebRew/graphs/contributors">
-  <img src="https://stg.contrib.rocks/image?repo=axel3246/Smart-TrafficAgent-TEC" />
+<a href="https://github.com/axel3246/WiKoopa/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=axel3246/WiKoopa" />
 </a>
 
 <p align="right">(<a href="#readme-top">Take me up!</a>)</p>
