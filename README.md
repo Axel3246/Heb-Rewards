@@ -88,11 +88,10 @@ The technologies that made possible this project are shown below.
 
 <!-- GETTING STARTED -->
 ## Getting Started
-
-To get a local copy up and running follow these simple example steps.
+<i>To be redacted</i>
 
 ### Prerequisites
-
+<i>To be redacted</i>
 
 <!-- CONTRIBUTING -->
 ## The Team
@@ -104,14 +103,6 @@ Here you'll find the team that made possible this project. Feel free to check ou
 </a>
 
 <p align="right">(<a href="#readme-top">Take me up!</a>)</p>
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">Take me up!</a>)</p>
-
 
 # TUTORIAL - ¿Cómo Subir a GITHUB?:
 https://docs.github.com/es/repositories/working-with-files/managing-files/adding-a-file-to-a-repository#adding-a-file-to-a-repository-using-the-command-line
