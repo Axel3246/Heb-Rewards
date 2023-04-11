@@ -13,7 +13,7 @@
     An AR Mobile-First web application designed with React + VITE <br>
     that aims to gamify HEB's in-store shopping experience.
     <br /><br />
-    <a target="_blank" href="https://drive.google.com/drive/folders/14CkqHgOAIuTdzL1cLgOgP30bt8ABbcis?usp=sharing"><strong>Explore the Wiki »</strong></a>
+    <a target="_blank" href="https://github.com/Axel3246/HebRew/wiki"><strong>Explore the Wiki »</strong></a>
     <!-- DESCOMENTAR DESPUES -->
     <!--<br />-->
     <!--<a target="_blank" href="https://drive.google.com/file/d/1x1VTxBMP88dZhI_Mhj-ZAJsGYBUmotuv/view?usp=share_link">View Live Demo</a>-->
