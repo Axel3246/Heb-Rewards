@@ -13,7 +13,7 @@
     An AR Mobile-First web application designed with React + VITE <br>
     that aims to gamify HEB's in-store shopping experience.
     <br /><br />
-    <a target="_blank" href="https://drive.google.com/drive/folders/14CkqHgOAIuTdzL1cLgOgP30bt8ABbcis?usp=sharing"><strong>Explore the Wiki »</strong></a>
+    <a target="_blank" href="https://github.com/Axel3246/HebRew/wiki"><strong>Explore the Wiki »</strong></a>
     <!-- DESCOMENTAR DESPUES -->
     <!--<br />-->
     <!--<a target="_blank" href="https://drive.google.com/file/d/1x1VTxBMP88dZhI_Mhj-ZAJsGYBUmotuv/view?usp=share_link">View Live Demo</a>-->
@@ -98,8 +98,8 @@ The technologies that made possible this project are shown below.
 
 Here you'll find the team that made possible this project. Feel free to check out their GitHub profiles too!
 
-<a target="_blank" href="https://github.com/Axel3246/HebRew/graphs/contributors">
-  <img src="https://stg.contrib.rocks/image?repo=axel3246/Smart-TrafficAgent-TEC" />
+<a href="https://github.com/axel3246/WiKoopa/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=axel3246/WiKoopa" />
 </a>
 
 <p align="right">(<a href="#readme-top">Take me up!</a>)</p>
