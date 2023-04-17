@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a target="_blank" href="https://github.com/Axel3246/HebRew">
-    <img src="https://github.com/Axel3246/HebRew/blob/main/src/img/repo/logokoop2.png?raw=true" alt="Logo" width="20%" height="23%">
+    <img src="https://github.com/Axel3246/HebRew/blob/main/src/assets/img/repo/logokoop2.png?raw=true" alt="Logo" width="20%" height="23%">
   </a>
 
 <h3 align="center">HEB Rewards</h3>
