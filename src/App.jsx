@@ -15,21 +15,6 @@ import './App.css'
 export default function App() {
   const [count, setCount] = useState(0)
   return (
-<<<<<<< Updated upstream
-    <div className="App">
-      <div>
-        <a href="https://github.com/Axel3246/HebRew" target="_blank">
-          <img src={koop} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={heb} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Koopas + HEB</h1>
-    </div>
-  )
-}
-=======
       <Router>
         <Routes>
           <Route path="/" element={<SignUp/>}></Route>
@@ -38,7 +23,6 @@ export default function App() {
         </Routes>
       </Router> 
     );
->>>>>>> Stashed changes
 
   }
 
