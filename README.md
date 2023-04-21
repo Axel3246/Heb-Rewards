@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a target="_blank" href="https://github.com/Axel3246/HebRew">
-    <img src="https://github.com/Axel3246/HebRew/blob/main/src/img/repo/logokoop2.png?raw=true" alt="Logo" width="20%" height="23%">
+    <img src="https://github.com/Axel3246/HebRew/blob/main/src/assets/img/repo/logokoop2.png?raw=true" alt="Logo" width="20%" height="23%">
   </a>
 
 <h3 align="center">HEB Rewards</h3>
@@ -77,6 +77,7 @@ Through HEB Rewards, we expect to achieve greater customer flow and interaction 
 ### Built With
 The technologies that made possible this project are shown below.
 
+> ![MUI](https://img.shields.io/badge/MUI-%230081CB.svg?style=for-the-badge&logo=mui&logoColor=white)
 > ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 > ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 > ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
@@ -103,8 +104,3 @@ Here you'll find the team that made possible this project. Feel free to check ou
 </a>
 
 <p align="right">(<a href="#readme-top">Take me up!</a>)</p>
-
-# TUTORIAL - ¿Cómo Subir a GITHUB?:
-https://docs.github.com/es/repositories/working-with-files/managing-files/adding-a-file-to-a-repository#adding-a-file-to-a-repository-using-the-command-line
-
-Ya lo actualizaré para ver como hacer push a branches y hacer los pull request --> merge
