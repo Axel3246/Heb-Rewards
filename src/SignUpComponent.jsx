@@ -20,6 +20,7 @@ import { createTheme, ThemeProvider} from '@mui/material/styles';
 import { light } from '@mui/material/styles/createPalette';
 import { red } from '@mui/material/colors';
 
+
 const SignUpTheme = createTheme({
   palette: {
       theme: light
