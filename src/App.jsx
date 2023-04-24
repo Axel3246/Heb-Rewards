@@ -1,7 +1,6 @@
 import { useState } from 'react'
-import {Home, Login} from './pages'
+import {Home, Login, Map} from './pages'
 import { Button, Alert, Stack } from '@mui/material'
-
 
 function App() {
   const [count, setCount] = useState(0)
@@ -9,7 +8,8 @@ function App() {
   return (
     <div className="App">
       {/* <Home/> */}
-      <Login/>
+      {/* <Login/> */}
+      <Map/>
     </div>
   )
 }
