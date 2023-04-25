@@ -1,4 +1,4 @@
-import { database, auth } from './FirebaseConfig'
+import { database, auth, signInWithGoogle } from './FirebaseConfig'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate  } from 'react-router-dom';
@@ -12,6 +12,7 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import {Alert} from '@mui/material';
+import './index.css'
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import LockOpenRoundedIcon from '@mui/icons-material/LockOpenRounded'; 
 import Typography from '@mui/material/Typography';
@@ -19,15 +20,13 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { light } from '@mui/material/styles/createPalette';
 import { red } from '@mui/material/colors';
+import GoogleButton from 'react-google-button'
 
 const loginTheme = createTheme({
     palette: {
         theme: light
     }
 })
-
-
-
 
 const SignInComponent = () => {
 
@@ -119,11 +118,22 @@ const SignInComponent = () => {
                             sx={{ mt: 3, mb: 2, background: '#ff3232'}}
                         >
                             Sign In
-                        </Button>
-
+                        </Button>                        
+                        <hr
+                            style={{
+                            background: '#696969',
+                            color: '#696969',
+                            borderColor: '#ffffff',
+                            height: '1px',
+                            marginBottom: '30px',
+                            }}
+                        />
 
                     </Box>
-
+                    
+                  <div style={{justifyContent: 'center'}}>
+                        <GoogleButton onClick={signInWithGoogle}/>
+                    </div>
 
 
                 </Box>

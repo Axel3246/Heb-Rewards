@@ -24,6 +24,10 @@ if (firebase.apps.length === 0) {
 }
 
 const auth = firebase.auth()
+const provider = new firebase.auth.GoogleAuthProvider();
+provider.setCustomParameters({ prompt: 'select_account' });
+
+const signInWithGoogle = () => auth.signInWithPopup(provider);
 const database = getFirestore(app);
 
-export { database, auth };
+export { database, auth, signInWithGoogle };

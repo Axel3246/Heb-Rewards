@@ -2,17 +2,20 @@ import React, { useState } from 'react'
 import ReactDOM from "react-dom/client"
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import koop from './img/repo/logokoop2.png'
-import heb from './img/landing/heb.png'
+import koop from './assets/img/repo/logokoop2.png'
+import heb from './assets/img/landing/heb.png'
 import SignIn from './SignIn'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import './App.css'
 import { Button, Alert, Stack } from '@mui/material'
+import { database, auth, signInWithGoogle } from './FirebaseConfig'
+import GoogleButton from 'react-google-button'
 
 
-function Home() {
+
+function Home({user}) {
     const [count, setCount] = useState(0)
-  
+
     return (
       <div className="App">
         <div>
@@ -31,6 +34,10 @@ function Home() {
         <Alert severity="info">This is an info alert — check it out!</Alert>
         <Alert severity="success">This is a success alert — check it out!</Alert>
       </Stack>
+
+      <h1>Hello, <span></span>{user.displayName}</h1>
+      <img src={user.photoURL} alt="" />
+      <button className="button signout" onClick={() => auth.signOut()}>Sign out</button>
       </div>
     )
   }
