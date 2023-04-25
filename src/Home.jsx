@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import ReactDOM from "react-dom/client"
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import koop from './img/repo/logokoop2.png'
-import heb from './img/landing/heb.png'
+import koop from './assets/img/repo/logokoop2.png'
+import heb from './assets/img/landing/heb.png'
 import SignIn from './SignIn'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import './App.css'
