@@ -1,4 +1,4 @@
-import { database, auth, signInWithGoogle } from './FirebaseConfig'
+import { database, auth, signInWithGoogle } from '../../FirebaseConfig'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
 import { useNavigate  } from 'react-router-dom';
@@ -6,21 +6,14 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import {Alert} from '@mui/material';
-import './index.css'
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import LockOpenRoundedIcon from '@mui/icons-material/LockOpenRounded'; 
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { light } from '@mui/material/styles/createPalette';
-import { red } from '@mui/material/colors';
-import GoogleButton from 'react-google-button'
+import GoogleIcon from '@mui/icons-material/Google';
 
 const loginTheme = createTheme({
     palette: {
@@ -28,7 +21,7 @@ const loginTheme = createTheme({
     }
 })
 
-const SignInComponent = () => {
+const Login = () => {
 
   const navigate = useNavigate ();
   
@@ -130,19 +123,12 @@ const SignInComponent = () => {
                         />
 
                     </Box>
-                    
-                  <div style={{justifyContent: 'center'}}>
-                        <GoogleButton onClick={signInWithGoogle}/>
-                    </div>
-
-
+                    <Button variant="contained" startIcon={<GoogleIcon/>} size="medium" onClick={signInWithGoogle}> Iniciar con Google</Button>
                 </Box>
             </Container>
-
         </ThemeProvider>
     )
 }
 
-
-export default SignInComponent
+export default Login
 
