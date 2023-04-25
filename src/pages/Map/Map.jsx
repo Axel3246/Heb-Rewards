@@ -22,12 +22,12 @@ const Map = () => {
     const [selectedStore, setSelectedStore] = useState(null);
 
     useEffect(() => {
-    setTimeout(() => {
-        if (woosmapLoaded) {
-            initMap();
-        }
-    }, 1000);
-    }, [woosmapLoaded]);
+        setTimeout(() => {
+            if (woosmapLoaded) {
+                initMap();
+            }
+        }, 1000);
+        }, [woosmapLoaded]);
 
     const initMap = () => {
         conf.woosmapLoadOptions.callback = () => {
@@ -40,7 +40,7 @@ const Map = () => {
                 const infoWindow = new window.woosmap.LocatorWindow(map, templateRenderer);
                 infoWindow.setOpeningCallback(() => {
                     const selectedStore = infoWindow.get('selectedStore').properties;
-                    return ReactDOM.render(
+                    return createRoot.render(
                         <InfoWindow
                             store={selectedStore}
                         />, document.getElementById(`infoWindow-${selectedStore.store_id}`)
@@ -60,3 +60,4 @@ const Map = () => {
 };
 
 export default Map;
+

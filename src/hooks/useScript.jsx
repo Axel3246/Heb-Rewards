@@ -1,25 +1,24 @@
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from "react";
 
 export default function useScript(src) {
-  try {
     const [loaded, setLoaded] = useState(false);
-      useEffect(() => {
-          let script = document.querySelector(`script[src="${src}"]`);
-          if (!script) {
-            script = document.createElement('script');
-            script.src = src;
-            script.async = true;
-            script.onload = function () {
-              setLoaded(true)
+    useEffect(() => {
+        try {
+            let script = document.querySelector(`script[src="${src}"]`);
+            if (!script) {
+                script = document.createElement("script");
+                script.src = src;
+                script.async = true;
+                script.onload = function () {
+                    setLoaded(true);
+                };
+                document.body.appendChild(script);
+            } else {
+                setLoaded(true);
             }
-            document.body.appendChild(script);
-          } 
-          else {
-            setLoaded(true)
-          }
-      }, [src]);
-      return loaded;
-    } catch (err) {
-        console.error(`An error occurred while loading ${src}`);
-    }
+        } catch (err) {
+            console.error(`Hay un error ${src}`);
+        }
+    }, [src]);
+    return loaded;
 }

@@ -10,8 +10,8 @@
   },
   "googleMapsOptions": {
     "center": {
-      "lat": 51.53,
-      "lng": -0.185
+      "lat": 25.67507 ,
+      "lng": -100.31847
     },
     "zoom": 10,
     "mapTypeControl": false,

@@ -12,10 +12,12 @@ const InfoWindow = ({store}) => {
             {store.contact && <div>
                 <h4 className="infoBox__contactTitle">Contact</h4>
                 <div className="infoBox__contactPhone">{store.contact.phone}</div>
-                <div className="infoBox__contactWebsite"><a href={store.contact.website} target='_blank'>go
-                    to website</a>
+                <div className="infoBox__contactWebsite"><a href={store.contact.website} target='_blank'>go to website</a>
                 </div>
             </div>}
+            <div>
+                <button>Échale ganas</button>
+            </div>
         </div>
     );
 };
