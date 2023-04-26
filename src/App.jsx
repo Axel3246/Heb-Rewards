@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import {Home, Login} from './pages'
+import {Home, Login, firebaseTest} from './pages'
 import { Button, Alert, Stack } from '@mui/material'
+import FirebaseTest from './pages/firebaseTest/FirebaseTest'
 
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
   return (
     <div className="App">
       {/* <Home/> */}
-      <Login/>
+      <FirebaseTest/>
     </div>
   )
 }
