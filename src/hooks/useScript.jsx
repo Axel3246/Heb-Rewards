@@ -17,7 +17,7 @@ export default function useScript(src) {
                 setLoaded(true);
             }
         } catch (err) {
-            console.error(`Hay un error ${src}`);
+            console.error(`Error ${src}`);
         }
     }, [src]);
     return loaded;

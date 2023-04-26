@@ -1,17 +1,21 @@
 import { useState } from 'react'
-import {Home, Login, Map} from './pages'
+import {Home, Login, Map, Maps} from './pages'
 import { Button, Alert, Stack } from '@mui/material'
+import { useLoadScript } from "@react-google-maps/api";
+import "./styles.css";
 
-function App() {
+export default function App() {
   const [count, setCount] = useState(0)
 
+//  const { isLoaded } = useLoadScript({
+//    googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg" // Add your API key
+//  });
+  
+//  return isLoaded ? <Maps/> : null;
+//      {/* <Home/> */}
+//      {/* <Login/> */}
   return (
-    <div className="App">
-      {/* <Home/> */}
-      {/* <Login/> */}
-      <Map/>
-    </div>
-  )
-}
+    <Map/>
 
-export default App
+  )  
+}

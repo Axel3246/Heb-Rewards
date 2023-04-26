@@ -28,36 +28,36 @@ const Map = () => {
             }
         }, 1000);
         }, [woosmapLoaded]);
-
-    const initMap = () => {
-        conf.woosmapLoadOptions.callback = () => {
-            const loader = new window.woosmap.MapsLoader(conf.googleLoadOptions);
-            loader.load(() => {
-                const map = new window.google.maps.Map(mapContainerRef.current, conf.googleMapsOptions);
-                const mapView = new window.woosmap.TiledView(map, conf.markersOptions);
-                const templateInfoWindow = "<div id='infoWindow-{{store_id}}'></div>";
-                const templateRenderer = new window.woosmap.TemplateRenderer(templateInfoWindow);
-                const infoWindow = new window.woosmap.LocatorWindow(map, templateRenderer);
-                infoWindow.setOpeningCallback(() => {
-                    const selectedStore = infoWindow.get('selectedStore').properties;
-                    return createRoot.render(
-                        <InfoWindow
-                            store={selectedStore}
-                        />, document.getElementById(`infoWindow-${selectedStore.store_id}`)
-                    );
+    
+        const initMap = () => {
+            conf.woosmapLoadOptions.callback = () => {
+                const loader = new window.woosmap.MapsLoader(conf.googleLoadOptions);
+                loader.load(() => {
+                    const map = new window.google.maps.Map(mapContainerRef.current, conf.googleMapsOptions);
+                    const mapView = new window.woosmap.TiledView(map, conf.markersOptions);
+                    const templateInfoWindow = "<div id='infoWindow-{{store_id}}'></div>";
+                    const templateRenderer = new window.woosmap.TemplateRenderer(templateInfoWindow);
+                    const infoWindow = new window.woosmap.LocatorWindow(map, templateRenderer);
+                    infoWindow.setOpeningCallback(() => {
+                        const selectedStore = infoWindow.get('selectedStore').properties;
+                        return createRoot.render(
+                            <InfoWindow
+                                store={selectedStore}
+                            />, document.getElementById(`infoWindow-${selectedStore.store_id}`)
+                        );
+                    });
+                    mapView.bindTo("selectedStore", infoWindow);
                 });
-                mapView.bindTo("selectedStore", infoWindow);
-            });
-        };
-        window.WoosmapLoader.load(conf.woosmapLoadOptions);
-    }
-
-    return (
-        <div>
-            <div className='mapContainer' ref={mapContainerRef}/>
-        </div>
-    );
-};
-
-export default Map;
+            };
+            window.WoosmapLoader.load(conf.woosmapLoadOptions);
+        }
+    
+        return (
+            <div>
+                <div className='mapContainer' ref={mapContainerRef}/>
+            </div>
+        );
+    };
+    
+    export default Map;
 

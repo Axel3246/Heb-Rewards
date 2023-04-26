@@ -1,9 +1,9 @@
 {
-  "woosmapLoaderUrl": "https://sdk.woosmap.com/locator/loader.js",
+  "woosmapLoaderUrl": "https://sdk.woosmap.com/locator/loader.js ",
   "woosmapLoadOptions": {
     "version": "1.4",
     "publicKey": "woos-28223f8a-ff26-3e47-bff5-47e23f405fce",
-    "loadJQuery": false
+    "loadJQuery": false  
   },
   "googleLoadOptions": {
     "key": "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg"
