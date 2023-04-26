@@ -125,9 +125,9 @@ function Home({user}) {
                         </Card>
                     </Grid>
                 </Grid>
-                <h1>Hello, <span></span>{user.displayName}</h1>
+                {/* <h1>Hello, <span></span>{user.displayName}</h1>
                 <img src={user.photoURL} alt="" />
-                <button className="button signout" onClick={() => auth.signOut()}>Sign out</button>
+                <button className="button signout" onClick={() => auth.signOut()}>Sign out</button> */}
             </Container >
         </>
     )
