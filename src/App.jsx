@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import ReactDOM from "react-dom/client"
 import reactLogo from './assets/react.svg'
@@ -7,6 +8,7 @@ import heb from './assets/img/landing/heb.png'
 import SignUp from './SignUp'
 import Home from './pages/Home/Home'
 import Log from './pages/Login/Login'
+import Lista from './pages/Lista/AppLista'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import './App.css'
 import '@fontsource/roboto/300.css';
