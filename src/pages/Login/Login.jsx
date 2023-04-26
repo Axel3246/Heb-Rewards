@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import firebase from 'firebase/compat/app';
-import { database, auth, signInWithGoogle } from '../../FirebaseConfig'
 import LoginComponent from './LoginComponent'
 import Home from '../Home/Home'
+
 
 function SignIn() {
 
