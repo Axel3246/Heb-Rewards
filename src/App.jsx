@@ -1,19 +1,33 @@
-import { useState } from 'react'
-import {Home, Login} from './pages'
-import { Button, Alert, Stack } from '@mui/material'
+
+import React, { useState } from 'react'
+import ReactDOM from "react-dom/client"
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import koop from './assets/img/repo/logokoop2.png'
+import heb from './assets/img/landing/heb.png'
+import SignUp from './SignUp'
+import Home from './pages/Home/Home'
+import Log from './pages/Login/Login'
 import Lista from './pages/Lista/AppLista'
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
+import './App.css'
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
-
-
-function App() {
+export default function App() {
   const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      {/* <Home/> */}
-      <Lista/>
-    </div>
-  )
-}
+      <Router>
+        <Routes>
+          <Route path="/" element={<SignUp/>}></Route>
+          <Route path="/login" element={<Log/>}></Route>
+          <Route path="/home" element={<Home/>}></Route>
+        </Routes>
+      </Router> 
+    );
 
-export default App
+  }
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
