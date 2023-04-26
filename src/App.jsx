@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import {Home, Login} from './pages'
 import { Button, Alert, Stack } from '@mui/material'
+import Lista from './pages/Lista/AppLista'
+
 
 
 function App() {
@@ -9,7 +11,7 @@ function App() {
   return (
     <div className="App">
       {/* <Home/> */}
-      <Login/>
+      <Lista/>
     </div>
   )
 }
