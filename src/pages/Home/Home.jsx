@@ -4,7 +4,6 @@ import Log from '../Login/Login'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import { Button, Alert, Stack } from '@mui/material'
 import { database, auth, signInWithGoogle } from '../../FirebaseConfig'
-import GoogleButton from 'react-google-button'
 
 
 
