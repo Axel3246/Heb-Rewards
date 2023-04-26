@@ -1,8 +1,10 @@
+
 import React, { useState } from 'react'
 import ReactDOM from "react-dom/client"
 import SignUp from './pages/SignUp/SignUp'
 import Home from './pages/Home/Home'
 import Log from './pages/Login/Login'
+import Lista from './pages/Lista/AppLista'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import './App.css'
 import '@fontsource/roboto/300.css';
@@ -18,6 +20,7 @@ export default function App() {
           <Route path="/signup" element={<SignUp/>}></Route>
           <Route path="/login" element={<Log/>}></Route>
           <Route path="/home" element={<Home/>}></Route>
+          <Route path="/lista" element={<Lista/>}></Route>
         </Routes>
       </Router> 
     );
