@@ -1,11 +1,7 @@
 
 import React, { useState } from 'react'
 import ReactDOM from "react-dom/client"
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import koop from './assets/img/repo/logokoop2.png'
-import heb from './assets/img/landing/heb.png'
-import SignUp from './SignUp'
+import SignUp from './pages/SignUp/SignUp'
 import Home from './pages/Home/Home'
 import Log from './pages/Login/Login'
 import Lista from './pages/Lista/AppLista'
@@ -21,7 +17,7 @@ export default function App() {
   return (
       <Router>
         <Routes>
-          <Route path="/" element={<SignUp/>}></Route>
+          <Route path="/signup" element={<SignUp/>}></Route>
           <Route path="/login" element={<Log/>}></Route>
           <Route path="/home" element={<Home/>}></Route>
           <Route path="/lista" element={<Lista/>}></Route>
