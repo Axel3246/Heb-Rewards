@@ -36,7 +36,7 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 console.log(userCredential);
-                navigate('/home', { replace: true });
+                navigate('/', { replace: true });
             })
             .catch((error) => {
                 setShow(true);
