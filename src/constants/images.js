@@ -6,6 +6,6 @@ import wave from '../assets/img/landing/wave.png'
 export default {
     koop,
     heb,
-    heb_svg
+    heb_svg,
     wave
   };
