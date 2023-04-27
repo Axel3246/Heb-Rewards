@@ -91,6 +91,9 @@ const Login = () => {
                         <Button type="submit" onClick={signIn} fullWidth variant="contained" sx={{ mt: 2, mb: 1, background: '#ff3232', fontSize: 16 }}>
                             <Typography variant='p'>Iniciar Sesión</Typography>
                         </Button>
+                        <Box sx={{ fontWeight: 'light', m: 1, fontSize: 14 }}>
+                             <a href="/" className='invit'>Inicia Sesión como Invitado</a>
+                        </Box>
                         <Box sx={{ fontWeight: 'light', m: 1, fontSize: 14, mb: 2 }}>
                             ¿No tienes cuenta? <a href="/signup">Registrate Aquí</a>
                         </Box>
