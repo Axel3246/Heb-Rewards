@@ -44,11 +44,12 @@ function Home({user}) {
                 >
                     <Grid item sx={{ textAlign: 'center', }}>
                         <Card sx={{ maxWidth: 345 }}>
-                            <CardActionArea>
+                            <CardActionArea href='/productos'>
                                 <CardMedia
                                     component="img"
                                     height="240"
                                     image={images.holder_koopas}
+                                    
                                 />
                                 <CardContent>
                                     <Typography gutterBottom variant="h5" component="div">

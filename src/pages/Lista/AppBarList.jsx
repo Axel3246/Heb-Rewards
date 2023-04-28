@@ -35,8 +35,8 @@ export default function ButtonAppBar() {
                     </IconButton>
                     
                 
-                    <IconButton>
-                        <Box component="img" src={images.heb_svg} sx={{maxHeight: 40}}/>
+                    <IconButton href='/'>
+                        <Box component="img" src={images.heb_svg} sx={{maxHeight: 120,  height: 1, width: 1}}/>
                     </IconButton>
                     
 

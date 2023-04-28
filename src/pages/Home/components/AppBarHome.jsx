@@ -72,13 +72,13 @@ export default function ButtonAppBar() {
                         size="large"
                         color="inherit"
                     >
-                        <MenuIcon />
+                    <MenuIcon />
                     </IconButton>
                     
                     
                 
-                    <IconButton sx={{ml:'auto', mr:'auto'}}>
-                        <Box component="img" src={images.heb_svg} sx={{maxHeight: 40}}/>
+                    <IconButton sx={{ml:'auto', mr:'auto'}} href='/'>
+                        <Box component="img" src={images.heb_svg} sx={{maxHeight: 120, height: 1, width: 1}}/>
                     </IconButton>
                     
                     
@@ -93,8 +93,9 @@ export default function ButtonAppBar() {
                     <IconButton
                         size="large"
                         color="inherit"
+                        href='/lista'
                     >
-                        <ShoppingCartOutlinedIcon />
+                    <ShoppingCartOutlinedIcon />
                     </IconButton>
                 </Box>
             </Toolbar>
@@ -104,8 +105,8 @@ export default function ButtonAppBar() {
                     Nombre de sucursal
                 </Button>
             </Box>
-            
-            <Box sx={{px:2, py:1}}>
+
+            <Box sx={{px:2, py:1, marginTop: '102px'}}>
             <Search>
                 <SearchIconWrapper>
                     <SearchIcon color="action"/>
@@ -116,6 +117,7 @@ export default function ButtonAppBar() {
                 />
             </Search>
             </Box>
+
             
 
             
