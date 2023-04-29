@@ -106,7 +106,7 @@ export default function ButtonAppBar() {
                 </Button>
             </Box>
 
-            <Box sx={{px:2, py:1, marginTop: '102px'}}>
+            <Box sx={{px:2, py:1}}>
             <Search>
                 <SearchIconWrapper>
                     <SearchIcon color="action"/>

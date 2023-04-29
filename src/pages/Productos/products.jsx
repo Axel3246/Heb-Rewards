@@ -80,6 +80,10 @@ const Productos = () => {
         var cod = document.getElementById("producto").value;
         console.log(cod);
         setDepartamento(cod);
+
+        var cod2 = document.getElementById("ofertas").value;
+        console.log(cod2);
+        setHayOferta(cod2);
          
         /* Para obtener el texto
         var combo = document.getElementById("producto");
@@ -142,7 +146,7 @@ const Productos = () => {
       }, [nombre, departamento, hayOferta]) 
 
   return (
-    <div style={{width: '100vw', marginTop:'135px'}}>
+    <div style={{width: '100%', marginTop:'135px'}}>
             <AppBar position="fixed" sx={{ bgcolor: '#FE231F' }}>  
             <Toolbar disableGutters>    
                 <Box
@@ -206,7 +210,7 @@ const Productos = () => {
         </AppBar>
         
         <div className="grid-container" style={{display: 'flex'}}>
-        <div className="item-1" style={{marginTop: '50px', minWidth: '22vw'}}>
+        <div className="item-1" style={{marginTop: '50px', minWidth: '21%'}}>
         
         <p>Selecciona el departamento...</p>
         <select id="producto" name="producto" onChange={ShowSelected}>
@@ -221,6 +225,12 @@ const Productos = () => {
             <option value='Deportes'>Deportes</option>
             <option value='Farmacia'>Farmacia</option>
             <option value='Frutas y Verduras'>Frutas y Verduras</option> 
+        </select>
+        <br />
+        <p>Ofertas</p>
+        <select id="ofertas" name="ofertas" onChange={ShowSelected}>
+            <option value=''>Todo...</option>
+            <option value='R'>Todas las Ofertas</option>
         </select>
 
         </div>

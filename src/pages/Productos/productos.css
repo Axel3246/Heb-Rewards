@@ -32,22 +32,21 @@
 }
 .grid-container {
     display: grid;
-    grid-template-columns: 22vw 78vw;
-    grid-template-rows: 100vh; 
+    grid-template-columns: 22% 78%;
+    grid-template-rows: 100%; 
     margin-top: 160px;
-    margin-left: 0px;
   }
 
 @media (max-width: 1000px) {
     .grid-container {
       grid-template-columns: 1000px; /* Definimos 1 columnas de tamaño diferente */
-      grid-template-rows: 22vw 78vw;
+      grid-template-rows: 22% 78%;
       flex-direction: column;
     }
 
     .item-2 {
         
-        width: 100vw;
+        width: 100%;
     }
     
     .ContenedorCartas{
