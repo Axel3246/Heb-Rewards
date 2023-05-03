@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 
+// se inicializan las variables para la geolocalización
 let latitude;
 let longitude;
 
+// geolocalización
 const status = document.querySelector('.status');
 
 const success = (position) => {
@@ -16,10 +18,12 @@ const error = () => {
   status.textContent = 'Échale ganas'
 }
 
+// obtener la posición actual
 navigator.geolocation.getCurrentPosition(success, error);
 
 console.log(latitude + " " + longitude);
 
+// función principal
 function Map() {
   
   const markers = [
@@ -93,6 +97,7 @@ function Map() {
         {activeMarker === id ? (
           <InfoWindow onCloseClick={() => setActiveMarker(null)}>
             <div>{name}</div>
+            <div><button>este es un botón</button></div>
           </InfoWindow>
         ) : null}
       </Marker>
