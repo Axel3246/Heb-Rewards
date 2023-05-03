@@ -59,7 +59,7 @@ function Map() {
   }
 
   navigator.geolocation.getCurrentPosition(success, error);
-  /*
+  
   const [activeMarker, setActiveMarker] = useState(null);
 
   const handleActiveMarker = (marker) => {
@@ -107,7 +107,6 @@ function Map() {
     ))}
     </GoogleMap>
   );
-  */
 }
 
 export default Map;
