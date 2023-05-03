@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {Home, Login, Map, Maps} from './pages'
+import { Home, Login, Map } from './pages'
 import { Button, Alert, Stack } from '@mui/material'
 import { useLoadScript } from "@react-google-maps/api";
 import "./styles.css";
@@ -15,10 +15,5 @@ export default function App() {
 //  return isLoaded ? <Maps/> : null;
 //      {/* <Home/> */}
 //      {/* <Login/> */}
-
-return (
-  <Map/>
-)
   
-
 }
