@@ -21,6 +21,11 @@ const markers = [
     id: 4,
     name: "New York, New York",
     position: { lat: 40.712776, lng: -74.005974 }
+  },
+  {
+    id: 5,
+    name: "Yo",
+    position: { lat: latitude, lng: longitude }
   }
 ];
 
@@ -29,8 +34,8 @@ const findLocation = () => {
 
   const success = (position) => {
     console.log(position)
-    const latitude = position.coors.latitude;
-    const longitude = position.coors.longitude;
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
     console.log(latitude + " " + longitude);
   }
 
@@ -44,22 +49,8 @@ const findLocation = () => {
 
 
 function Map() {
-  
-  const status = document.querySelector('.status');
+  findLocation();
 
-  const success = (position) => {
-    console.log(position)
-    const latitude = position.coors.latitude;
-    const longitude = position.coors.longitude;
-    console.log(latitude + " " + longitude);
-  }
-
-  const error = () => {
-    status.textContent = 'Échale ganas'
-  }
-
-  navigator.geolocation.getCurrentPosition(success, error);
-  
   const [activeMarker, setActiveMarker] = useState(null);
 
   const handleActiveMarker = (marker) => {
