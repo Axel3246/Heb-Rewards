@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 
-let latitude;
-let longitude;
-
 const status = document.querySelector('.status');
 
 const success = (position) => {
+  let latitude;
   console.log(position);
   return latitude = position.coords.latitude;
 }
 
 const successL = (position) => {
+  let longitude;
   console.log(position);
   return longitude = position.coords.longitude;
 }
