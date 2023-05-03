@@ -10,7 +10,6 @@ const success = (position) => {
   console.log(position);
   latitude = position.coords.latitude;
   longitude = position.coords.longitude;
-  console.log(latitude + " " + longitude);
 }
 
 const error = () => {
@@ -18,6 +17,8 @@ const error = () => {
 }
 
 navigator.geolocation.getCurrentPosition(success, error);
+
+console.log(latitude + " " + longitude);
 
 const markers = [
   {
