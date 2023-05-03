@@ -36,8 +36,6 @@ function Map() {
     map: map,
   });
     
-  map = new google.maps.Map(document.getElementById("map"),options)
-
   return (
     <>
       <h1>Mapa</h1>
