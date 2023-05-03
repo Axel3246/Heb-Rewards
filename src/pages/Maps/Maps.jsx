@@ -34,11 +34,31 @@ function Maps() {
     setActiveMarker(marker);
   };
 
-  const handleOnLoad = (map) => {
+  function resolveAfter2Seconds(x) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(x);
+      }, 2000);
+    });
+  }
+
+  const handleOnLoad = async (map) => {
     const bounds = new google.maps.LatLngBounds();
+    //waitthis();
     markers.forEach(({ position }) => bounds.extend(position));
     map.fitBounds(bounds);
+    var x = await resolveAfter2Seconds(10);
   };
+
+  //function waitthis(){
+  //  return (setTimeout(() => {
+  //    console.log('Espera'), 1000
+  //  }, 1000))
+  //};
+
+  
+  
+  
 
   return (
     <GoogleMap
@@ -46,19 +66,20 @@ function Maps() {
       onClick={() => setActiveMarker(null)}
       mapContainerStyle={{ width: "100vw", height: "100vh" }}
     >
-      {markers.map(({ id, name, position }) => (
-        <Marker
-          key={id}
-          position={position}
-          onClick={() => handleActiveMarker(id)}
-        >
-          {activeMarker === id ? (
-            <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-              <div>{name}</div>
-            </InfoWindow>
-          ) : null}
-        </Marker>
-      ))}
+    //waitthis();
+    {markers.map(({ id, name, position }) => (
+      <Marker
+        key={id}
+        position={position}
+        onClick={() => handleActiveMarker(id)}
+      >
+        {activeMarker === id ? (
+          <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+            <div>{name}</div>
+          </InfoWindow>
+        ) : null}
+      </Marker>
+    ))}
     </GoogleMap>
   );
 }
