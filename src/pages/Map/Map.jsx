@@ -23,6 +23,26 @@ navigator.geolocation.getCurrentPosition(success, error);
 
 console.log(latitude + " " + longitude);
 
+// función para poner el mapa
+function initMap(){
+  // opciones
+  var options = {
+    center: {lat: latitude, lng: longitude},
+    zoom: 8
+  }
+
+  // nuevo mapa
+  map = new google.maps.Map(document.getElementById("map"),options)
+
+
+  // marker
+  const marker = new google.maps.Marker({
+    position: { lat: latitude, lng: longitude },
+    map:map,
+    icon: "https://upload.wikimedia.org/wikipedia/commons/d/da/Logo_of_the_HEB_Grocery_Company%2C_LP.png"
+  });
+}
+
 // función principal
 function Map() {
 
@@ -38,10 +58,9 @@ function Map() {
     
   return (
     <>
-      <h1>Mapa</h1>
       <div id="map"></div>
-      <script async
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg&callback=Map">
+      <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg&callback=initMap">
       </script>
     </>
   );
