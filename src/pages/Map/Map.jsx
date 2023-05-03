@@ -25,83 +25,23 @@ console.log(latitude + " " + longitude);
 
 // función principal
 function Map() {
-  
-  const markers = [
-    {
-      id: 1,
-      name: "Chicago, Illinois",
-      position: { lat: 41.881832, lng: -87.623177 }
-    },
-    {
-      id: 2,
-      name: "Denver, Colorado",
-      position: { lat: 39.739235, lng: -104.99025 }
-    },
-    {
-      id: 3,
-      name: "Los Angeles, California",
-      position: { lat: 34.052235, lng: -118.243683 }
-    },
-    {
-      id: 4,
-      name: "New York, New York",
-      position: { lat: 40.712776, lng: -74.005974 }
-    },
-    {
-      id: 5,
-      name: "Yo",
-      position: { lat: latitude, lng: longitude }
-    }
-  ];
-
-  console.log(latitude + " " + longitude);
-
-  const [activeMarker, setActiveMarker] = useState(null);
-
-  const handleActiveMarker = (marker) => {
-    if (marker === activeMarker) {
-      return;
-    }
-    setActiveMarker(marker);
-  };
-
-  function resolveAfter2Seconds(x) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(x);
-      }, 2000);
-    });
+  var options = {
+    center: {lat: latitude, lng: longitude},
+    zoom: 8
   }
+    
+  map = new google.maps.Map(document.getElementById("map"),options)
 
-  const handleOnLoad = async (map) => {
-    const bounds = new google.maps.LatLngBounds();
-    //waitthis();
-    markers.forEach(({ position }) => bounds.extend(position));
-    map.fitBounds(bounds);
-    var x = await resolveAfter2Seconds(10);
-  };
-
-  
   return (
-    <GoogleMap
-      onLoad={handleOnLoad}
-      onClick={() => setActiveMarker(null)}
-      mapContainerStyle={{ width: "100vw", height: "100vh" }}
-    >
-    {markers.map(({ id, name, position }) => (
-      <Marker
-        key={id}
-        position={position}
-        onClick={() => handleActiveMarker(id)}
-      >
-        {activeMarker === id ? (
-          <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-            <div>{name}</div>
-          </InfoWindow>
-        ) : null}
-      </Marker>
-    ))}
-    </GoogleMap>
+    <>
+      <h1>Mapa</h1>
+
+      <div id="map"></div>
+
+      <script defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg&callback=initMap">
+      </script>
+    </>
   );
 }
 
