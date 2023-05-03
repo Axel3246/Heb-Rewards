@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 
-const latitude = 0;
-const longitude = 0;
+const latitude = 0.0;
+const longitude = 0.0;
 
 const status = document.querySelector('.status');
 
