@@ -4,7 +4,6 @@ import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 let latitude;
 let longitude;
 
-/*
 const status = document.querySelector('.status');
 
 const success = (position) => {
@@ -20,27 +19,8 @@ const error = () => {
 navigator.geolocation.getCurrentPosition(success, error);
 
 console.log(latitude + " " + longitude);
-*/
-
-const findLocation = () => {
-  const status = document.querySelector('.status');
-
-  const success = (position) => {
-    console.log(position);
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-    console.log(latitude + " " + longitude);
-  }
-
-  const error = () => {
-    status.textContent = 'Échale ganas'
-  }
-
-  navigator.geolocation.getCurrentPosition(success, error);
-}
 
 function Map() {
-  findLocation();
   
   const markers = [
     {
