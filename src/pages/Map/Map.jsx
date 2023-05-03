@@ -1,24 +1,6 @@
 import React, { useState } from "react";
 import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 
-let latitude = 0.0;
-let longitude = 0.0;
-
-const status = document.querySelector('.status');
-
-const success = (position) => {
-  console.log(position);
-  latitude = position.coords.latitude;
-  longitude = position.coords.longitude;
-  console.log(latitude + " " + longitude);
-}
-
-const error = () => {
-  status.textContent = 'Échale ganas'
-}
-
-navigator.geolocation.getCurrentPosition(success, error);
-
 const markers = [
   {
     id: 1,
@@ -52,8 +34,8 @@ const findLocation = () => {
 
   const success = (position) => {
     console.log(position);
-    const latitude = position.coords.latitude;
-    const longitude = position.coords.longitude;
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
     console.log(latitude + " " + longitude);
   }
 
@@ -64,10 +46,11 @@ const findLocation = () => {
   navigator.geolocation.getCurrentPosition(success, error);
 }
 
-
+let latitude;
+let longitude;
 
 function Map() {
-  // findLocation();
+  findLocation();
 
   const [activeMarker, setActiveMarker] = useState(null);
 
