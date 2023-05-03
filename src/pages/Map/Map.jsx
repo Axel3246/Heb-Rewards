@@ -8,8 +8,12 @@ const status = document.querySelector('.status');
 
 const success = (position) => {
   console.log(position);
-  latitude = position.coords.latitude;
-  longitude = position.coords.longitude;
+  return latitude = position.coords.latitude;
+}
+
+const successL = (position) => {
+  console.log(position);
+  return longitude = position.coords.longitude;
 }
 
 const error = () => {
@@ -17,6 +21,7 @@ const error = () => {
 }
 
 navigator.geolocation.getCurrentPosition(success, error);
+navigator.geolocation.getCurrentPosition(successL, error);
 
 console.log(latitude + " " + longitude);
 
