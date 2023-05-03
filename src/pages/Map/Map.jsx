@@ -20,34 +20,6 @@ navigator.geolocation.getCurrentPosition(success, error);
 
 console.log(latitude + " " + longitude);
 
-const markers = [
-  {
-    id: 1,
-    name: "Chicago, Illinois",
-    position: { lat: 41.881832, lng: -87.623177 }
-  },
-  {
-    id: 2,
-    name: "Denver, Colorado",
-    position: { lat: 39.739235, lng: -104.99025 }
-  },
-  {
-    id: 3,
-    name: "Los Angeles, California",
-    position: { lat: 34.052235, lng: -118.243683 }
-  },
-  {
-    id: 4,
-    name: "New York, New York",
-    position: { lat: 40.712776, lng: -74.005974 }
-  },
-  {
-    id: 5,
-    name: "Yo",
-    position: { lat: latitude, lng: longitude }
-  }
-];
-
 const findLocation = () => {
   const status = document.querySelector('.status');
 
@@ -66,6 +38,35 @@ const findLocation = () => {
 }
 
 function Map() {
+  const markers = [
+    {
+      id: 1,
+      name: "Chicago, Illinois",
+      position: { lat: 41.881832, lng: -87.623177 }
+    },
+    {
+      id: 2,
+      name: "Denver, Colorado",
+      position: { lat: 39.739235, lng: -104.99025 }
+    },
+    {
+      id: 3,
+      name: "Los Angeles, California",
+      position: { lat: 34.052235, lng: -118.243683 }
+    },
+    {
+      id: 4,
+      name: "New York, New York",
+      position: { lat: 40.712776, lng: -74.005974 }
+    },
+    {
+      id: 5,
+      name: "Yo",
+      position: { lat: latitude, lng: longitude }
+    }
+  ];
+
+  console.log(latitude + " " + longitude);
 
   const [activeMarker, setActiveMarker] = useState(null);
 
