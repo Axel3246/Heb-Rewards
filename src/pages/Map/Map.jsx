@@ -4,6 +4,7 @@ import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 let latitude;
 let longitude;
 
+/*
 const status = document.querySelector('.status');
 
 const success = (position) => {
@@ -19,6 +20,7 @@ const error = () => {
 navigator.geolocation.getCurrentPosition(success, error);
 
 console.log(latitude + " " + longitude);
+*/
 
 const findLocation = () => {
   const status = document.querySelector('.status');
@@ -38,6 +40,8 @@ const findLocation = () => {
 }
 
 function Map() {
+  findLocation();
+  
   const markers = [
     {
       id: 1,
