@@ -97,7 +97,6 @@ function Map() {
         {activeMarker === id ? (
           <InfoWindow onCloseClick={() => setActiveMarker(null)}>
             <div>{name}</div>
-            <div><button>este es un botón</button></div>
           </InfoWindow>
         ) : null}
       </Marker>
