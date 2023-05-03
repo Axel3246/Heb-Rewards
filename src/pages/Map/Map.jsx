@@ -45,7 +45,20 @@ const findLocation = () => {
 
 function Map() {
   
-  findLocation();
+  const status = document.querySelector('.status');
+
+  const success = (position) => {
+    console.log(position)
+    const latitude = position.coors.latitude;
+    const longitude = position.coors.longitude;
+    console.log(latitude + " " + longitude);
+  }
+
+  const error = () => {
+    status.textContent = 'Échale ganas'
+  }
+
+  navigator.geolocation.getCurrentPosition(success, error);
   /*
   const [activeMarker, setActiveMarker] = useState(null);
 
