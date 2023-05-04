@@ -27,22 +27,83 @@ function Map() {
   console.log(latitude + " " + longitude);
   const centro = { lat: latitude, lng: longitude }
 
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg" // Add your API key
-  });
+  
+  const markers = [
+    {
+      id: 1,
+      name: "Chicago, Illinois",
+      position: { lat: 41.881832, lng: -87.623177 }
+    },
+    {
+      id: 2,
+      name: "Denver, Colorado",
+      position: { lat: 39.739235, lng: -104.99025 }
+    },
+    {
+      id: 3,
+      name: "Los Angeles, California",
+      position: { lat: 34.052235, lng: -118.243683 }
+    },
+    {
+      id: 4,
+      name: "New York, New York",
+      position: { lat: 40.712776, lng: -74.005974 }
+    },
+    {
+      id: 5,
+      name: "Yo",
+      position: { lat: latitude, lng: longitude }
+    }
+  ];
 
-  return isLoaded ? <Map/> : null;
+  console.log(latitude + " " + longitude);
 
+  const [activeMarker, setActiveMarker] = useState(null);
+
+  const handleActiveMarker = (marker) => {
+    if (marker === activeMarker) {
+      return;
+    }
+    setActiveMarker(marker);
+  };
+
+  function resolveAfter2Seconds(x) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(x);
+      }, 2000);
+    });
+  }
+
+  const handleOnLoad = async (map) => {
+    const bounds = new google.maps.LatLngBounds();
+    markers.forEach(({ position }) => bounds.extend(position));
+    map.fitBounds(bounds);
+    var x = await resolveAfter2Seconds(10);
+  };
+
+  
   return (
-    <Box poition='absolute' left={0} top={0} h='100%' w='100%'>
-      <GoogleMap 
-        center={ centro } 
-        zoom={ 8 } 
-        mapContainerStyle={{ width: '100%', height: '100%' }}
+    <GoogleMap
+      onLoad={handleOnLoad}
+      onClick={() => setActiveMarker(null)}
+      mapContainerStyle={{ width: "100vw", height: "100vh" }}
+    >
+    {markers.map(({ id, name, position }) => (
+      <Marker
+        key={id}
+        position={position}
+        onClick={() => handleActiveMarker(id)}
       >
-      </GoogleMap>
-    </Box>
-  )
+        {activeMarker === id ? (
+          <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+            <div>{name}</div>
+          </InfoWindow>
+        ) : null}
+      </Marker>
+    ))}
+    </GoogleMap>
+  );
 }
 
 export default Map;
