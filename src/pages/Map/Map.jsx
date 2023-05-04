@@ -27,9 +27,11 @@ function Map() {
   console.log(latitude + " " + longitude);
   const centro = { lat: latitude, lng: longitude }
 
-  const { isLoaded } = useJsApiLoader ({
-    googleMapsApiKey: AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg
-  })
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg" // Add your API key
+  });
+
+  return isLoaded ? <Map/> : null;
 
   return (
     <Box poition='absolute' left={0} top={0} h='100%' w='100%'>
