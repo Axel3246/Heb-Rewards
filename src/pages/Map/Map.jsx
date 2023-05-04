@@ -20,7 +20,6 @@ const error = () => {
 
 // obtener la posición actual
 navigator.geolocation.getCurrentPosition(success, error);
-console.log(latitude + " " + longitude);
 
 // función principal
 function Map() {
@@ -28,13 +27,9 @@ function Map() {
   console.log(latitude + " " + longitude);
   const centro = { lat: latitude, lng: longitude }
 
-  const { isLoaded } = useLoadScript({
+  const { isLoaded } = useJsApiLoader ({
     googleMapsApiKey: AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg
   })
-
-  if (!isLoaded) {
-    return <Map />
-  }
 
   return (
     <Box poition='absolute' left={0} top={0} h='100%' w='100%'>
