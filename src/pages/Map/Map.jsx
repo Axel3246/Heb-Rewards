@@ -18,9 +18,8 @@ const error = () => {
   status.textContent = 'Échale ganas'
 }
 
-// obtener la posición actual
+// obtener la posición actual e imprimirla
 navigator.geolocation.getCurrentPosition(success, error);
-
 console.log(latitude + " " + longitude);
 
 // función para poner el mapa
@@ -30,32 +29,12 @@ function initMap(){
     center: {lat: latitude, lng: longitude},
     zoom: 8
   }
-
   // nuevo mapa
   map = new google.maps.Map(document.getElementById("map"),options)
-
-
-  // marker
-  const marker = new google.maps.Marker({
-    position: { lat: latitude, lng: longitude },
-    map:map,
-    icon: "https://upload.wikimedia.org/wikipedia/commons/d/da/Logo_of_the_HEB_Grocery_Company%2C_LP.png"
-  });
 }
 
 // función principal
 function Map() {
-
-  const map = new google.maps.Map(document.getElementById("map"), {
-    zoom: 8,
-    center: {lat: latitude, lng: longitude},
-  });
-
-  const marker = new google.maps.Marker({
-    position: {lat: latitude, lng: longitude},
-    map: map,
-  });
-    
   return (
     <>
       <div id="map"></div>
