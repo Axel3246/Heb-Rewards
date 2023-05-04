@@ -7,17 +7,12 @@ import "./styles.css";
 export default function App() {
   const [count, setCount] = useState(0)
 
-
-//  const { isLoaded } = useLoadScript({
-//    googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg" // Add your API key
-//  });
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg" // Add your API key
+  });
   
-//  return isLoaded ? <Map/> : null;
-//      {/* <Home/> */}
-//      {/* <Login/> */}
-  
-return (
-  <Map/>
-)
+  return isLoaded ? <Map/> : null;
+      {/* <Home/> */}
+      {/* <Login/> */}
 
 }
