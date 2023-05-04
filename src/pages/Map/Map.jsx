@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
+import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from "@react-google-maps/api";
 
 // se inicializan las variables para la geolocalización
 let latitude;
@@ -18,32 +18,34 @@ const error = () => {
   status.textContent = 'Échale ganas'
 }
 
-// obtener la posición actual e imprimirla
+// obtener la posición actual
 navigator.geolocation.getCurrentPosition(success, error);
 console.log(latitude + " " + longitude);
 
-// función para poner el mapa
-function initMap(){
-  // opciones
-  var options = {
-    center: {lat: latitude, lng: longitude},
-    zoom: 8
-  }
-  // nuevo mapa
-  map = new google.maps.Map(document.getElementById("map"),options)
-}
-
 // función principal
 function Map() {
+  // centro del mapa basado en la posición actual
+  console.log(latitude + " " + longitude);
+  const centro = { lat: latitude, lng: longitude }
+
+  const { isLoaded } = useJsApiLoader({
+    googleMapsApiKey: AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg
+  })
+
+  if (!isLoaded) {
+    return <Map />
+  }
+
   return (
-    <>
-      <div id="map"></div>
-      <script defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg&callback=initMap">
-      </script>
-    </>
-  );
+    <Box poition='absolute' left={0} top={0} h='100%' w='100%'>
+      <GoogleMap 
+        center={ centro } 
+        zoom={ 8 } 
+        mapContainerStyle={{ width: '100%', height: '100%' }}
+      >
+      </GoogleMap>
+    </Box>
+  )
 }
 
 export default Map;
-
