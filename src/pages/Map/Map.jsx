@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GoogleMap, InfoWindow, Marker, useJsApiLoader } from "@react-google-maps/api";
+import { GoogleMap, InfoWindow, Marker, useJsApiLoader, useLoadScript } from "@react-google-maps/api";
 
 // se inicializan las variables para la geolocalización
 let latitude;
@@ -28,7 +28,7 @@ function Map() {
   console.log(latitude + " " + longitude);
   const centro = { lat: latitude, lng: longitude }
 
-  const { isLoaded } = useJsApiLoader({
+  const { isLoaded } = useLoadScript({
     googleMapsApiKey: AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg
   })
 
