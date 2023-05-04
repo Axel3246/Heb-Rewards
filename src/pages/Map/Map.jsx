@@ -21,17 +21,18 @@ const error = () => {
 // obtener la posición actual
 navigator.geolocation.getCurrentPosition(success, error);
 
-const { isLoaded } = useLoadScript({
-  googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg"
-});
-
-return isLoaded ? Map() : null;
-
 // función principal
 function Map() {
-  // centro del mapa basado en la posición actual
-  console.log(latitude + " " + longitude);
-  const centro = { lat: latitude, lng: longitude }
+  const [activeMarker, setActiveMarker] = useState(null);
+
+  // API Key de Google
+  const { isLoaded } = useLoadScript ({
+    googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg"
+  });
+  
+  if (!isLoaded) {
+    return "Hay un error"
+  }
   
   const markers = [
     {
@@ -61,9 +62,8 @@ function Map() {
     }
   ];
 
+  // Posición actual
   console.log(latitude + " " + longitude);
-
-  const [activeMarker, setActiveMarker] = useState(null);
 
   const handleActiveMarker = (marker) => {
     if (marker === activeMarker) {
