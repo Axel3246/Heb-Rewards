@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { GoogleMap, InfoWindow, Marker, useLoadScript } from "@react-google-maps/api";
 
-const { isLoaded } = useLoadScript({
-  googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg"
-});
-
 // se inicializan las variables para la geolocalización
 let latitude;
 let longitude;
@@ -24,6 +20,12 @@ const error = () => {
 
 // obtener la posición actual
 navigator.geolocation.getCurrentPosition(success, error);
+
+const { isLoaded } = useLoadScript({
+  googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg"
+});
+
+return isLoaded ? Map() : null;
 
 // función principal
 function Map() {
