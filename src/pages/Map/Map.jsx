@@ -34,26 +34,27 @@ function Map() {
     return "Hay un error"
   }
   
+  // ubicación de cada HEB
   const markers = [
     {
       id: 1,
-      name: "Chicago, Illinois",
-      position: { lat: 41.881832, lng: -87.623177 }
+      name: "HEB Contry",
+      position: { lat: 25.6271687, lng: -100.2750425 }
     },
     {
       id: 2,
-      name: "Denver, Colorado",
-      position: { lat: 39.739235, lng: -104.99025 }
+      name: "HEB Cumbres",
+      position: { lat: 25.73329797, lng: -100.3978786 }
     },
     {
       id: 3,
-      name: "Los Angeles, California",
-      position: { lat: 34.052235, lng: -118.243683 }
+      name: "HEB Del Valle",
+      position: { lat: 25.6505631, lng: -100.3608711 }
     },
     {
       id: 4,
-      name: "New York, New York",
-      position: { lat: 40.712776, lng: -74.005974 }
+      name: "HEB Estanzuela",
+      position: { lat: 25.58734297, lng: -100.258748 }
     },
     {
       id: 5,
@@ -80,21 +81,23 @@ function Map() {
     });
   }
 
+  // poner marcadores
   const handleOnLoad = async (map) => {
     const bounds = new google.maps.LatLngBounds();
     markers.forEach(({ position }) => bounds.extend(position));
     map.fitBounds(bounds);
     var x = await resolveAfter2Seconds(10);
   };
-
   
   return (
     <GoogleMap
       onLoad={handleOnLoad}
       onClick={() => setActiveMarker(null)}
       mapContainerStyle={{ width: "100vw", height: "100vh" }}
+      center={{ latitude, longitude }}
+      zoom={ 8 }
     >
-    {markers.map(({ id, name, position }) => (
+      {markers.map(({ id, name, position }) => (
       <Marker
         key={id}
         position={position}
