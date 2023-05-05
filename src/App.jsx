@@ -5,7 +5,7 @@ import SignUp from './pages/SignUp/SignUp'
 import Home from './pages/Home/Home'
 import Log from './pages/Login/Login'
 import Lista from './pages/Lista/AppLista'
-import Map from './pages/Map/Map'
+import Map from './pages/Map/map'
 import Scan from './pages/Scan/scan'
 import Productos from './pages/Productos/products'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
