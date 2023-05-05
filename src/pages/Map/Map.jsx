@@ -92,16 +92,22 @@ function Map() {
   
   return (
     <GoogleMap
-      onLoad={handleOnLoad}
+      onLoad={ handleOnLoad }
       onClick={() => setActiveMarker(null)}
-      mapContainerStyle={{ width: "100vw", height: "100vh" }}
       center={ center }
       zoom={ 15 }
+      mapContainerStyle={{ width: "100vw", height: "100vh" }}
+      options={{
+        zoomControl: false,
+        streetViewControl: false,
+        mapTypeControl: false,
+        fullscreenControl: false,
+      }}
     >
       {markers.map(({ id, name, position }) => (
       <Marker
-        key={id}
-        position={position}
+        key={ id }
+        position={ position }
         onClick={() => handleActiveMarker(id)}
       >
         {activeMarker === id ? (
