@@ -35,7 +35,7 @@ const map = () => {
                             </Typography>
                         </Box>
                         <Box>
-                            <iframe width="800px" height="400px" src="https://clausa.app.carto.com/map/cf8f3d90-1991-4dea-8304-632ac360c9b7"></iframe>
+                          <iframe width="800px" height="400px" src="https://clausa.app.carto.com/map/cf8f3d90-1991-4dea-8304-632ac360c9b7"></iframe>
                         </Box>
 
                     </Box>
