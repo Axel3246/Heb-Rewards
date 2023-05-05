@@ -65,6 +65,7 @@ function Map() {
 
   // Posición actual
   console.log(latitude + " " + longitude);
+  const center = { lat: latitude, lng: longitude }
 
   const handleActiveMarker = (marker) => {
     if (marker === activeMarker) {
@@ -93,9 +94,9 @@ function Map() {
     <GoogleMap
       onLoad={handleOnLoad}
       onClick={() => setActiveMarker(null)}
-      mapContainerStyle={{ width: "100vw", height: "100vh" }}
-      center={{ latitude, longitude }}
-      zoom={ 8 }
+      mapContainerStyle={{ width: "100%", height: "100%" }}
+      center={{ center }}
+      zoom={ 15 }
     >
       {markers.map(({ id, name, position }) => (
       <Marker
