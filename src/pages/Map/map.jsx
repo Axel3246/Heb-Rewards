@@ -130,8 +130,8 @@ const map = () => {
                                 center={ center }
                                 zoom={ 15 }
                                 mapContainerStyle={{ width: "100vw", height: "100vh" }}
-
-                                >
+                                defaultCenter={{ lat: latitude, lng: longitude }}
+                            >
                                 {markers.map(({ id, name, position }) => (
                                 <Marker
                                     key={ id }
@@ -140,14 +140,13 @@ const map = () => {
                                 >
                                     {activeMarker === id ? (
                                     <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                                        <div>{name}</div>
+                                        <div>{ name }</div>
                                     </InfoWindow>
                                     ) : null}
                                 </Marker>
                                 ))}
                             </GoogleMap>
                         </Box>
-
                     </Box>
                 </Container>
             </ThemeProvider>
