@@ -128,8 +128,8 @@ const map = () => {
                                 onLoad={ handleOnLoad }
                                 onClick={() => setActiveMarker(null)}
                                 center={ center }
-                                zoom={ 15 }
-                                mapContainerStyle={{ width: "100%", height: "100%" }}
+                                zoom={ 10 }
+                                mapContainerStyle={{ width: "100vw", height: "100vh" }}
                                 options={{
                                   zoomControl: false,
                                   streetViewControl: false,
