@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { GoogleMap, InfoWindow, Marker, useLoadScript } from "@react-google-maps/api";
-
 import './map.css'
 import { images } from '../../constants'
 import AppBarHome from '../Home/components/AppBarHome'
-import { Container, Box, Typography } from '@mui/material'
+import { Container, Box, Typography, Icon } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MapIcon from '@mui/icons-material/Map';
+import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
 
 const mapTheme = createTheme({
     palette: {
@@ -41,7 +41,7 @@ const map = () => {
 
     // API Key de Google
     const { isLoaded } = useLoadScript ({
-      googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg"
+      // googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg"
     });
     
     if (!isLoaded) {
@@ -73,9 +73,11 @@ const map = () => {
       {
         id: 5,
         name: "Yo",
-        position: { lat: latitude, lng: longitude }
+        position: { lat: latitude, lng: longitude },
+        icon: "https://img.icons8.com/ios-filled/100/null/standing-man.png"
       }
     ];
+    // <Box component="img" src={images.heb_svg} sx={{maxHeight: 120, height: 1, width: 1}}/>
   
     // Posición actual
     console.log(latitude + " " + longitude);
@@ -88,11 +90,12 @@ const map = () => {
       setActiveMarker(marker);
     };
   
+    // esperar 2 segundos
     function resolveAfter2Seconds(x) {
       return new Promise(resolve => {
         setTimeout(() => {
           resolve(x);
-        }, 3000);
+        }, 2000);
       });
     }
   
@@ -125,11 +128,11 @@ const map = () => {
                         </Box>
                         <Box>
                             <GoogleMap
-                                onLoad={ handleOnLoad }
+                                onLoad={ handleOnLoad, resolveAfter2Seconds }
                                 onClick={() => setActiveMarker(null)}
                                 center={ center }
-                                zoom={ 10 }
-                                mapContainerStyle={{ width: "100vw", height: "100vh" }}
+                                zoom={ 12 }
+                                mapContainerStyle={{ width: "100%", height: "80vh" }}
                                 options={{
                                   zoomControl: false,
                                   streetViewControl: false,
@@ -137,19 +140,20 @@ const map = () => {
                                   fullscreenControl: false,
                                 }}
                             >
-                                {markers.map(({ id, name, position }) => (
-                                <Marker
-                                    key={ id }
-                                    position={ position }
-                                    onClick={() => handleActiveMarker(id)}
-                                >
-                                    {activeMarker === id ? (
-                                    <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-                                        <div>{ name }</div>
-                                    </InfoWindow>
-                                    ) : null}
-                                </Marker>
-                                ))}
+                              {markers.map(({ id, name, position, icon }) => (
+                              <Marker
+                                key={ id }
+                                position={ position }
+                                onClick={() => handleActiveMarker(id)}
+                                icon={ icon }
+                              >
+                                {activeMarker === id ? (
+                                <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                                  <div>{ name }</div>
+                                </InfoWindow>
+                                ) : null}
+                              </Marker>
+                              ))}
                             </GoogleMap>
                         </Box>
                     </Box>
