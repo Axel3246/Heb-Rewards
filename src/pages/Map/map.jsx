@@ -129,8 +129,13 @@ const map = () => {
                                 onClick={() => setActiveMarker(null)}
                                 center={ center }
                                 zoom={ 15 }
-                                mapContainerStyle={{ width: "100vw", height: "100vh" }}
-                                defaultCenter={{ lat: latitude, lng: longitude }}
+                                mapContainerStyle={{ width: "100%", height: "100%" }}
+                                options={{
+                                  zoomControl: false,
+                                  streetView: false,
+                                  mapTypeControl: false,
+                                  fullscreenControl: false,
+                                }}
                             >
                                 {markers.map(({ id, name, position }) => (
                                 <Marker
