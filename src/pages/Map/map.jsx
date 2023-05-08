@@ -132,7 +132,7 @@ const map = () => {
                                 mapContainerStyle={{ width: "100%", height: "100%" }}
                                 options={{
                                   zoomControl: false,
-                                  streetView: false,
+                                  streetViewControl: false,
                                   mapTypeControl: false,
                                   fullscreenControl: false,
                                 }}
