@@ -138,7 +138,7 @@ const map = () => {
                         </Box>
                         <Box>
                             <GoogleMap
-                                onLoad={ handleOnLoad, resolveAfter2Seconds }
+                                onLoad={ handleOnLoad  }
                                 onClick={() => setActiveMarker(null)}
                                 center={ center }
                                 zoom={ 12 }
