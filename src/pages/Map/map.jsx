@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GoogleMap, InfoWindow, Marker, useLoadScript } from "@react-google-maps/api";
 import './map.css'
 import { images } from '../../constants'
@@ -6,7 +6,10 @@ import AppBarHome from '../Home/components/AppBarHome'
 import { Container, Box, Typography, Icon } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MapIcon from '@mui/icons-material/Map';
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+// import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+// import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
+import { database } from '../../FirebaseConfig'
+import { getFirestore, addDoc, collection, getDocs, getDoc, doc, getCountFromServer, onSnapshot } from "firebase/firestore";
 
 const mapTheme = createTheme({
     palette: {
@@ -37,6 +40,11 @@ const error = () => {
 navigator.geolocation.getCurrentPosition(success, error);
 
 const map = () => {
+    
+
+
+
+    // utilizado para los marcadores
     const [activeMarker, setActiveMarker] = useState(null);
 
     // API Key de Google
@@ -53,31 +61,33 @@ const map = () => {
       {
         id: 1,
         name: "HEB Contry",
-        position: { lat: 25.6271687, lng: -100.2750425 }
+        position: { lat: 25.6271687, lng: -100.2750425 },
+        icon: images.logoHEB2 
       },
       {
         id: 2,
         name: "HEB Cumbres",
-        position: { lat: 25.73329797, lng: -100.3978786 }
+        position: { lat: 25.73329797, lng: -100.3978786 },
+        icon: images.logoHEB2 
       },
       {
         id: 3,
         name: "HEB Del Valle",
-        position: { lat: 25.6505631, lng: -100.3608711 }
+        position: { lat: 25.6505631, lng: -100.3608711 },
+        icon: images.logoHEB2 
       },
       {
         id: 4,
         name: "HEB Estanzuela",
-        position: { lat: 25.58734297, lng: -100.258748 }
+        position: { lat: 25.58734297, lng: -100.258748 },
+        icon: images.logoHEB2 
       },
       {
         id: 5,
         name: "Yo",
         position: { lat: latitude, lng: longitude },
-        icon: "https://img.icons8.com/ios-filled/100/null/standing-man.png"
       }
     ];
-    // <Box component="img" src={images.heb_svg} sx={{maxHeight: 120, height: 1, width: 1}}/>
   
     // Posición actual
     console.log(latitude + " " + longitude);
