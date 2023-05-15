@@ -78,37 +78,13 @@ const map = () => {
   }
     
   // ubicación de cada HEB (de manera manual)
-  /*const markers = [
-    {
-      id: 1,
-      name: "HEB Contry",
-      position: { lat: 25.6271687, lng: -100.2750425 },
-      icon: images.logoHEB2 
-    },
-    {
-      id: 2,
-      name: "HEB Cumbres",
-      position: { lat: 25.73329797, lng: -100.3978786 },
-      icon: images.logoHEB2 
-    },
-    {
-      id: 3,
-      name: "HEB Del Valle",
-      position: { lat: 25.6505631, lng: -100.3608711 },
-      icon: images.logoHEB2 
-    },
-    {
-      id: 4,
-      name: "HEB Estanzuela",
-      position: { lat: 25.58734297, lng: -100.258748 },
-      
-    },
+  const markers = [
     {
       id: 0,
-      name: "Yo",
+      name: "Ubicación actual",
       position: { lat: latitude, lng: longitude },
     }
-  ];*/
+  ];
   
   // Posición actual
   console.log(latitude + " " + longitude);
@@ -159,7 +135,7 @@ const map = () => {
                       </Box>
                       <Box>
                           <GoogleMap
-                              //onLoad={ handleOnLoad  }
+                              // onLoad={ handleOnLoad  }
                               onClick={() => setActiveMarker(null)}
                               center={ center }
                               zoom={ 12 }
@@ -171,7 +147,7 @@ const map = () => {
                                 fullscreenControl: false,
                               }}
                           >
-                            {sucursales.map((item) => (
+                            {sucursales.map((item) => (                          
                             <Marker
                               key={ item.id }
                               position={{ lat: item.latitud, lng: item.longitud }}
@@ -188,13 +164,14 @@ const map = () => {
                               ) : null}
                             </Marker>
                             ))}
-                            {/*
-                            {markers.map(({ id, name, position, icon }) => (
+                            
+                            {/*Ubicación actual de la persona*/}
+                            {markers.map(({ id, name, position }) => (
                             <Marker
                               key={ id }
                               position={ position }
                               onClick={() => handleActiveMarker(id)}
-                              icon={ icon }
+                              icon={ images.ubicacion }
                             >
                             {activeMarker === id ? (
                               <InfoWindow onCloseClick={() => setActiveMarker(null)}>
@@ -203,7 +180,7 @@ const map = () => {
                               ) : null}
                             </Marker>
                             ))}
-                            */}
+                            
                           </GoogleMap>
                       </Box>
                   </Box>

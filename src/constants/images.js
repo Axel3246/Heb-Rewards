@@ -4,6 +4,7 @@ import heb_svg from '../assets/H-E-B_logo.svg'
 import holder_koopas from '../assets/img/landing/Holder_Koopas.jpg'
 import wave from '../assets/img/landing/wave.png'
 import logoHEB2 from '../assets/img/landing/logoHEB2.png'
+import ubicacion from '../assets/img/landing/ubicacion.png'
 
 export default {
     koop,
@@ -11,5 +12,6 @@ export default {
     heb_svg,
     holder_koopas,
     wave,
-    logoHEB2
+    logoHEB2,
+    ubicacion
   };
