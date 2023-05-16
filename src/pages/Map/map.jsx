@@ -6,8 +6,6 @@ import AppBarHome from '../Home/components/AppBarHome'
 import { Container, Box, Typography, Icon } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MapIcon from '@mui/icons-material/Map';
-// import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
-// import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
 import { database } from '../../FirebaseConfig'
 import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion} from 'firebase/firestore';
 
@@ -39,7 +37,25 @@ const error = () => {
 // obtener la posición actual
 navigator.geolocation.getCurrentPosition(success, error);
 
+// Función principal 
 const map = () => {
+  const [stores, setStores] = useState([])
+
+  // Get de Sucursal (SQL)
+  const fetchUserData = () => {
+    fetch("http://localhost:3000/programming-languages/getStoreName/1")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setStores(data)
+      })
+  }
+
+  useEffect(() => {
+    fetchUserData()
+  }, [])
+
   // get
   const [sucursales, setSucursales] = useState([])
   const [nombre, setNombre] = useState([])
@@ -120,7 +136,7 @@ const map = () => {
               <AppBarHome />
               <Container component="main" maxWidth="m">
                   <Box sx={{
-                      border: 1, borderColor: 'white', borderRadius: '16px', boxShadow: 3, display: 'flex', flexDirection: 'column', mt: 19, px: 6, py: 3, background: '#ffffff'
+                      border: 1, borderColor: 'white', borderRadius: '1px', boxShadow: 3, display: 'flex', flexDirection: 'column', mt: 19, px: 3, py: 1.5, background: '#ffffff'
                   }}>
                       <Box sx={{ mb: 2 }}>
                           <MapIcon sx={{ fontSize: 40, color: '#ff3232' }} />
@@ -131,6 +147,9 @@ const map = () => {
                           </Typography>
                           <Typography sx={{ textAlign: "center !important", mb: 1, fontSize: 17, fontWeight: 'regular' }}>
                               Para facilitar tu experiencia con nosotros, ¡puedes elegir tu sucursal preferida aquí! <br/> ¡Explora nuestras opciones y elige la sucursal que mejor se adapte a tus necesidades!
+                              {stores.map(user => (
+                                <li>{user.nombre}</li>
+                              ))}
                           </Typography>
                       </Box>
                       <Box>
@@ -147,6 +166,7 @@ const map = () => {
                                 fullscreenControl: false,
                               }}
                           >
+                            {/*Sucursales de HEB (obtenidas de Firebase)*/}
                             {sucursales.map((item) => (                          
                             <Marker
                               key={ item.id }
@@ -159,6 +179,8 @@ const map = () => {
                                 <div>
                                   <h4>{ item.nombre }</h4>
                                   { item.direccion }
+                                  <br />
+                                  <input type="submit" value="Submit" />
                                 </div>
                               </InfoWindow>
                               ) : null}
