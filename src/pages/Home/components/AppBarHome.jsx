@@ -5,11 +5,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import MenuIcon from '@mui/icons-material/Menu';
-import LocalCafeOutlinedIcon from '@mui/icons-material/LocalCafeOutlined';
-import LocationOnOutlinedIcon from '@mui/icons-material/LocationOnOutlined';
-import Button from '@mui/material/Button';
-import SearchIcon from '@mui/icons-material/Search';
+import LogoutIcon from '@mui/icons-material/Logout';
 import InputBase from '@mui/material/InputBase';
 import { images } from '../../../constants'
 
@@ -60,68 +56,18 @@ export default function ButtonAppBar() {
     return (
         <AppBar position="fixed" sx={{ bgcolor: '#FE231F' }}>  
             <Toolbar disableGutters>    
-                <Box
-                    sx={{
-                    display: 'flex',
-                    p: 1,
-                    flexGrow: 1
-                    }}
-                >
-                    
-                    <IconButton
-                        size="large"
-                        color="inherit"
-                    >
-                    <MenuIcon />
+                <Box sx={{ display: 'flex', p: 1, flexGrow: 1 }}>
+                    <IconButton size="large" color="inherit" onClick={() => auth.signOut()}>
+                        <LogoutIcon />
                     </IconButton>
-                    
-                    
-                
                     <IconButton sx={{ml:'auto', mr:'auto'}} href='/'>
                         <Box component="img" src={images.heb_svg} sx={{maxHeight: 120, height: 1, width: 1}}/>
                     </IconButton>
-                    
-                    
-                    <IconButton
-                        size="large"
-                        color="inherit"
-                        
-                    >
-                        <LocalCafeOutlinedIcon />
-                    </IconButton>
-
-                    <IconButton
-                        size="large"
-                        color="inherit"
-                        href='/lista'
-                    >
+                    <IconButton color="inherit" href='/lista'>
                     <ShoppingCartOutlinedIcon />
                     </IconButton>
                 </Box>
             </Toolbar>
-            
-            <Box sx={{px:2}}>
-                <Button variant="text" color="inherit" size="small" startIcon={<LocationOnOutlinedIcon />}>
-                    Nombre de sucursal
-                </Button>
-            </Box>
-
-            <Box sx={{px:2, py:1}}>
-            <Search>
-                <SearchIconWrapper>
-                    <SearchIcon color="action"/>
-                </SearchIconWrapper>
-                <StyledInputBase
-                    placeholder="Buscar en heb.com.mx"
-                    inputProps={{ 'aria-label': 'search' }}
-                />
-            </Search>
-            </Box>
-
-            
-
-            
-
         </AppBar>
     );
 }

@@ -12,10 +12,12 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fontsource/roboto": "^4.5.8",
+    "@ionic/react": "^7.0.6",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.0",
     "@mui/x-data-grid": "^6.2.1",
     "firebase": "^9.20.0",
+    "ionicons": "^7.1.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
@@ -25,7 +27,8 @@
     "react-qr-barcode-scanner": "^1.0.6",
     "react-router-dom": "^6.10.0",
     "react-webcam-barcode-scanner": "^0.0.2-rc2",
-    "sort-by": "^0.0.2"
+    "sort-by": "^0.0.2",
+    "swiper": "^9.3.2"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
