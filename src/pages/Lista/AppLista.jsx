@@ -5,6 +5,10 @@ import React, { useState } from 'react';
 import Modal from './Modal';
 import AppBarList from './AppBarList';
 import DataTable from './tabla';
+import TarjetasLista from './TarjetasLista';
+import Pruebatarjeta from './Pruebatarjeta';
+import ListaDiv from './ListaDiv';
+import PrecioLista from './PrecioLista';
 
 export default function App() {
   const[show, setShow] = useState(false)
@@ -14,7 +18,9 @@ export default function App() {
       <AppBarList/>
       <button onClick={() => setShow(true) }>+</button>
       <Modal onClose={() => setShow(false)} show={show} />
-      <DataTable/>
+      <ListaDiv/>
+      <PrecioLista/>
+      
     </div>
 );
 }

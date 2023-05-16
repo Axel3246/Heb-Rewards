@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { database, auth, signInWithGoogle } from '../../FirebaseConfig'
 import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion} from 'firebase/firestore';
 import './productos.css'
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 
 const RecargaProductos = ({productos}) => {
@@ -51,7 +54,17 @@ const RecargaProductos = ({productos}) => {
             ${item.precio}.00
             </p>
             }
+
           </a>
+
+          <IconButton
+            size="large"
+            color="black"
+            className='button'
+          >
+            <AddCircleOutlineIcon />
+          </IconButton>
+
           {/*<p style={{ color: "#000" }} >{thumbnailUrl}</p>*/}
         
         </div>

@@ -7,8 +7,6 @@ import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { images } from '../../constants';
 
-import Modal from './Modal.jsx';
-
 //Queda ajustar los botones para que no queden ovalados
 
 export default function ButtonAppBar() {
@@ -43,12 +41,12 @@ export default function ButtonAppBar() {
                     <IconButton onClick={() => setShow(true) }
                         size="large"
                         color="inherit"
+                        href='/productos'
                     >
                         <AddIcon />
                         
                     </IconButton>
                     
-                    <Modal onClose={() => setShow(false)} show={show} />
                     
                 </Box>
             </Toolbar>
