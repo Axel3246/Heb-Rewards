@@ -5,7 +5,7 @@ const MenuBox = () => {
     return (
         <Grid container spacing={2} direction="row" sx={{ alignItems: 'center' }}>
             {/* ================================================= */}
-            <Grid item xs={6} align="center">
+            <Grid item xs={5} align="center">
             <a className="menulink" href='/'>
                 <Card sx={{ width: 160 }}>
                     <CardActionArea>
@@ -17,7 +17,7 @@ const MenuBox = () => {
                 </Card>
             </a>
             </Grid>
-            <Grid item xs={6} align="center">
+            <Grid item xs={5} align="center">
             <a className="menulink" href='/'>
                 <Card sx={{ width: 160 }}>
                     <CardActionArea>
@@ -31,7 +31,7 @@ const MenuBox = () => {
             </Grid>
             <Grid item xs={12} align="center">
             <a className="menulink" href='/'>
-                <Card sx={{ width: 325}}>
+                <Card sx={{ width: 300}}>
                     <CardActionArea>
                         <CardMedia component="img" image={images.wtp} alt="Minijuegos" sx={{ height: 120 }} />
                         <CardContent sx={{ p: 0 }}>
