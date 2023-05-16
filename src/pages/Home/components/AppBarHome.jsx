@@ -8,6 +8,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import InputBase from '@mui/material/InputBase';
 import { images } from '../../../constants'
+import { auth } from '../../../FirebaseConfig'
+
 
 //Queda ajustar los botones para que no queden ovalados
 
