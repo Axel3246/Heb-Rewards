@@ -8,6 +8,7 @@ import Lista from './pages/Lista/AppLista'
 import Map from './pages/Map/map'
 import Scan from './pages/Scan/scan'
 import Productos from './pages/Productos/products'
+import JuegoRecetas from './pages/Juego_Recetas/JuegoRecetas'
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import './App.css'
 import '@fontsource/roboto/300.css';
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="/sucursal" element={<Map/>}></Route>
           <Route path="/productos" element={<Productos/>}></Route>
           <Route path="/Scan" element={<Scan/>}></Route>
+          <Route path="/recetas" element={<JuegoRecetas/>}></Route>
         </Routes>
       </Router> 
     );
