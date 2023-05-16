@@ -4,7 +4,7 @@ import { images } from '../../../constants'
 const SucSelec = () => {
     const text = "";
     return (
-        <a className='maplink' href='/sucursales'>
+        <a className='maplink' href='/sucursal'>
             <Box>
                 <Typography variant='h4' sx={{ fontWeight: 'bold' }}>¡Busca tu <span>Sucursal!</span></Typography>
                 <img className='mapp' src={images.mapp}></img>
