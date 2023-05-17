@@ -12,7 +12,7 @@ import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit,
 import Grid from '@mui/material/Grid';
 
 
-const Tarjeta = ({ receta }) => {
+const Tarjeta = ({ recetas }) => {
 
   const [productos, setProductos] = useState([])
   const [termsValidation, setTermsValidation] = useState(false)
@@ -21,9 +21,9 @@ const Tarjeta = ({ receta }) => {
   useEffect(() => {
    
   
-      console.log("Receta es esto:" , receta);
+      console.log("Receta es esto:" , recetas);
       const coll = collection(database, 'Productos');
-      const q = query(coll, where(documentId(), 'in', receta[0].products));
+      const q = query(coll, where(documentId(), 'in', recetas[1].products));
 
       const unsuscribe = onSnapshot(q, querySnapshot => {
         setProductos(
