@@ -58,8 +58,8 @@ const Login = () => {
                     <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', textAlign: "center !important", fontFamily: 'Roboto', fontSize: 48 }}>
                         ¡Bienvenido de Nuevo!
                     </Typography>
-                    <Typography  sx={{textAlign: "center !important", mb: 1, fontSize: 17, fontWeight: 'regular'}}>
-                    ¡Comienza a ahorrar con HEB Rewards!
+                    <Typography  sx={{textAlign: "center !important", mb: 1, fontSize: 17, fontWeight: 'regular', color: 'black'}}>
+                    ¡Comienza a ahorrar!
                     <br></br> Por favor, ingresa tus datos para acceder.
                     </Typography>
                     <Box component="form" sx={{ mt: '0.5 rem', alignItems: 'center' }}>
@@ -88,10 +88,10 @@ const Login = () => {
                         />
                         <br />
                         {show ? <Alert severity="error" sx={{ mt: 2 }}>¡Email o contraseña incorrectos!</Alert> : null}
-                        <Button type="submit" onClick={signIn} fullWidth variant="contained" sx={{ mt: 2, mb: 1, background: '#ff3232', fontSize: 16 }}>
-                            <Typography variant='p'>Iniciar Sesión</Typography>
+                        <Button className='btn' type="submit" onClick={signIn} fullWidth variant="contained" sx={{ mt: 2, mb: 1, background: '#ff3232 !important', fontSize: 16 }}>
+                            <Typography variant='p' className='logbtn'>Iniciar Sesión</Typography>
                         </Button>
-                        <Box sx={{ fontWeight: 'light', m: 1, fontSize: 14 }}>
+                        <Box sx={{ fontWeight: 'light', m: 1, fontSize: 14, }}>
                              <a href="/" className='invit'>Inicia Sesión como Invitado</a>
                         </Box>
                         <Box sx={{ fontWeight: 'light', m: 1, fontSize: 14, mb: 2 }}>

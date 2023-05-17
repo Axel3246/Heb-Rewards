@@ -68,7 +68,7 @@ const SignUp = () => {
                     <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', textAlign: "center !important", fontFamily: 'Roboto', fontSize: 48 }}>
                         ¡Únete a HEB Rewards!
                     </Typography>
-                    <Typography sx={{ textAlign: "center !important", mb: 1, fontSize: 16, fontWeight: 'regular' }}>
+                    <Typography sx={{ textAlign: "center !important", mb: 1, fontSize: 16, fontWeight: 'regular', color: 'black' }}>
                         ¡Descubre una nueva forma de comprar con recompensas y diversión!
                         Por favor, ingresa tus datos para registrarte.
                     </Typography>
@@ -135,7 +135,7 @@ const SignUp = () => {
                         onClick={signUp}
                         fullWidth
                         variant="contained"
-                        sx={{ mb: 2, background: '#ff3232', fontSize: 16 }}>
+                        sx={{ mb: 2, background: '#ff3232 !important', fontSize: 16 }}>
                         Registrarse
                     </Button>
                     <Box sx={{ fontWeight: 'light', m: 1, fontSize: 14, mb: 2 }}>
