@@ -3,8 +3,11 @@ import { database, auth, signInWithGoogle } from '../../FirebaseConfig'
 import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion} from 'firebase/firestore';
 import ReactPaginate from 'react-paginate';
 import RecargaProductos from './RecargaProductos';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import './productos.css'
 import { Translate } from '@mui/icons-material';
+import { Container, Box } from '@mui/material';
 
 const ProductoPag = ({ products }) => {
   const [pageNumber, setPageNumber] = useState(0);
@@ -22,30 +25,28 @@ const ProductoPag = ({ products }) => {
     
   return (
     <>
-    <div style={{ display: 'flex', position: 'relative', justifyContent: 'center'}}>
+    <Container sx={{ display: 'flex',  justifyContent: 'center'}}>
       <RecargaProductos
         productos={products.slice(pagesVisited, pagesVisited + productsPerPage)}
       />    
-    </div>
+    </Container>
 
-    <div style={{position: 'relative', marginLeft: '300px'}}>
+    <Box sx={{alignItems: 'center'}}>
         <ReactPaginate
         breakLabel="..."
-        previousLabel={'<atr'}
-        nextLabel={'sig>'}
+        previousLabel={<ArrowBackIcon/>}
+        nextLabel={<ArrowForwardIcon/>}
         pageCount={pageCount}
         onPageChange={changePage}
         pageRangeDisplayed={3}
         renderOnZeroPageCount={null}
         containerClassName="pagination"
         pageLinkClassName="page-num"
-        previousLinkClassName="page-num"
-        nextLinkClassName="page-num"
+        previousLinkClassName="page-num-back"
+        nextLinkClassName="page-num-for"
         activeLinkClassName="active"
     />
-        </div>  
-   
-    
+        </Box>  
     </>
   );
 };
