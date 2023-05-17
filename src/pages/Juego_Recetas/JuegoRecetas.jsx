@@ -22,6 +22,29 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
+/*
+const [rows, setRows] = useState([])
+    
+    useEffect(() => {
+        const coll = collection(database, 'Recetas');
+        const unsuscribe = onSnapshot(coll, querySnapshot => {
+            setRows(
+              querySnapshot.docs.map(doc => ({
+                id: doc.id,
+                url_imagen: doc.data().imagen, 
+                nombre: doc.data().nombre, 
+                productos: doc.data().cantidad, 
+                precio: doc.data().precio
+              })
+            )
+      
+          )})
+            //console.log("Vuelve a repetir")
+            return unsuscribe;
+    },[])*/
+
+
+
 function JuegoRecetas() {
     return (
         <>
@@ -38,7 +61,7 @@ function JuegoRecetas() {
                             <CardActionArea href='/productos'>
                                 <CardMedia
                                     component="img"
-                                    height="240"
+                                    sx={{ height: 240 }}
                                     image={images.asado}
                                     object-fit="contain"
                                     //sx={{ maxLength: "0.5" }}
@@ -57,7 +80,7 @@ function JuegoRecetas() {
                             <CardActionArea href='/productos'>
                                 <CardMedia
                                     component="img"
-                                    height="240"
+                                    sx={{ height: 240, objectFit: "contain" }}
                                     image={images.tacospiedra}
                                     object-fit="contain"
                                     //sx={{ maxLength: "100px" }}
@@ -76,7 +99,7 @@ function JuegoRecetas() {
                             <CardActionArea href='/productos'>
                                 <CardMedia
                                     component="img"
-                                    height="240"
+                                    sx={{ height: 240 }}
                                     image={images.pozole}
                                 />
                                 <CardContent>
@@ -93,7 +116,7 @@ function JuegoRecetas() {
                             <CardActionArea href='/productos'>
                                 <CardMedia
                                     component="img"
-                                    height="240"
+                                    sx={{ height: 240 }}
                                     image={images.quesadilla}
                                 />
                                 <CardContent>
