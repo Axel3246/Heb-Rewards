@@ -1,0 +1,119 @@
+* {
+    font-family: 'Roboto';
+}
+
+.flyerDesc {
+    position: absolute;
+    background-color: #FE231F;
+    padding: 0.5px 8px;
+    border-radius: 10px;
+    top: -0.5rem;
+    left: -1.5rem;
+    z-index: 100;
+}
+
+.flyerTresDos{
+    width: 40px;
+    position: absolute;
+    background-color: #FE231F;
+    border-radius: 10px;
+    top: -0.5rem;
+    left: -1.5rem;
+    padding: 0.5px 8px;
+    z-index: 100;
+}
+
+
+.paper_container {
+    position: relative;
+    height: 275px;
+    max-height: 350px;
+    width: 100%;
+    text-overflow: clip;
+    min-width: 100px;
+    max-width: 200px;
+    border-color: #9393933c;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    border-radius: 10px;
+    margin: 1rem 0 1rem 4px;
+}
+
+.pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1rem;
+    position: 'relative';
+    gap: 5px;
+    margin-left: -2rem;
+    margin-bottom: 30px;
+}
+
+.pagination .page-num {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #2b2b2b;
+}
+
+.pagination .page-num a {
+    font-weight: 100;
+}
+
+.pagination .page-num:hover {
+    cursor: pointer;
+}
+
+.page-num-back{
+    padding: 10px 0px 15px 10px;
+    text-decoration: none;
+    color: #2b2b2b;
+    cursor: pointer;
+}
+
+.page-num-for{
+    padding: 10px 15px 10px 0px;
+    text-decoration: none;
+    color: #2b2b2b;
+    cursor: pointer;
+}
+
+.pagination .active {
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #ff3232;
+}
+
+.grid-container {
+        grid-template-columns: 1000px;
+        /* Definimos 1 columnas de tamaño diferente */
+        grid-template-rows: 22% 78%;
+        margin-top: 90px;
+        flex-direction: column;
+}
+
+.item-1 {
+    height: 60px;
+}
+
+.item-2 {
+
+    width: 100%;
+}
+
+.ContenedorCartas {
+    justify-content: center;
+}
+
+
+#producto{
+    width: 160px;
+}
+
+#ofertas{
+    width: 160px;
+}

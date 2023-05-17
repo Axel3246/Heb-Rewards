@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import './receta.css'
+
+import { database, auth, signInWithGoogle } from '../../FirebaseConfig'
+import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion } from 'firebase/firestore';
 
 import AppBarList from '../../pages/Lista/AppBarList.jsx'; // crear otra appbar sin el icono de agregar (holder)
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
@@ -17,7 +20,46 @@ import Tarjeta from './Tarjeta';
 
 import polloR from  './polloRostizado.jpg' //holder
 
-export default function App() {
+const receta = () => {
+
+    const [recetas, setRecetas] = useState([])
+    const [cargar, setCargar] = useState(false)
+ 
+    
+    
+useEffect(() => {
+
+    variable();
+        //const q = query(collectionRef,  where("sucursal", '==', "ESL"));
+
+    }, [])
+
+    const variable = async () => {
+        try {
+            const coll = collection(database, 'Recetas');
+            const unsuscribe =  onSnapshot(coll, querySnapshot => {
+                setRecetas(
+                    querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    url_imagen: doc.data().imagen, 
+                    nombre: doc.data().nombre, 
+                    products: doc.data().productos
+                    })
+                )
+            
+                )})
+
+                setCargar(true);
+                
+        }
+        catch (error)
+        {
+            console.log(error);
+        }
+
+    }
+
+    console.log("recetas completas: ", recetas)
 
     return (
       <div className="App">
@@ -46,10 +88,13 @@ export default function App() {
             <Typography variant="body2" color="text.primary">Ingredientes</Typography>
             <Box sx={{flexGrow: 1 , m:2}}>
                 <Grid container spacing={2}>
-                    <Tarjeta details={CardData} />
+                    
                 </Grid>
             </Box>
         </div>
       </div>
     );
 }
+
+
+export default receta
