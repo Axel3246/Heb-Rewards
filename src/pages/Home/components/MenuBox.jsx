@@ -6,7 +6,7 @@ const MenuBox = () => {
         <Grid container spacing={1} direction="row" sx={{ alignItems: 'center' }}>
             {/* ================================================= */}
             <Grid item xs={6} align="center">
-            <a className="menulink" href='#'>
+            <a className="menulink" href='/Recetas'>
                 <Card sx={{ width: 140}}>
                     <CardActionArea>
                         <CardMedia component="img" image={images.pollo} alt="Minijuegos" sx={{ height: 90 }} />

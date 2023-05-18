@@ -63,7 +63,7 @@ const SignUp = () => {
                         flexDirection: 'column', alignItems: 'center', mt: 8, px: 4, py: 3, background: '#ffffff',
                     }}>
                     <Box sx={{ mb: 2 }}>
-                        <img src={images.heb}></img>
+                        <a href='/'><img src={images.heb}></img></a>
                     </Box>
                     <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', textAlign: "center !important", fontFamily: 'Roboto', fontSize: 48 }}>
                         ¡Únete a HEB Rewards!
@@ -139,7 +139,7 @@ const SignUp = () => {
                         Registrarse
                     </Button>
                     <Box sx={{ fontWeight: 'light', m: 1, fontSize: 14, mb: 2 }}>
-                        ¿Ya tienes cuenta? <a href="/login">Ingresa Aquí</a>
+                        ¿Ya tienes cuenta? <a className="link" href="/login">Ingresa Aquí</a>
                     </Box>
                 </Box>
             </Container>
