@@ -1,6 +1,6 @@
 // Lista con division
 // Lau Hdz 15/05/2023
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import { useTheme } from '@mui/material/styles';
 
 // Se importan librerias de mui
@@ -10,10 +10,10 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import ImageIcon from '@mui/icons-material/Image';
-import WorkIcon from '@mui/icons-material/Work';
-import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Divider from '@mui/material/Divider';
 import { ListItemSecondaryAction } from '@mui/material';
+
+import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion} from 'firebase/firestore';
 
 
 // Se importan iconos para botones
@@ -44,10 +44,40 @@ export default function InsetDividers() {
     setCounter(count => count + 1);
   };
 
+  // API
+  const [productos, setProductos] = useState([])
+
+  // Get de Productos (SQL)
+  const fetchUserData = () => {
+    fetch("http://localhost:3000/programming-languages/getProductosLista/6")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setProductos(data)
+      })
+  }
+
+  useEffect(() => {
+    fetchUserData()
+  }, [])
+
+  /*function fetchDelete(id) {
+    fetch("http://localhost:3000/programming-languages/deleteProductosLista/6/" + id)
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setProductos(data)
+      })
+  }*/
+
   return (
     <div className="Content">
         
-        <List
+        {/*Productos de Usuario (obtenidas de Mysql)*/}
+        {productos.map((item) => (
+            <List
             sx={{
             width: '100%',
             maxWidth: 360,
@@ -58,11 +88,11 @@ export default function InsetDividers() {
         >
             <ListItem >
                 <ListItemAvatar>
-                <Avatar>
-                    <ImageIcon />
+                <Avatar src={item.imagen}>
+                    
                 </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary="Photos" secondary="Precio: $00.00" />
+                <ListItemText primary={item.nombre} secondary={"Precio: $" + item.precio + ".00"}/>
                 <ListItemSecondaryAction>
                     <IconButton aria-label="menos" onClick={decrease}>
                         {theme.direction === 'rtl' ? <RemoveCircleOutlineIcon /> : <RemoveCircleOutlineIcon />}
@@ -83,60 +113,9 @@ export default function InsetDividers() {
                 </ListItemSecondaryAction>
                 </ListItem>
                 <Divider variant="inset" component="li" />
+            </List>
 
-            <ListItem>
-                <ListItemAvatar>
-                <Avatar>
-                    <WorkIcon />
-                </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary="Work" secondary="Precio: $00.00" />
-                <ListItemSecondaryAction>
-                    <IconButton aria-label="menos" onClick={decrease}>
-                        {theme.direction === 'rtl' ? <RemoveCircleOutlineIcon /> : <RemoveCircleOutlineIcon />}
-                    </IconButton>
-                    <IconButton aria-label="cantidad">
-                        <span className="counter__output">{counter}</span>
-                    </IconButton>
-
-                    <IconButton aria-label="mas" onClick={increase}>
-                        {theme.direction === 'rtl' ? <AddCircleOutlineIcon /> : <AddCircleOutlineIcon />}
-                    </IconButton>
-
-                    <IconButton edge="end" aria-label="delete" >
-                        <DeleteIcon />
-                    </IconButton>
-                </ListItemSecondaryAction>
-                    
-            </ListItem>
-            <Divider variant="inset" component="li" />
-            <ListItem>
-                <ListItemAvatar>
-                <Avatar>
-                    <BeachAccessIcon />
-                </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary="Vacation" secondary="Precio: $00.00" />
-                <ListItemSecondaryAction>
-                    <IconButton aria-label="menos" onClick={decrease}>
-                        {theme.direction === 'rtl' ? <RemoveCircleOutlineIcon /> : <RemoveCircleOutlineIcon />}
-                    </IconButton>
-                    <IconButton aria-label="cantidad">
-                        <span className="counter__output">{counter}</span>
-                    </IconButton>
-
-                    <IconButton aria-label="mas" onClick={increase}>
-                        {theme.direction === 'rtl' ? <AddCircleOutlineIcon /> : <AddCircleOutlineIcon />}
-                    </IconButton>
-
-                    <IconButton edge="end" aria-label="delete">
-                        <DeleteIcon />
-                    </IconButton>
-                </ListItemSecondaryAction>
-                    
-            </ListItem>
-            
-        </List>
+        ))}
     </div>
   );
 }

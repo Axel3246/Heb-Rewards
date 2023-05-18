@@ -13,23 +13,22 @@ import { Card, Paper, Typography } from '@mui/material';
 const RecargaProductos = ({ productos }) => {
 
   // Post Sucursal
-  /*
-  function insertUserData(){
-    let url ="http://localhost:3000/programming-languages/agregarproducto/6/", id;
+  
+  function insertUserData(id){
+    let url ="http://localhost:3000/programming-languages/agregarproducto/6/" + id;
     console.log(url);
     fetch(url, {method:"get"})
     console.log("se logro");
   }
-  */
+  
   /*
   const [boton, usarBoton] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:3000/programming-languages/agregarproducto/2/2')
+    fetch('http://localhost:3000/programming-languages/agregarproducto/4/1')
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        setPosts(data);
       })
       .catch((err) => {
         console.log(err.message);
@@ -78,20 +77,13 @@ const RecargaProductos = ({ productos }) => {
                   ${item.precio}.00
                 </p>
             }
-            <Button variant="contained" color="error" startIcon={<AddShoppingCartIcon color="disabled"/>}>
-              Agregar
-            </Button>
 
           </a>
 
-          {/*Boton agregar a lista
-          <IconButton
-            size="large"
-            color="black"
-            className='button'
-          >
-            <AddCircleOutlineIcon />
-          </IconButton>*/}
+          {/*Boton agregar a lista*/}
+          <Button variant="contained" color="error" onClick={() => insertUserData(item.id)} startIcon={<AddShoppingCartIcon color="disabled"/>} >
+            Agregar
+          </Button>
 
       
 
