@@ -154,10 +154,10 @@ const map = () => {
                           <MapIcon sx={{ fontSize: 40, color: '#ff3232' }} />
                       </Box>
                       <Box>
-                          <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', textAlign: "center !important", fontFamily: 'Roboto', fontSize: 48 }}>
+                          <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', textAlign: "center !important", fontFamily: 'Roboto', fontSize: 48, color: "black !important"}}>
                               ¡Elige tu sucursal preferida!
                           </Typography>
-                          <Typography sx={{ textAlign: "center !important", mb: 1, fontSize: 17, fontWeight: 'regular' }}>
+                          <Typography sx={{ textAlign: "center !important", mb: 1, fontSize: 17, fontWeight: 'regular', color: "black !important" }}>
                               Para facilitar tu experiencia con nosotros, ¡puedes elegir tu sucursal preferida aquí! <br/> ¡Explora nuestras opciones y elige la sucursal que mejor se adapte a tus necesidades!
                               {stores.map(user => (
                                 <li>{user.nombre}</li>
