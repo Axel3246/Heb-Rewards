@@ -8,22 +8,27 @@ import Typography from '@mui/material/Typography';
 import { database, auth, signInWithGoogle } from '../../FirebaseConfig'
 import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion} from 'firebase/firestore';
 
-
+import { useLocation } from "react-router-dom";
 import Grid from '@mui/material/Grid';
+import { key } from 'localforage';
 
 
 const Tarjeta = ({ recetas }) => {
 
+  const location = useLocation();
+
+  let receta = location.state;
+
   const [productos, setProductos] = useState([])
-  const [termsValidation, setTermsValidation] = useState(false)
+  //const [termsValidation, setTermsValidation] = useState(false)
 
     
   useEffect(() => {
    
   
-      console.log("Receta es esto:" , recetas);
+      console.log("Receta es esto:" , receta);
       const coll = collection(database, 'Productos');
-      const q = query(coll, where(documentId(), 'in', recetas[1].products));
+      const q = query(coll, where(documentId(), 'in', receta.productos));
 
       const unsuscribe = onSnapshot(q, querySnapshot => {
         setProductos(
@@ -41,15 +46,14 @@ const Tarjeta = ({ recetas }) => {
         
       //const q = query(collectionRef,  where("sucursal", '==', "ESL"));
 
-  }, [termsValidation])
+  }, [])
 
 
 
     return (
-        <>
+        <div style={{ display: 'flex', flexDirection: 'flex-column', width: '78%', flexWrap: 'wrap', overflowY: "visible", alignItems: "center", justifyContent: "center", position: 'relative' }}>
             {productos.map((item) => (
-              <Grid item xs={6} key={item.id}>
-                <Card sx={{ width: '160px', height: '200px' }}>
+                <Card key={item.id} sx={{ width: '160px', height: '200px', ml: 1, mr: 1, mb: 2}}>
                 <CardMedia
                   sx={{ height: 140 }}
                   image={item.url_imagen}
@@ -58,9 +62,8 @@ const Tarjeta = ({ recetas }) => {
                   <Typography variant="body2" color="text.secondary">{item.nombre}</Typography>
                 </CardContent>
                 </Card>
-              </Grid>
             ))}
-        </>
+        </div>
     )
 }
 

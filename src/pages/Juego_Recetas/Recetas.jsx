@@ -20,6 +20,7 @@ import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit,
 import RecetasPag from './RecetasPag';
 import './recetas.css'
 import Footer from '../Home/components/Footer'
+import { CircularProgress } from '@mui/material';
 
 
 
@@ -68,12 +69,18 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 const Recetas = () => {
 
     const [recetas, setRecetas] = useState([])
+    const [cargar, setCargar] = useState(false);
 
     
-    useEffect(() => {
+  useEffect(() => {
+    variable();
+  }, []);
 
-        const coll = collection(database, 'Recetas');
-        const unsuscribe = onSnapshot(coll, querySnapshot => {
+  const variable = async () => {
+    try {
+      const coll = collection(database, 'Recetas');
+        const q = query(coll, orderBy(documentId()));
+        const unsuscribe = onSnapshot(q, querySnapshot => {
             setRecetas(
               querySnapshot.docs.map(doc => ({
                 id: doc.id,
@@ -82,12 +89,20 @@ const Recetas = () => {
                 productos: doc.data().productos
               })
             )
-      
-          )})
-            return unsuscribe;
-        //const q = query(collectionRef,  where("sucursal", '==', "ESL"));
+          );
+        setCargar(true);
+      });
+      return unsuscribe;
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    }, [])
+  console.log('recetas completas: ', recetas);
+
+  if (!cargar) {
+    return <CircularProgress></CircularProgress>
+  }
 
     return (
         <>
@@ -108,9 +123,10 @@ const Recetas = () => {
                     </Toolbar>
                 </AppBar>
 
-                <div className="grid-container" style={{ display: 'flex' }}>
+                <div className="grid-container" style={{ display: 'flex'}}>
                     <div className="item-1">
-                        <Typography variant='h4' sx={{ fontWeight: 'bold', mt: 2.5, mb: 5 }}><span>Selecciona</span> tu receta</Typography>
+                        <Typography variant='h4' sx={{ fontWeight: 'bold' }}><span>Dine</span> n' Dash!</Typography>
+                        <Typography variant='h4' sx={{ fontWeight: '1', fontSize: 16, mb: 4 }}>Elige, escanea y <span>¡gana!</span></Typography>
                     </div> 
                     <div className="item-2">
                         <RecetasPag recipes={recetas} />

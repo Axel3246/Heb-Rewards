@@ -20,12 +20,18 @@ import Tarjeta from './Tarjeta';
 
 import polloR from './polloRostizado.jpg';
 import { CircularProgress } from '@mui/material';
+import { useLocation } from "react-router-dom";
 
-const Receta = () => {
-  const [recetas, setRecetas] = useState([]);
+const Receta = ({ recetas }) => {
+  
+  const location = useLocation();
+
+  let data = location.state;
+
+  //const [recetas, setRecetas] = useState([]);
   const [cargar, setCargar] = useState(false);
 
-  useEffect(() => {
+  {/*useEffect(() => {
     variable();
   }, []);
 
@@ -53,7 +59,7 @@ const Receta = () => {
 
   if (!cargar) {
     return <CircularProgress></CircularProgress>
-  }
+  }*/}
 
   return (
     <div className="App">
@@ -63,11 +69,11 @@ const Receta = () => {
           <CardMedia
             sx={{ objectFit: 'contain', maxHeight: '180px' }}
             component="img"
-            image={polloR}
+            image={data.url_imagen}
           />
           <CardContent>
             <Typography variant="body2" color="text.primary">
-              Pollo Rostizado Sabor Original 1 kg (prueba de texto)
+              {data.nombre}
             </Typography>
           </CardContent>
         </Card>
@@ -77,9 +83,9 @@ const Receta = () => {
         <Typography variant="body2" color="text.primary">
           Ingredientes
         </Typography>
-        <Box sx={{ flexGrow: 1, m: 2 }}>
-          <Grid container spacing={2}>
-            <Tarjeta recetas={recetas}/>
+        <Box sx={{ flexGrow: 1, m: 2}} alignItems="center" display={"flex"}>
+          <Grid container spacing={2} style={{display:'flex', flexDirection: 'column', alignContent: 'center', width: "100%", margin: "0px"}}>
+            <Tarjeta recetas={data}/>
           </Grid>
         </Box>
       </div>
