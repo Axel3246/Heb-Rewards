@@ -8,6 +8,10 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MapIcon from '@mui/icons-material/Map';
 import { database } from '../../FirebaseConfig'
 import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion} from 'firebase/firestore';
+import SpeedDial from '@mui/material/SpeedDial';
+import SpeedDialIcon from '@mui/material/SpeedDialIcon';
+import SendIcon from '@mui/icons-material/Send';
+import CheckIcon from '@mui/icons-material/Check';
 
 const mapTheme = createTheme({
     palette: {
@@ -56,7 +60,15 @@ const map = () => {
     fetchUserData()
   }, [])
 
-  // get
+
+  // Put Sucursal
+  function changeUserData() {
+    let url = `http://localhost:3000/programming-languages/putSucursal/4/1`;
+    fetch(url, {method: 'get'})
+    console.log("cambio");
+  }
+
+  // get de las sucursales para el mapa
   const [sucursales, setSucursales] = useState([])
   const [nombre, setNombre] = useState([])
   var q;
@@ -180,7 +192,25 @@ const map = () => {
                                   <h4>{ item.nombre }</h4>
                                   { item.direccion }
                                   <br />
-                                  <input type="submit" value="Submit" />
+                                  {/*Update de la información*/}
+                                  {/*<button onClick={changeUserData}>Seleccionar</button>*/}
+                                  <Box sx={{ height: 90, transform: 'translateZ(0px)', flexGrow: 1 }}>
+                                    <SpeedDial
+                                      ariaLabel="SpeedDial openIcon example"
+                                      sx={{ position: 'absolute', bottom: 16, right: 16, severity: 'error' }}
+                                      icon={<SpeedDialIcon openIcon={<CheckIcon />}/>}
+                                      onClick={changeUserData}
+                                      FabProps={{
+                                        sx: {
+                                          bgcolor: '#ff3232',
+                                          '&:hover': {
+                                            bgcolor: '#ff3232',
+                                          },
+                                        }
+                                      }}
+                                    >
+                                    </SpeedDial>
+                                 </Box>
                                 </div>
                               </InfoWindow>
                               ) : null}
