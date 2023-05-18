@@ -1,6 +1,5 @@
 import { Typography } from "@mui/material";
 import { images } from "../../../constants";
-import './Footer.css'
 
 const Footer = () => {
   return (
