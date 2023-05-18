@@ -15,7 +15,7 @@ const TarjetaReceta = (props) => {
             {props.details.map((value, index) => (
               <Grid item sx={{ textAlign: 'center', }}>
               <Card sx={{ maxWidth: 345 }} key={index}>
-                  <CardActionArea href='/productos'>
+                  <CardActionArea href='/receta'>
                       <CardMedia
                           component="img"
                           sx={{ height: 240 }}
