@@ -2,10 +2,39 @@ import React, { useState, useEffect } from 'react'
 import { database, auth, signInWithGoogle } from '../../FirebaseConfig'
 import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion } from 'firebase/firestore';
 import './productos.css'
+
+// Se importan iconos para botones
+import Button from '@mui/material/Button';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
 import { Card, Paper, Typography } from '@mui/material';
+
 
 const RecargaProductos = ({ productos }) => {
 
+  // Post Sucursal
+  /*
+  function insertUserData(){
+    let url ="http://localhost:3000/programming-languages/agregarproducto/6/", id;
+    console.log(url);
+    fetch(url, {method:"get"})
+    console.log("se logro");
+  }
+  */
+  /*
+  const [boton, usarBoton] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:3000/programming-languages/agregarproducto/2/2')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setPosts(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, [boton]);*/
 
   return (
     <div className="ContenedorCartas" style={{ display: 'flex', flexDirection: 'flex-column', width: '78vw', flexWrap: 'wrap', overflowY: "visible", position: 'relative' }}>
@@ -49,8 +78,25 @@ const RecargaProductos = ({ productos }) => {
                   ${item.precio}.00
                 </p>
             }
+            <Button variant="contained" color="error" startIcon={<AddShoppingCartIcon color="disabled"/>}>
+              Agregar
+            </Button>
+
           </a>
+
+          {/*Boton agregar a lista
+          <IconButton
+            size="large"
+            color="black"
+            className='button'
+          >
+            <AddCircleOutlineIcon />
+          </IconButton>*/}
+
+      
+
         </Paper>
+
       ))}
     </div>
   )
