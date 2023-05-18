@@ -53,7 +53,7 @@ const Login = () => {
                     border: 1, borderColor: 'white', borderRadius: '16px', boxShadow: 1, display: 'flex', flexDirection: 'column', mt: 8, px: 6, py: 3, background: '#ffffff'
                 }}>
                     <Box sx={{mb: 2}}>
-                    <img src={images.heb}></img>
+                    <a href='/'><img src={images.heb}></img></a>
                     </Box>
                     <Typography variant="h3" gutterBottom sx={{ fontWeight: 'bold', textAlign: "center !important", fontFamily: 'Roboto', fontSize: 48 }}>
                         ¡Bienvenido de Nuevo!
@@ -94,8 +94,8 @@ const Login = () => {
                         <Box sx={{ fontWeight: 'light', m: 1, fontSize: 14, }}>
                              <a href="/" className='invit'>Inicia Sesión como Invitado</a>
                         </Box>
-                        <Box sx={{ fontWeight: 'light', m: 1, fontSize: 14, mb: 2 }}>
-                            ¿No tienes cuenta? <a href="/signup">Registrate Aquí</a>
+                        <Box sx={{ fontWeight: 'light', m: 1, fontSize: 14, mb: 2, color:'black' }}>
+                            ¿No tienes cuenta? <a href="/signup" style={{color: 'blue !important'}}>Registrate Aquí</a>
                         </Box>
                         <hr style={{ background: '#696969', color: '#696969', borderColor: '#ffffff', height: '1px', marginBottom: '5px' }} />
                     </Box>

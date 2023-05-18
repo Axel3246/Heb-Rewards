@@ -3,7 +3,12 @@ img {
     height: 30%;
 }
 
-a{
+.link{
     text-decoration: underline;
-    color: blue;
+    color: blue !important;
+}
+
+.link:visited{
+    text-decoration: underline;
+    color: blue !important;
 }
