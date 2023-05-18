@@ -36,7 +36,7 @@ const success = (position) => {
 }
 
 const error = () => {
-  status.textContent = 'Échale ganas'
+  console.log('Activa geolocalizacion')
 }
 
 // obtener la posición actual
