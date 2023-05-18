@@ -1,39 +1,3 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
-
 iframe {
   border-radius: 20px;
-}
-
-/* button 2 */
-.btn-2{
-    position: absolute;
-    top: 180px;
-    left: 80px;
-    border-radius: 50px;
-    color: #fff;
-    padding: 12px 42px;
-    font-size: 18px;
-    font-family: "Open Sans", sans-serif;
-    background-color: #e00;
-    text-decoration: none;
-    transition: all 0.8s;
-}
-.btn-2 i{
-    display: none;
-}
-.btn-2:focus{
-    left: 130px;
-    padding: 12px;
-    transform: rotate(360deg);
-    -webkit-transform: rotate(360deg);
-    background-color: #fff;
-    border: 6px solid #e00;
-    box-sizing: border-box;
-}
-.btn-2:focus span{
-    display: none;
-}
-.btn-2:focus i{
-    display: inline;
-    color: #e00;
 }

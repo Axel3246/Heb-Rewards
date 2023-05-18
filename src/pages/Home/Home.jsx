@@ -12,6 +12,8 @@ import Footer from './components/Footer'
 
 function Home({ user }) {
 
+    const { state } = this.props.location
+
     return (
         <>
         <Container>
@@ -24,7 +26,7 @@ function Home({ user }) {
                     <br></br>
                     <Divider></Divider>
                     <Box sx={{ mt: 3 }}> {/* suc   */}
-                        <SucSelec/>
+                        <SucSelec />
                     </Box>
                     <br></br>
                     <Divider></Divider>

@@ -37,6 +37,12 @@ const Login = () => {
             .then((userCredential) => {
                 console.log(userCredential);
                 navigate('/', { replace: true });
+                <Link
+                to={{
+                    pathname: "/",
+                    state: { id: email }
+                }}
+                ></Link>
             })
             .catch((error) => {
                 setShow(true);
@@ -89,6 +95,7 @@ const Login = () => {
                         <br />
                         {show ? <Alert severity="error" sx={{ mt: 2 }}>¡Email o contraseña incorrectos!</Alert> : null}
                         <Button className='btn' type="submit" onClick={signIn} fullWidth variant="contained" sx={{ mt: 2, mb: 1, background: '#ff3232 !important', fontSize: 16 }}>
+
                             <Typography variant='p' className='logbtn'>Iniciar Sesión</Typography>
                         </Button>
                         <Box sx={{ fontWeight: 'light', m: 1, fontSize: 14, }}>
