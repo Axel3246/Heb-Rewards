@@ -93,6 +93,7 @@ export default function InsetDividers() {
                 </Avatar>
                 </ListItemAvatar>
                 <ListItemText primary={item.nombre} secondary={"Precio: $" + item.precio + ".00"}/>
+                {/*
                 <ListItemSecondaryAction>
                     <IconButton aria-label="menos" onClick={decrease}>
                         {theme.direction === 'rtl' ? <RemoveCircleOutlineIcon /> : <RemoveCircleOutlineIcon />}
@@ -110,7 +111,7 @@ export default function InsetDividers() {
                     </IconButton>
                     
                     
-                </ListItemSecondaryAction>
+                </ListItemSecondaryAction>*/ }
                 </ListItem>
                 <Divider variant="inset" component="li" />
             </List>

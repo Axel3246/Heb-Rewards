@@ -81,7 +81,7 @@ function SwipeableEdgeDrawer(props) {
         >
           <Puller />
           <Box sx={{ textAlign: 'center'}}>
-            <Typography sx={{ p: 2, color: 'text.secondary', marginTop:'4px'}}>Total: $00.00</Typography>
+            <Typography sx={{ p: 2, color: 'text.secondary', marginTop:'4px'}}>Total: $193.00</Typography>
           </Box>
         </StyledBox>
         <StyledBox
