@@ -4,7 +4,7 @@ import './receta.css'
 import { database, auth, signInWithGoogle } from '../../FirebaseConfig'
 import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion } from 'firebase/firestore';
 
-import AppBarList from '../../pages/Lista/AppBarList.jsx'; // crear otra appbar sin el icono de agregar (holder)
+import AppBarList from '../../pages/Receta/AppBarReceta.jsx'; // crear otra appbar sin el icono de agregar (holder)
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -27,6 +27,8 @@ const Receta = ({ recetas }) => {
   const location = useLocation();
 
   let data = location.state;
+
+  
 
   //const [recetas, setRecetas] = useState([]);
   const [cargar, setCargar] = useState(false);
@@ -63,7 +65,7 @@ const Receta = ({ recetas }) => {
 
   return (
     <div className="App">
-      <AppBarList />
+      <AppBarList codes = {data} />
       <div className="Content">
         <Card sx={{ maxWidth: 0.6, m: 'auto', mt: 13 }}>
           <CardMedia
