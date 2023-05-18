@@ -12,3 +12,11 @@ a{
     text-decoration: underline;
     color: black;
 }
+
+.logbtn{
+    color: white!important;
+}
+
+.btn:checked, .btn:active{
+    background-color: #d30404;
+}
