@@ -202,7 +202,14 @@ const map = () => {
                                       sx={{ position: 'absolute', bottom: 16, right: 16, severity: 'error' }}
                                       icon={<LocalMallIcon />}
                                       onClick={() => changeUserData(item.nombre)}
-                                      yyy
+                                      FabProps={{
+                                        sx: {
+                                          bgcolor: '#ff3232',
+                                          '&:hover': {
+                                            bgcolor: '#ff3232',
+                                          },
+                                        }
+                                      }}
                                     >
                                     </SpeedDial>
                                  </Box>
