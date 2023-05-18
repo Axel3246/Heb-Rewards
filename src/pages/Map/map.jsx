@@ -12,7 +12,6 @@ import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SendIcon from '@mui/icons-material/Send';
 import CheckIcon from '@mui/icons-material/Check';
-import LocalMallIcon from  '@mui/icons-material/LocalMall';
 
 const mapTheme = createTheme({
     palette: {
@@ -63,9 +62,8 @@ const map = () => {
 
 
   // Put Sucursal
-  function changeUserData(prop) {
-    document.getElementById("perry").innerHTML = prop;
-    let url = `http://localhost:3000/programming-languages/putSucursal/2/2`;
+  function changeUserData() {
+    let url = `http://localhost:3000/programming-languages/putSucursal/4/1`;
     fetch(url, {method: 'get'})
     console.log("cambio");
   }
@@ -100,7 +98,7 @@ const map = () => {
 
   // API Key de Google
   const { isLoaded } = useLoadScript ({
-    googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg"
+    // googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg"
   });
     
   if (!isLoaded) {
@@ -162,7 +160,7 @@ const map = () => {
                           <Typography sx={{ textAlign: "center !important", mb: 1, fontSize: 17, fontWeight: 'regular', color: "black !important" }}>
                               Para facilitar tu experiencia con nosotros, ¡puedes elegir tu sucursal preferida aquí! <br/> ¡Explora nuestras opciones y elige la sucursal que mejor se adapte a tus necesidades!
                               {stores.map(user => (
-                                <h4 id="perry">{user.nombre}</h4>
+                                <li>{user.nombre}</li>
                               ))}
                           </Typography>
                       </Box>
@@ -200,8 +198,8 @@ const map = () => {
                                     <SpeedDial
                                       ariaLabel="SpeedDial openIcon example"
                                       sx={{ position: 'absolute', bottom: 16, right: 16, severity: 'error' }}
-                                      icon={<LocalMallIcon />}
-                                      onClick={() => changeUserData(item.nombre)}
+                                      icon={<SpeedDialIcon openIcon={<CheckIcon />}/>}
+                                      onClick={changeUserData}
                                       FabProps={{
                                         sx: {
                                           bgcolor: '#ff3232',
