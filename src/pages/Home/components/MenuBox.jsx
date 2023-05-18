@@ -8,7 +8,7 @@ const MenuBox = () => {
             <Grid item xs={6} align="center">
             <a className="menulink" href='#'>
                 <Card sx={{ width: 140}}>
-                    <CardActionArea>
+                    <CardActionArea href = "recetas">
                         <CardMedia component="img" image={images.pollo} alt="Minijuegos" sx={{ height: 90 }} />
                         <CardContent sx={{ p: 0 }}>
                             <Typography variant="subtitle2" component="div"> Dine n' <span className='red'>Dash 🏃🏼‍♀️</span> </Typography>

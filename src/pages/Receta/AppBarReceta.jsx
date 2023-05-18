@@ -30,6 +30,7 @@ export default function ButtonAppBar() {
                     <IconButton
                         size="large"
                         color="inherit"
+                        href = "recetas"
                     >
                         <ArrowBackIcon />
                     </IconButton>
@@ -40,7 +41,7 @@ export default function ButtonAppBar() {
                     </IconButton>
                     
 
-                    <IconButton onClick={() => setShow(true) }
+                    <IconButton
                         size="large"
                         color="inherit"
                     >
