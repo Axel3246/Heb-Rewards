@@ -3,15 +3,15 @@ import { images } from '../../constants'
 import '../Home/Home.css'
 import AppBarHome from '../Home/components/AppBarHome.jsx'
 import { database, auth, signInWithGoogle } from '../../FirebaseConfig'
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import { Box } from '@mui/material'
 import Grid from '@mui/material/Grid';
 import Container from '@mui/material/Container'
+import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
+import { useEffect, useState } from 'react';
+import { getFirestore, addDoc, collection, getDocs, getDoc, doc, getCountFromServer, onSnapshot } from "firebase/firestore";
+import TarjetaReceta from './tarjetaReceta';
 
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -22,116 +22,50 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-/*
-const [rows, setRows] = useState([])
-    
-    useEffect(() => {
-        const coll = collection(database, 'Recetas');
-        const unsuscribe = onSnapshot(coll, querySnapshot => {
-            setRows(
-              querySnapshot.docs.map(doc => ({
-                id: doc.id,
-                url_imagen: doc.data().imagen, 
-                nombre: doc.data().nombre, 
-                productos: doc.data().cantidad, 
-                precio: doc.data().precio
-              })
-            )
-      
-          )})
-            //console.log("Vuelve a repetir")
-            return unsuscribe;
-    },[])*/
+
 
 
 
 function JuegoRecetas() {
+    const [rows, setRows] = useState([])
+
+    useEffect(() => {
+        const coll = collection(database, 'Recetas');
+        const unsuscribe = onSnapshot(coll, querySnapshot => {
+            setRows(
+                querySnapshot.docs.map(doc => ({
+                    id: doc.id,
+                    url_imagen: doc.data().imagen,
+                    nombre: doc.data().nombre,
+                    productos: doc.data().productos
+                })
+                )
+
+            )
+        })
+        return unsuscribe;
+    }, [])
+    console.log(rows)
+    //rows.forEach(element => console.log(element));
+
     return (
         <>
-            <AppBarHome />
-            <Container>
-                <Grid
-                    sx={{ mt: 18 }}
-                    container
-                    justifyContent="space-evenly"
-                    spacing={4}
-                >
-                    <Grid item sx={{ textAlign: 'center', }}>
-                        <Card sx={{ maxWidth: 345 }/*, object-fit={contain}*/}>
-                            <CardActionArea href='/productos'>
-                                <CardMedia
-                                    component="img"
-                                    sx={{ height: 240 }}
-                                    image={images.asado}
-                                    object-fit="contain"
-                                    //sx={{ maxLength: "0.5" }}
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        Asado de puerco
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
+            <Container sx={{ alignItems: 'center' }}>
+                <AppBarHome />
+                <Box maxWidth='sm' sx={{ mt: 15 }}>
+                <Typography variant='h4' sx={{ fontWeight: 'bold' }}><span>Dine</span> n' Dash!</Typography>
+                <Typography variant='h4' sx={{ fontWeight: '1', fontSize: 16, mb: 4 }}>Elige, escanea y <span>¡gana!</span></Typography>
+                    <Grid
+                        container
+                        justifyContent="space-evenly"
+                        spacing={4}
+                        alignItems='center'
+                    >
+                        <TarjetaReceta details={rows} />
                     </Grid>
-
-                    <Grid item sx={{ textAlign: 'center', }}>
-                        <Card sx={{ maxWidth: 345 }}>
-                            <CardActionArea href='/productos'>
-                                <CardMedia
-                                    component="img"
-                                    sx={{ height: 240, objectFit: "contain" }}
-                                    image={images.tacospiedra}
-                                    object-fit="contain"
-                                    //sx={{ maxLength: "100px" }}
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        Tacos piedra
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </Grid>
-
-                    <Grid item sx={{ textAlign: 'center', }}>
-                        <Card sx={{ maxWidth: 345 }}>
-                            <CardActionArea href='/productos'>
-                                <CardMedia
-                                    component="img"
-                                    sx={{ height: 240 }}
-                                    image={images.pozole}
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        Pozole de camarón
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </Grid>
-
-                    <Grid item sx={{ textAlign: 'center', }}>
-                        <Card sx={{ maxWidth: 345 }}>
-                            <CardActionArea href='/productos'>
-                                <CardMedia
-                                    component="img"
-                                    sx={{ height: 240 }}
-                                    image={images.quesadilla}
-                                />
-                                <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        Quesadillas sin queso
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
-                    </Grid>
-                </Grid>
+                </Box>
             </Container >
         </>
-            
-
     )
 }
 

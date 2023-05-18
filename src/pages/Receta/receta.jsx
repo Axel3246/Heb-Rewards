@@ -16,9 +16,59 @@ import CardData from './CardData.jsx';
 import Tarjeta from './Tarjeta';
 
 import polloR from  './polloRostizado.jpg' //holder
+import { useEffect, useState } from 'react';
 
-export default function App() {
+import { getFirestore, addDoc, collection, getDocs, getDoc, doc, getCountFromServer, onSnapshot, documentId, query, where } from "firebase/firestore";
 
+import { database } from '../../FirebaseConfig'
+
+const receta = () => {
+
+    const [rows, setRows] = useState([])
+    const [producto, setProducto] = useState([])
+    var arrayProductos = [];
+    
+    useEffect(() => {
+        const q = query(collection(database, "Recetas"), where(documentId(), "==", "1"));
+        const unsuscribe = onSnapshot(q, querySnapshot => {
+            setRows(
+              querySnapshot.docs.map(doc => ({
+                id: doc.id,
+                url_imagen: doc.data().imagen, 
+                nombre: doc.data().nombre, 
+                productos: doc.data().productos
+              })
+            )
+          )})
+          
+            return unsuscribe;
+    },[])
+
+    
+    useEffect(() => {
+        console.log("hi")
+        console.log(rows[0]?.productos)
+        rows[0]?.productos.forEach(element => {
+            const q2 = query(collection(database, "productos"), where(documentId(), "==", element));
+            //const coll2 = collection(database, 'Productos');
+            const unsuscribe2 = onSnapshot(q2, querySnapshot => {
+            setProducto(
+                  querySnapshot.docs.map(doc => ({
+                    img: doc.data().imagen, 
+                    description: doc.data().producto
+                  })
+                ))})
+            console.log(producto);
+                return unsuscribe2;
+        });
+    },[rows])
+
+
+    console.log(producto);
+    
+
+    
+    
     return (
       <div className="App">
         <AppBarList/>
@@ -29,12 +79,12 @@ export default function App() {
             <CardMedia
                 sx={{ objectFit: 'contain', maxHeight:'180px' }}
                 component="img"
-                image={polloR}
+                image={rows[0]?.url_imagen}
 
             />
                 <CardContent>
                     <Typography variant="body2" color="text.primary">
-                    Pollo Rostizado Sabor Original 1 kg (prueba de texto)
+                    {rows[0]?.nombre}
                     </Typography>
                 </CardContent>
             </Card>
@@ -53,3 +103,5 @@ export default function App() {
       </div>
     );
 }
+
+export default receta

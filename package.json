@@ -28,6 +28,7 @@
     "react-router-dom": "^6.10.0",
     "react-webcam-barcode-scanner": "^0.0.2-rc2",
     "sort-by": "^0.0.2",
+    "swipe": "^1.7.7",
     "swiper": "^9.3.2"
   },
   "devDependencies": {
