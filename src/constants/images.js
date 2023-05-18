@@ -3,6 +3,8 @@ import heb from '../assets/img/landing/heb.png'
 import heb_svg from '../assets/H-E-B_logo.svg'
 import holder_koopas from '../assets/img/landing/Holder_Koopas.jpg'
 import wave from '../assets/img/landing/wave.png'
+import logoHEB2 from '../assets/img/landing/logoHEB2.png'
+import ubicacion from '../assets/img/landing/ubicacion.png'
 
 import pozole from '../assets/img/recetas/pozole.jpg'
 import quesadilla from '../assets/img/recetas/quesadilla.jpeg'
@@ -28,6 +30,8 @@ export default {
     heb_svg,
     holder_koopas,
     wave,
+    logoHEB2,
+    ubicacion,
 
     pozole,
     quesadilla,
