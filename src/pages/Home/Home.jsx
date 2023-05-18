@@ -12,8 +12,6 @@ import Footer from './components/Footer'
 
 function Home({ user }) {
 
-    const { state } = this.props.location
-
     return (
         <>
         <Container>

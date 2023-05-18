@@ -36,7 +36,7 @@ const success = (position) => {
 }
 
 const error = () => {
-  console.log('Activa geolocalizacion')
+  console.log('Ayuda')
 }
 
 // obtener la posición actual
@@ -126,6 +126,15 @@ const map = () => {
     }
     setActiveMarker(marker);
   };
+
+  // esperar 2 segundos
+  function resolveAfter2Seconds(x) {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        resolve(x);
+      }, 2000);
+    });
+  }
   
   // poner marcadores (utilizando un diccionario)
   const handleOnLoad = async (map) => {
@@ -193,14 +202,7 @@ const map = () => {
                                       sx={{ position: 'absolute', bottom: 16, right: 16, severity: 'error' }}
                                       icon={<LocalMallIcon />}
                                       onClick={() => changeUserData(item.nombre)}
-                                      FabProps={{
-                                        sx: {
-                                          bgcolor: '#ff3232',
-                                          '&:hover': {
-                                            bgcolor: '#ff3232',
-                                          },
-                                        }
-                                      }}
+                                      yyy
                                     >
                                     </SpeedDial>
                                  </Box>
