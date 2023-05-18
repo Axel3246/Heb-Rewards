@@ -35,7 +35,7 @@ const success = (position) => {
 }
 
 const error = () => {
-  status.textContent = 'Échale ganas'
+  console.log('Ayuda')
 }
 
 // obtener la posición actual
