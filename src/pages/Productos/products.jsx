@@ -79,21 +79,27 @@ const Productos = () => {
         /* Para obtener el valor */
         const selectedValue = event.target.value;
         const valuesArray = ['', 'Alimentos Preparados', 'Bebés', 'Botanas', 'Carnes y Aves', 'Cervezas', 'Despensa', 'Desechables', 'Deportes', 'Farmacia', 'Frutas y Verduras'];
-        const valuesOffer = ['', 'R'];
-
+       
         var cod = valuesArray[selectedValue];
         console.log(cod);
         setDepartamento(cod);
-
-        var cod2 = valuesOffer[selectedValue];
-        console.log(cod2);
-        setHayOferta(cod2);
-
         /* Para obtener el texto
         var combo = document.getElementById("producto");
         var Selected = combo.MenuItems[combo.SelectedIndex].text;
         console.log(Selected);*/
     }
+
+    const ShowSelected2 = (event) => {
+        /* Para obtener el valor */
+        const selectedValue = event.target.value;
+        const valuesOffer = ['', 'R'];
+
+        var cod2 = valuesOffer[selectedValue];
+        console.log(cod2);
+        setHayOferta(cod2);
+
+    }
+
 
     useEffect(() => {
 
@@ -176,9 +182,9 @@ const Productos = () => {
 
                 <div className="grid-container" style={{ display: 'flex' }}>
                 <Divider></Divider>
-                <Typography variant='h4' sx={{ fontWeight: 'bold', mt: 2.5, mb: 5 }}><span>Filtra</span> tu busqueda</Typography>
+                <Typography variant='h4' sx={{ fontWeight: 'bold', mt: 4, mb: 5 }}><span>Filtra</span> tu busqueda</Typography>
 
-                    <div className="item-1" style={{ marginTop: '-2rem', marginBottom: '2rem', minWidth: '21%' }}>
+                    <div className="item-1" style={{ marginTop: '-2rem', marginBottom: '5rem', minWidth: '21%' }}>
                         <Select id="producto" name="producto" placeholder="Age" onChange={ShowSelected} sx={{mb: 1}}>
                             <MenuItem value={0}>Todo...</MenuItem>
                             <MenuItem value={1}>Alimentos Preparados</MenuItem>
@@ -193,7 +199,7 @@ const Productos = () => {
                             <MenuItem value={10}>Frutas y Verduras</MenuItem>
                         </Select>
                         <br />
-                        <Select id="ofertas" name="ofertas" onChange={ShowSelected}>
+                        <Select id="ofertas" name="ofertas" onChange={ShowSelected2}>
                             <MenuItem value={0}>Todo...</MenuItem>
                             <MenuItem value={1}>Todas las Ofertas</MenuItem>
                         </Select>
