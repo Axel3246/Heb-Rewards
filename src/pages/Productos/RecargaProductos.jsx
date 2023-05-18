@@ -3,6 +3,10 @@ import { database, auth, signInWithGoogle } from '../../FirebaseConfig'
 import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion } from 'firebase/firestore';
 import './productos.css'
 
+// Se importan iconos para botones
+import Button from '@mui/material/Button';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+
 import { Card, Paper, Typography } from '@mui/material';
 
 
@@ -17,7 +21,7 @@ const RecargaProductos = ({ productos }) => {
     console.log("se logro");
   }
   */
-
+  /*
   const [boton, usarBoton] = useState([])
 
   useEffect(() => {
@@ -30,10 +34,7 @@ const RecargaProductos = ({ productos }) => {
       .catch((err) => {
         console.log(err.message);
       });
-  }, [boton]);
-
-  
-
+  }, [boton]);*/
 
   return (
     <div className="ContenedorCartas" style={{ display: 'flex', flexDirection: 'flex-column', width: '78vw', flexWrap: 'wrap', overflowY: "visible", position: 'relative' }}>
@@ -77,9 +78,22 @@ const RecargaProductos = ({ productos }) => {
                   ${item.precio}.00
                 </p>
             }
+            <Button variant="contained" color="error" startIcon={<AddShoppingCartIcon color="disabled"/>}>
+              Agregar
+            </Button>
 
           </a>
 
+          {/*Boton agregar a lista
+          <IconButton
+            size="large"
+            color="black"
+            className='button'
+          >
+            <AddCircleOutlineIcon />
+          </IconButton>*/}
+
+      
 
         </Paper>
 
