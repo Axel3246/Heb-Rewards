@@ -76,8 +76,7 @@ export default function InsetDividers() {
                     </IconButton>
 
                     <IconButton edge="end" aria-label="delete" >
-                        
-                        <CustomizedSnackbars/>
+                        <DeleteIcon />
                     </IconButton>
                     
                     
