@@ -51,8 +51,8 @@ function SwipeableEdgeDrawer(props) {
       <Global
         styles={{
           '.MuiDrawer-root > .MuiPaper-root': {
-            height: `calc(50% - ${drawerBleeding}px)`,
-            overflow: 'visible',
+            height: `calc(20% - ${drawerBleeding}px)`,
+            overflow: 'visible' 
           },
         }}
       />
@@ -81,7 +81,7 @@ function SwipeableEdgeDrawer(props) {
         >
           <Puller />
           <Box sx={{ textAlign: 'center'}}>
-            <Typography sx={{ p: 2, color: 'text.secondary'}}>Total: $00.00</Typography>
+            <Typography sx={{ p: 2, color: 'text.secondary', marginTop:'4px'}}>Total: $00.00</Typography>
           </Box>
         </StyledBox>
         <StyledBox
@@ -92,7 +92,9 @@ function SwipeableEdgeDrawer(props) {
             overflow: 'auto',
           }}
         >
-          <Skeleton variant="rectangular" height="100%" />
+          
+          <Typography sx={{ p: 2, color: 'text.secondary'}}>Ahorros: $00.00</Typography>
+          <Typography sx={{ p: 2, color: 'text.secondary'}}>Cantidad de productos: #</Typography>
         </StyledBox>
       </SwipeableDrawer>
     </Root>

@@ -9,18 +9,17 @@ import TarjetasLista from './TarjetasLista';
 import Pruebatarjeta from './Pruebatarjeta';
 import ListaDiv from './ListaDiv';
 import PrecioLista from './PrecioLista';
+import AlertaEliminar from './AlertaEliminar';
 
 export default function App() {
   const[show, setShow] = useState(false)
 
   return (
-    <div className="App">
+    <div className="Content">
       <AppBarList/>
-      <button onClick={() => setShow(true) }>+</button>
-      <Modal onClose={() => setShow(false)} show={show} />
       <ListaDiv/>
-      <PrecioLista/>
       
+      <PrecioLista/>
     </div>
 );
 }

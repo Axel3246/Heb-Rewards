@@ -9,6 +9,32 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 const RecargaProductos = ({productos}) => {
 
+  // Post Sucursal
+  /*
+  function insertUserData(){
+    let url ="http://localhost:3000/programming-languages/agregarproducto/6/", id;
+    console.log(url);
+    fetch(url, {method:"get"})
+    console.log("se logro");
+  }
+  */
+
+  const [boton, usarBoton] = useState([])
+
+  useEffect(() => {
+    fetch('http://localhost:3000/programming-languages/agregarproducto/2/2')
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setPosts(data);
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }, [boton]);
+
+  
+
 
   return (
     <div className="ContenedorCartas" style={{display: 'flex', flexDirection: 'flex-column', width: '78vw', flexWrap: 'wrap', overflowY:"visible", position: 'relative'}}>
@@ -57,10 +83,12 @@ const RecargaProductos = ({productos}) => {
 
           </a>
 
+          {/*Boton agregar a lista*/}
           <IconButton
             size="large"
             color="black"
             className='button'
+            onClick={usarBoton} 
           >
             <AddCircleOutlineIcon />
           </IconButton>

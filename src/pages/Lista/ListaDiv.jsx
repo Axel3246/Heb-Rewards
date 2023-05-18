@@ -2,6 +2,8 @@
 // Lau Hdz 15/05/2023
 import { React, useState } from 'react'
 import { useTheme } from '@mui/material/styles';
+
+// Se importan librerias de mui
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -11,12 +13,21 @@ import ImageIcon from '@mui/icons-material/Image';
 import WorkIcon from '@mui/icons-material/Work';
 import BeachAccessIcon from '@mui/icons-material/BeachAccess';
 import Divider from '@mui/material/Divider';
+import { ListItemSecondaryAction } from '@mui/material';
+
+
+// Se importan iconos para botones
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { ListItemSecondaryAction } from '@mui/material';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+
+// Se importan archivos 
 import './ListaDiv.css'
+import { Margin } from '@mui/icons-material';
+import CustomizedSnackbars from './AlertaEliminar';
+
+// Se importa la base de datos
 
 
 export default function InsetDividers() {
@@ -35,14 +46,17 @@ export default function InsetDividers() {
 
   return (
     <div className="Content">
+        
         <List
             sx={{
             width: '100%',
             maxWidth: 360,
             bgcolor: 'background.paper',
+            alignItems:'center',
+            marginLeft: '10px'
         }}
         >
-            <ListItem>
+            <ListItem >
                 <ListItemAvatar>
                 <Avatar>
                     <ImageIcon />
@@ -61,9 +75,12 @@ export default function InsetDividers() {
                         {theme.direction === 'rtl' ? <AddCircleOutlineIcon /> : <AddCircleOutlineIcon />}
                     </IconButton>
 
-                    <IconButton edge="end" aria-label="delete">
-                        <DeleteIcon />
+                    <IconButton edge="end" aria-label="delete" >
+                        
+                        <CustomizedSnackbars/>
                     </IconButton>
+                    
+                    
                 </ListItemSecondaryAction>
                 </ListItem>
                 <Divider variant="inset" component="li" />
@@ -87,7 +104,7 @@ export default function InsetDividers() {
                         {theme.direction === 'rtl' ? <AddCircleOutlineIcon /> : <AddCircleOutlineIcon />}
                     </IconButton>
 
-                    <IconButton edge="end" aria-label="delete">
+                    <IconButton edge="end" aria-label="delete" >
                         <DeleteIcon />
                     </IconButton>
                 </ListItemSecondaryAction>
