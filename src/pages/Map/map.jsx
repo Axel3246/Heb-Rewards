@@ -126,15 +126,6 @@ const map = () => {
     }
     setActiveMarker(marker);
   };
-
-  // esperar 2 segundos
-  function resolveAfter2Seconds(x) {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        resolve(x);
-      }, 2000);
-    });
-  }
   
   // poner marcadores (utilizando un diccionario)
   const handleOnLoad = async (map) => {

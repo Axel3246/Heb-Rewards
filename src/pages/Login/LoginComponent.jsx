@@ -37,12 +37,6 @@ const Login = () => {
             .then((userCredential) => {
                 console.log(userCredential);
                 navigate('/', { replace: true });
-                <Link
-                to={{
-                    pathname: "/",
-                    state: { id: email }
-                }}
-                ></Link>
             })
             .catch((error) => {
                 setShow(true);
