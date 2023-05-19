@@ -39,17 +39,25 @@ const SignUp = () => {
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
 
+    // POST usuario (SQL)
+    function postUserData(email) {
+        let url = `http://localhost:3000/programming-languages//postUsuario/'` + email + `'/1`;
+        fetch(url, {method: 'get'})
+        console.log("usuario agregado");
+    } 
+
     const signUp = (e) => {
         e.preventDefault();
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 console.log(userCredential);
+                postUserData(email);
                 navigate("/login");
             })
             .catch((error) => {
                 console.log(error);
             });
-    };
+    };   
 
     const classes = useStyles();
 
