@@ -6,6 +6,15 @@ import './productos.css'
 // Se importan iconos para botones
 import Button from '@mui/material/Button';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import Box from '@mui/material/Box';
+
+// Se importan iconos para botones
+import IconButton from '@mui/material/IconButton';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+
+import './RecargaProductos.css'
+
 
 import { Card, Paper, Typography } from '@mui/material';
 
@@ -19,6 +28,14 @@ const RecargaProductos = ({ productos }) => {
     console.log(url);
     fetch(url, {method:"get"})
     console.log("se logro");
+    precioProd();
+  }
+
+  // Update de columna precioTotalProd
+  function precioProd() {
+    let url = `http://localhost:3000/programming-languages/precioTotalProd/`;
+    fetch(url, {method: 'put'})
+    window.location.reload(false);
   }
   
   /*
@@ -79,6 +96,7 @@ const RecargaProductos = ({ productos }) => {
             }
 
           </a>
+
 
           {/*Boton agregar a lista*/}
           <Button variant="contained" color="error" onClick={() => insertUserData(item.id)} startIcon={<AddShoppingCartIcon color="disabled"/>} >
