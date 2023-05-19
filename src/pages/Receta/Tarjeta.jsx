@@ -24,9 +24,10 @@ import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
 import {Divider} from '@mui/material';
+import QRCode from 'react-qr-code';
 
 
-const Tarjeta = ({ recetas }) => {
+const Tarjeta = ({ recetas, hideElements }) => {
 
   const location = useLocation();
 
@@ -42,7 +43,14 @@ const Tarjeta = ({ recetas }) => {
     setproductosDescubiertos(prevproductosDescubiertos => {
       const nuevosproductosDescubiertos = [...prevproductosDescubiertos]; // Crear una copia del array existente
       nuevosproductosDescubiertos[index] = true; // Actualizar el valor del elemento deseado
+      if (!(nuevosproductosDescubiertos.includes(false))) {
+        setCompletado(true);
+        console.log("ya quedó");
+        hideElements(true);
+        
+      }
       return nuevosproductosDescubiertos; // Establecer el nuevo array como estado
+      
     });
   };
 
@@ -56,7 +64,6 @@ const Tarjeta = ({ recetas }) => {
         // Código encontrado
         actualizarElemento(i);
         
-        console.log(productosDescubiertos)
       }
       i++;
     });
@@ -92,6 +99,7 @@ const Tarjeta = ({ recetas }) => {
 
   const[show, setShow] = useState(false)
   const[showtf, setShowtf] = useState(false)
+  const[completado, setCompletado] = useState(false)
   const hStyle = { color: 'black' , textAlign: "center"};
 
   const [data, setData] = useState("Capture : ...");
@@ -104,96 +112,105 @@ const Tarjeta = ({ recetas }) => {
   };
 
     return (
-      <> 
+      <>
       {
-      
-        show ? <div className="App">
-        <h1>Scan BarCode</h1>
-  
-        <>
-          {show && (
-            <BarcodeScannerComponent
-              width={400}
-              height={400}
-              onUpdate={(err, result) => onUpdateScreen(err, result)}
-            />
-          )}
-        </>
-      </div> : <div style={{ display: 'flex', flexDirection: 'flex-column', width: '78%', flexWrap: 'wrap', overflowY: "visible", alignItems: "center", justifyContent: "center", position: 'relative' }}>
-      
-      <IconButton onClick = {() => { 
-        if (showtf) {
-          findCode(newCode);
-          setShowtf(false);
-        } else {
-          setShowtf(true);
-        }
-      }
-      }
-                        size="large"
-                        color="inherit"
-                    >
-                        <KeyboardIcon />
-                        
-                    </IconButton>
-      <IconButton onClick={() => setShow(true) }
-                        size="large"
-                        color="inherit"
-                    >
-                        <PhotoCameraIcon />
-                        
-                    </IconButton>
-                    <Divider sx={{width:"90%", mb:2}}></Divider>
-                    {
-                      showtf ? <TextField margin="normal"
-                      onChange={(e) => setNewCode(e.target.value)}
-                      required
-                      fullWidth={true}
-                      id="code"
-                      label="Código"
-                      name="code"
-                      value={newCode}
-                      autoComplete="code"
-                      autoFocus
-                  /> : null
-                    }
-      
+        completado ? <div style={{alignItems : "center", marginTop : "100px"}} >
 
-    
-        {productos.map((item) => (
-          <Card key={item.id} sx={{ width: '160px', height: '200px', ml: 1, mr: 1, mb: 2}}>
-
-          
-          {
-          
+        <QRCode value="Hola Mundo" size={256} bgColor="#282c34" fgColor="#fff" level="H" /> 
+        <Typography variant='h4' sx={{ fontWeight: 'bold', mt: 4, mb: 5 }}><span>¡Felicidades!</span> Canjea tu descuento en caja</Typography></div> : 
+        <> {
+      
+          show ? <div className="App">
+          <h1>Scan BarCode</h1>
+          <>
+            {show && (
+              <BarcodeScannerComponent
+                width={400}
+                height={400}
+                onUpdate={(err, result) => onUpdateScreen(err, result)}
+              />
+            )}
+          </>
+        </div> : <div style={{ display: 'flex', flexDirection: 'flex-column', width: '78%', flexWrap: 'wrap', overflowY: "visible", alignItems: "center", justifyContent: "center", position: 'relative' }}>
+        
+        <IconButton onClick = {() => { 
+          if (showtf) {
+            findCode(newCode);
+            setShowtf(false);
             
-            productosDescubiertos.at(receta.productos.indexOf(item.id)) ?  
-            <>
-            <CardMedia
-              sx={{ height: 140 }}
-              image={item.url_imagen}
-            />
-            <CardContent>
-              <Typography variant="body2" color="text.secondary">Encontrado</Typography>
-            </CardContent>
-            </>
-            : 
-            <>
-            <CardMedia
-              sx={{ height: 140 }}
-              image={item.url_imagen}
-            />
-            <CardContent>
-              <Typography variant="body2" color="text.secondary">{item.nombre}</Typography>
-            </CardContent>
-            </>
-
-
+          } else {
+            setShowtf(true);
           }
-          </Card >
-        ))}
-    </div>
+        }
+        }
+                          size="large"
+                          color="inherit"
+                      >
+                          <KeyboardIcon />
+                          
+                      </IconButton>
+        <IconButton onClick={() => setShow(true) }
+                          size="large"
+                          color="inherit"
+                      >
+                          <PhotoCameraIcon />
+                          
+                      </IconButton>
+                      <Divider sx={{width:"90%", mb:2}}></Divider>
+                      {
+                        showtf ? <TextField margin="normal"
+                        onChange={(e) => setNewCode(e.target.value)}
+                        required
+                        fullWidth={true}
+                        id="code"
+                        label="Código"
+                        name="code"
+                        value={newCode}
+                        autoComplete="code"
+                        autoFocus
+                    /> : null
+                      }
+        
+  
+      
+          {productos.map((item) => (
+            <Card key={item.id} sx={{ width: '160px', height: '200px', ml: 1, mr: 1, mb: 2}}>
+  
+            
+            {
+            
+              
+              productosDescubiertos.at(receta.productos.indexOf(item.id)) ?  
+              <>
+              <CardMedia
+                sx={{ height: 140 }}
+                image={item.url_imagen}
+              />
+              <CardContent>
+                <Typography variant="body2" color="text.secondary">Encontrado</Typography>
+              </CardContent>
+              </>
+              : 
+              <>
+              <CardMedia
+                sx={{ height: 140 }}
+                image={item.url_imagen}
+              />
+              <CardContent>
+                <Typography variant="body2" color="text.secondary">{item.nombre}</Typography>
+              </CardContent>
+              </>
+  
+  
+            }
+            </Card >
+          ))}
+      </div>
+        }
+        </>
       }
+      
+      
       </>
     )
 }
