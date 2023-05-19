@@ -25,7 +25,10 @@ import PhotoCameraIcon from '@mui/icons-material/PhotoCamera';
 import KeyboardIcon from '@mui/icons-material/Keyboard';
 import {Divider} from '@mui/material';
 import QRCode from 'react-qr-code';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
+const autho = getAuth();
+const user = auth.currentUser;
 
 const Tarjeta = ({ recetas, hideElements }) => {
 
@@ -56,6 +59,8 @@ const Tarjeta = ({ recetas, hideElements }) => {
 
   //let productosDescubiertos = new Array(receta.productos.length).fill(false);
   const [productoEncontradoID, setproductoEncontradoID] = useState("-1");
+  const [uid, setUid] = useState("guest")
+  const [QRInfo, setQRInfo] = useState(" ")
 
   const findCode =  (code) => { 
     var i = 0;
@@ -95,7 +100,19 @@ const Tarjeta = ({ recetas, hideElements }) => {
 
   }, [])
 
+  useEffect(() => {
+    if (user != null) {
+      const helper = user.uid.slice(0, 10);
+      setUid(user.uid);
+    } else {
+      setUid("guest");
+    }
+}, [])
 
+useEffect(() => {
+  setQRInfo(uid+"-"+recetas.id+"-"+recetas.descuento)
+  console.log(QRInfo)
+}, [uid])
 
   const[show, setShow] = useState(false)
   const[showtf, setShowtf] = useState(false)
@@ -116,7 +133,7 @@ const Tarjeta = ({ recetas, hideElements }) => {
       {
         completado ? <div style={{alignItems : "center", marginTop : "100px"}} >
 
-        <QRCode value="Hola Mundo" size={256} bgColor="#282c34" fgColor="#fff" level="H" /> 
+        <QRCode value={QRInfo} size={256} bgColor="#282c34" fgColor="#fff" level="H" /> 
         <Typography variant='h4' sx={{ fontWeight: 'bold', mt: 4, mb: 5 }}><span>¡Felicidades!</span> Canjea tu descuento en caja</Typography></div> : 
         <> {
       
