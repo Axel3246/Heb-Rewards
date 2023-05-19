@@ -103,7 +103,7 @@ const map = () => {
           nombre: doc.data().nombre,
         }))   
     )})
-    console.log("información de sucursales obtenida")
+    console.log("información de sucursales")
     return unsuscribe;
   }, [nombre])
 
