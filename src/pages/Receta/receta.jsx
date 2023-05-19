@@ -32,42 +32,27 @@ const Receta = ({ recetas }) => {
 
   //const [recetas, setRecetas] = useState([]);
   const [cargar, setCargar] = useState(false);
+  //const [hide, setHide] = useState(false);
+  const [hide, setHide] = useState(false);
 
-  {/*useEffect(() => {
-    variable();
-  }, []);
-
-  const variable = async () => {
-    try {
-      const coll = collection(database, 'Recetas');
-      const unsubscribe = onSnapshot(coll, (querySnapshot) => {
-        setRecetas(
-          querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            url_imagen: doc.data().imagen,
-            nombre: doc.data().nombre,
-            products: doc.data().productos,
-          }))
-        );
-        setCargar(true);
-      });
-      return unsubscribe;
-    } catch (error) {
-      console.log(error);
-    }
+  const hideElements = (rBool) => {
+    setHide(rBool);
+    console.log(rBool);
   };
 
-  console.log('recetas completas: ', recetas);
+  
 
-  if (!cargar) {
-    return <CircularProgress></CircularProgress>
-  }*/}
+
+
 
   return (
     <div className="App">
       <AppBarList codes = {data} />
+
+
       <div className="Content">
-        <Card sx={{ maxWidth: 0.6, m: 'auto', mt: 13 }}>
+        {
+          hide ?  null : <><Card sx={{ maxWidth: 0.6, m: 'auto', mt: 13 }}>
           <CardMedia
             sx={{ objectFit: 'contain', maxHeight: '180px' }}
             component="img"
@@ -79,20 +64,27 @@ const Receta = ({ recetas }) => {
             </Typography>
           </CardContent>
         </Card>
-
         <ArrowUpwardIcon fontSize="large" sx={{ m: 2 }} />
 
-        <Typography variant="body2" color="text.primary">
-          Ingredientes
-        </Typography>
-        <Box sx={{ flexGrow: 1, m: 2}} alignItems="center" display={"flex"}>
-          <Grid container spacing={2} style={{display:'flex', flexDirection: 'column', alignContent: 'center', width: "100%", margin: "0px"}}>
-            <Tarjeta recetas={data}/>
-          </Grid>
-        </Box>
+          <Typography variant="body2" color="text.primary">
+            Ingredientes
+          </Typography>
+        
+          </>
+        }
+
+<Box sx={{ flexGrow: 1, m: 2}} alignItems="center" display={"flex"}>
+            <Grid container spacing={2} style={{display:'flex', flexDirection: 'column', alignContent: 'center', width: "100%", margin: "0px"}}>
+              <Tarjeta recetas={data} hideElements={hideElements}/>
+            </Grid>
+          </Box>
+        
+        
       </div>
     </div>
   );
 };
+
+
 
 export default Receta;
