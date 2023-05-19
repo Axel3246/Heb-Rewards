@@ -18,7 +18,7 @@ export default function App() {
     <div className="Content">
       <AppBarList/>
       <ListaDiv/>
-      
+      <PrecioLista/>
     </div>
 );
 }

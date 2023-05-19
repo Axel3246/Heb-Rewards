@@ -1,6 +1,6 @@
 // Precio lista
 // Lau Hdz 15/05/2023
-import * as React from 'react';
+import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { Global } from '@emotion/react';
 import { styled } from '@mui/material/styles';
@@ -45,6 +45,40 @@ function SwipeableEdgeDrawer(props) {
   // This is used only for the example
   const container = window !== undefined ? () => window().document.body : undefined;
 
+  const [total, setTotal] = useState('');
+
+  // Get de Total (SQL)
+  const fetchUserData = () => {
+    fetch("http://localhost:3000/programming-languages/getPrecioTotal")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setTotal(data[0].total)
+        console.log(data[0].total)
+      })
+  }
+  useEffect(() => {
+    fetchUserData()
+  }, [])
+
+  const [totalCant, setTotalCant] = useState('');
+
+  // Get de Cantidad (SQL)
+  const fetchCantProd = () => {
+    fetch("http://localhost:3000/programming-languages/getCantidadTotal")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        setTotalCant(data[0].totalCant)
+        console.log(data[0].totalCant)
+      })
+  }
+  useEffect(() => {
+    fetchCantProd()
+  }, [])
+
   return (
     <Root>
       <CssBaseline />
@@ -81,7 +115,7 @@ function SwipeableEdgeDrawer(props) {
         >
           <Puller />
           <Box sx={{ textAlign: 'center'}}>
-            <Typography sx={{ p: 2, color: 'text.secondary', marginTop:'4px'}}>Total: $193.00</Typography>
+            <Typography sx={{ p: 2, color: 'text.secondary', marginTop:'4px'}}>Total: ${total}.00 </Typography>
           </Box>
         </StyledBox>
         <StyledBox
@@ -93,8 +127,7 @@ function SwipeableEdgeDrawer(props) {
           }}
         >
           
-          <Typography sx={{ p: 2, color: 'text.secondary'}}>Ahorros: $00.00</Typography>
-          <Typography sx={{ p: 2, color: 'text.secondary'}}>Cantidad de productos: #</Typography>
+          <Typography sx={{ p: 2, color: 'text.secondary'}}>Cantidad de productos: {totalCant}</Typography>
         </StyledBox>
       </SwipeableDrawer>
     </Root>

@@ -22,6 +22,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
+import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
+
+
 // Se importan archivos 
 import './ListaDiv.css'
 import { Margin } from '@mui/icons-material';
@@ -32,23 +36,15 @@ import CustomizedSnackbars from './AlertaEliminar';
 
 export default function InsetDividers() {
   const theme = useTheme();
-  const [counter, setCounter] = useState(1);
- 
-  // Counter menos
-  const decrease = () => {
-  setCounter(count => count - 1);
-  };
-
-  // Counter menos
-  const increase = () => {
-    setCounter(count => count + 1);
-  };
 
   // API
   const [productos, setProductos] = useState([])
 
+  // State para ver si se cargo 
+  const [cargar, setCargar] = useState(false);
+
   // Get de Productos (SQL)
-  const fetchUserData = () => {
+  const fetchUserData = async () => {
     fetch("http://localhost:3000/programming-languages/getProductosLista/6")
       .then(response => {
         return response.json()
@@ -56,62 +52,97 @@ export default function InsetDividers() {
       .then(data => {
         setProductos(data)
       })
+    setCargar(true);
   }
 
   useEffect(() => {
     fetchUserData()
   }, [])
 
-  /*function fetchDelete(id) {
-    fetch("http://localhost:3000/programming-languages/deleteProductosLista/6/" + id)
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        setProductos(data)
-      })
-  }*/
+
+  function deleteUserData(idprod){
+    let url ="http://localhost:3000/programming-languages/deleteProductosLista/6/" + idprod;
+    console.log(url);
+    fetch(url, {method:"delete"})
+    console.log("se logro borrar");
+    precioProd();
+    window.location.reload(false);
+
+  }
+
+  // Agregar cantidad
+  function agregaCant(idprod) {
+    let url = `http://localhost:3000/programming-languages/masCantidad/6/` + idprod ;
+    fetch(url, {method: 'get'})
+    console.log("cambio cant");
+    precioProd();
+  }
+
+  // Restar cantidad
+  function restarCant(idprod, cantidad) {
+    if(cantidad != 1) {
+      let url = `http://localhost:3000/programming-languages/menosCantidad/6/` + idprod ;
+      fetch(url, {method: 'get'})
+      precioProd();
+    }
+  }
+
+  // Update de columna precioTotalProd
+  function precioProd() {
+    let url = `http://localhost:3000/programming-languages/precioTotalProd/`;
+    fetch(url, {method: 'get'})
+    window.location.reload(false);
+  }
+
+  if (!cargar){
+    return <h1>Estoy cargando</h1>
+  }
 
   return (
     <div className="Content">
         
         {/*Productos de Usuario (obtenidas de Mysql)*/}
         {productos.map((item) => (
-            <List
-            sx={{
+          <List
+          sx={{
             width: '100%',
-            maxWidth: 360,
+            maxWidth: 400,
             bgcolor: 'background.paper',
             alignItems:'center',
             marginLeft: '10px'
-        }}
-        >
+          }}
+          >
             <ListItem >
                 <ListItemAvatar>
                 <Avatar src={item.imagen}>
                     
                 </Avatar>
                 </ListItemAvatar>
-                <ListItemText primary={item.nombre} secondary={"Precio: $" + item.precio + ".00"}/>
-                {/*
+
+                {
+                  item.oferta == 0 ? <ListItemText primary={item.nombre} secondary={"Precio: $" + item.precio + ".00"}/> : <ListItemText primary={item.nombre} secondary={<> {"Oferta: $" + item.oferta + ".00"} <br/> <del>{"Precio: $" + item.precio + ".00"}</del> </>
+                  }/>
+                }
+                
                 <ListItemSecondaryAction>
-                    <IconButton aria-label="menos" onClick={decrease}>
-                        {theme.direction === 'rtl' ? <RemoveCircleOutlineIcon /> : <RemoveCircleOutlineIcon />}
-                    </IconButton>
-                    <IconButton aria-label="cantidad">
-                        <span className="counter__output">{counter}</span>
-                    </IconButton>
+                  <IconButton aria-label="menos" onClick={() => restarCant(item.productoID, item.cantidad)}>
+                    {theme.direction === 'rtl' ? <RemoveCircleOutlineIcon /> : <RemoveCircleOutlineIcon />}
+                  </IconButton>
+                  <IconButton aria-label="cantidad">
+                    <span className="counter__output">{item.cantidad}</span>
+                  </IconButton>
 
-                    <IconButton aria-label="mas" onClick={increase}>
-                        {theme.direction === 'rtl' ? <AddCircleOutlineIcon /> : <AddCircleOutlineIcon />}
-                    </IconButton>
+                  <IconButton aria-label="mas" onClick={() => agregaCant(item.productoID)}>
+                    {theme.direction === 'rtl' ? <AddCircleOutlineIcon /> : <AddCircleOutlineIcon />}
+                  </IconButton>
 
-                    <IconButton edge="end" aria-label="delete" >
-                        <DeleteIcon />
-                    </IconButton>
+                  <IconButton edge="end" aria-label="delete" onClick={() => deleteUserData(item.productoID) }>
+                    <DeleteIcon />
+                  </IconButton>
                     
-                    
-                </ListItemSecondaryAction>*/ }
+                </ListItemSecondaryAction>
+                
+                
                 </ListItem>
                 <Divider variant="inset" component="li" />
             </List>
