@@ -24,9 +24,6 @@ const mapTheme = createTheme({
     }
 })
 
-// se inicializa la variable para encontrar el email del usuario  
-var correo;
-
 // se inicializan las variables para la geolocalización
 let latitude;
 let longitude;
@@ -57,19 +54,18 @@ const map = () => {
 
   // Obtener el email del usuario
   // Hacer el GET de la sucursal
+  var correo
   useEffect(() => {
     getAuth().onAuthStateChanged((user) => {
       if (user) {
         console.log(user.email);
-        correo = user.email;
-        fetchUserData()
+        fetchUserData(user.email);
+        console.log("info recuperada");
       }
     });
   }, [])
 
-  console.log("el correo es " + correo);
-
-  const fetchUserData = () => {
+  const fetchUserData = (correo) => {
     fetch(`http://localhost:3000/programming-languages/getStoreName/'` + correo + `'`)
       .then(response => {
         return response.json()
@@ -107,7 +103,7 @@ const map = () => {
           nombre: doc.data().nombre,
         }))   
     )})
-    console.log("Vuelve a repetir")
+    console.log("información de sucursales obtenida")
     return unsuscribe;
   }, [nombre])
 
