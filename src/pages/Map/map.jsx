@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { GoogleMap, InfoWindow, Marker, useLoadScript } from "@react-google-maps/api";
 import './map.css'
 import { images } from '../../constants'
@@ -7,12 +7,14 @@ import { Container, Box, Typography, Icon } from '@mui/material'
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MapIcon from '@mui/icons-material/Map';
 import { database } from '../../FirebaseConfig'
-import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion} from 'firebase/firestore';
+import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion  } from 'firebase/firestore';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SendIcon from '@mui/icons-material/Send';
 import CheckIcon from '@mui/icons-material/Check';
 import LocalMallIcon from  '@mui/icons-material/LocalMall';
+import { getAuth } from "firebase/auth";
+import { CircularProgress } from '@mui/material';
 
 
 
@@ -46,35 +48,45 @@ navigator.geolocation.getCurrentPosition(success, error);
 
 // Función principal 
 const map = () => {
-  const [stores, setStores] = useState([])
 
-  // Get de Sucursal (SQL)
-  const fetchUserData = () => {
-    fetch("http://localhost:3000/programming-languages/getStoreName/1")
+  const [stores, setStores] = useState([]);
+  const [sucursales, setSucursales] = useState([]); // get de las sucursales para el mapa  
+  const [nombre, setNombre] = useState([]);
+  const [activeMarker, setActiveMarker] = useState(null); // utilizado para los marcadores
+
+  // Obtener el email del usuario
+  // Hacer el GET de la sucursal
+  var correo
+  useEffect(() => {
+    getAuth().onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user.email);
+        fetchUserData(user.email);
+        console.log("info recuperada");
+      }
+    });
+  }, [])
+
+  const fetchUserData = (correo) => {
+    fetch(`http://localhost:3000/programming-languages/getStoreName/'` + correo + `'`)
       .then(response => {
         return response.json()
       })
       .then(data => {
-        setStores(data)
+        setStores(data) 
       })
   }
-
-  useEffect(() => {
-    fetchUserData()
-  }, [])
-
-
-  // Put Sucursal
+  
+  // Put Sucursal (SQL)
   function changeUserData(prop) {
     document.getElementById("perry").innerHTML = prop;
-    let url = `http://localhost:3000/programming-languages/putSucursal/2/2`;
+    let url = `http://localhost:3000/programming-languages/putSucursal/'` + prop + `'/'` + correo + `'`;
+    // console.log(prop);
     fetch(url, {method: 'get'})
-    console.log("cambio");
+    console.log("cambio realizado");
   }
 
-  // get de las sucursales para el mapa
-  const [sucursales, setSucursales] = useState([])
-  const [nombre, setNombre] = useState([])
+  // query de firebase
   var q;
 
   useEffect(() => {
@@ -93,12 +105,9 @@ const map = () => {
           nombre: doc.data().nombre,
         }))   
     )})
-    console.log("Vuelve a repetir")
+    console.log("información de sucursales")
     return unsuscribe;
   }, [nombre])
-  
-  // utilizado para los marcadores
-  const [activeMarker, setActiveMarker] = useState(null);
 
   // API Key de Google
   const { isLoaded } = useLoadScript ({
