@@ -86,7 +86,8 @@ const Recetas = () => {
                 id: doc.id,
                 url_imagen: doc.data().imagen, 
                 nombre: doc.data().nombre, 
-                productos: doc.data().productos
+                productos: doc.data().productos,
+                descuento: doc.data().descuento
               })
             )
           );
