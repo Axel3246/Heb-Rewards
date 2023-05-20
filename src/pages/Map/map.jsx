@@ -46,6 +46,8 @@ const error = () => {
 // obtener la posición actual
 navigator.geolocation.getCurrentPosition(success, error);
 
+var correo;
+
 // Función principal 
 const map = () => {
 
@@ -53,33 +55,59 @@ const map = () => {
   const [sucursales, setSucursales] = useState([]); // get de las sucursales para el mapa  
   const [nombre, setNombre] = useState([]);
   const [activeMarker, setActiveMarker] = useState(null); // utilizado para los marcadores
+  const [flag, setFlag] = useState(false);
 
   // Obtener el email del usuario
   // Hacer el GET de la sucursal
-  var correo
   useEffect(() => {
     getAuth().onAuthStateChanged((user) => {
       if (user) {
-        console.log(user.email);
+        // console.log(user.email);
+        correo = user.email;
         fetchUserData(user.email);
-        console.log("info recuperada");
+        console.log("correo obtenido");
       }
     });
-  }, [])
 
-  const fetchUserData = (correo) => {
-    fetch(`http://localhost:3000/programming-languages/getStoreName/'` + correo + `'`)
+    const coll = collection(database, 'SucursalesHEBMTY');
+    q = query(coll);
+
+    const unsuscribe = onSnapshot(q, querySnapshot => {
+      setSucursales(
+        querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ciudad: doc.data().ciudad,
+          direccion: doc.data().direccion,
+          horario: doc.data().horario,
+          latitud: doc.data().latitud,
+          longitud: doc.data().longitud,
+          nombre: doc.data().nombre,
+        }))   
+    )})
+
+    console.log("información de sucursales")
+    
+    setFlag(true);
+    return unsuscribe;
+
+  }, [nombre])
+
+  const fetchUserData = (email) => {
+    console.log(email);
+    fetch(`http://localhost:3000/programming-languages/getStoreName/'` + email + `'`)
       .then(response => {
         return response.json()
       })
       .then(data => {
-        setStores(data) 
+        setStores(data[0].nombre) 
       })
+      console.log("get realizado");
   }
   
   // Put Sucursal (SQL)
   function changeUserData(prop) {
     document.getElementById("perry").innerHTML = prop;
+    console.log(prop);
     let url = `http://localhost:3000/programming-languages/putSucursal/'` + prop + `'/'` + correo + `'`;
     // console.log(prop);
     fetch(url, {method: 'get'})
@@ -89,6 +117,7 @@ const map = () => {
   // query de firebase
   var q;
 
+  /*
   useEffect(() => {
     const coll = collection(database, 'SucursalesHEBMTY');
     q = query(coll);
@@ -108,6 +137,7 @@ const map = () => {
     console.log("información de sucursales")
     return unsuscribe;
   }, [nombre])
+  */
 
   // API Key de Google
   const { isLoaded } = useLoadScript ({
@@ -155,6 +185,10 @@ const map = () => {
     var x = await resolveAfter2Seconds(10);
   };
 
+  if (!flag) {
+    return <h1>Cargando...</h1>
+  }
+
   return (
       <>
           <ThemeProvider theme={mapTheme} >
@@ -172,9 +206,9 @@ const map = () => {
                           </Typography>
                           <Typography sx={{ textAlign: "center !important", mb: 1, fontSize: 17, fontWeight: 'regular', color: "black !important" }}>
                               Para facilitar tu experiencia con nosotros, ¡puedes elegir tu sucursal preferida aquí! <br/> ¡Explora nuestras opciones y elige la sucursal que mejor se adapte a tus necesidades!
-                              {stores.map(user => (
-                                <h4 id="perry">{user.nombre}</h4>
-                              ))}
+  
+                              <h4 id="perry">{stores}</h4>
+                              
                           </Typography>
                       </Box>
                       <Box>
