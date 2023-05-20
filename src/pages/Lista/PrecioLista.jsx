@@ -47,6 +47,9 @@ function SwipeableEdgeDrawer(props) {
 
   const [total, setTotal] = useState('');
 
+  // State para ver si se cargo 
+  const [cargar, setCargar] = useState(false);
+
   // Get de Total (SQL)
   const fetchUserData = () => {
     fetch("http://localhost:3000/programming-languages/getPrecioTotal")
@@ -57,6 +60,7 @@ function SwipeableEdgeDrawer(props) {
         setTotal(data[0].total)
         console.log(data[0].total)
       })
+    setCargar(true);
   }
   useEffect(() => {
     fetchUserData()
@@ -78,6 +82,10 @@ function SwipeableEdgeDrawer(props) {
   useEffect(() => {
     fetchCantProd()
   }, [])
+
+  if (!cargar){
+    return <h1>Estoy cargando</h1>
+  }
 
   return (
     <Root>

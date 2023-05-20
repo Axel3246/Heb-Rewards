@@ -31,6 +31,8 @@ import './ListaDiv.css'
 import { Margin } from '@mui/icons-material';
 import CustomizedSnackbars from './AlertaEliminar';
 
+import PrecioLista from './PrecioLista';
+
 // Se importa la base de datos
 
 
@@ -148,6 +150,8 @@ export default function InsetDividers() {
             </List>
 
         ))}
+        <PrecioLista/>
     </div>
+
   );
 }
