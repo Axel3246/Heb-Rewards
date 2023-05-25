@@ -106,7 +106,7 @@ const Recetas = () => {
 
     return (
         <>
-            <Container sx={{ alignItems: 'center' }}>
+            <Container sx={{ alignItems: 'center', pl: 0, pr:0 }}>
                 <AppBar position="fixed" sx={{ bgcolor: '#FE231F' }}>
                     <Toolbar disableGutters>
                         <Box sx={{ display: 'flex', p: 1, flexGrow: 1 }}>
