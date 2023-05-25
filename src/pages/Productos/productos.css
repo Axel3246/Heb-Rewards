@@ -24,11 +24,11 @@
 }
 
 
-.paper_container {
+.paper_containerP {
     position: relative;
-    height: 700px;
-    max-height: 700px;
-    min-height: 350px;
+    height: 346px;
+    max-height: 360px;
+    min-height: 346px;
     width: 100%;
     text-overflow: clip;
     min-width: 100px;

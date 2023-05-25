@@ -32,7 +32,8 @@ const RecargaProductos = ({ productos }) => {
   }
 
   // Update de columna precioTotalProd
-  function precioProd() {
+  const precioProd = (event) => {
+    event.preventDefault();
     let url = `http://localhost:3000/programming-languages/precioTotalProd/`;
     fetch(url, {method: 'put'})
     window.location.reload(false);
@@ -55,7 +56,7 @@ const RecargaProductos = ({ productos }) => {
   return (
     <div className="ContenedorCartas" style={{ display: 'flex', flexDirection: 'flex-column', width: '78vw', flexWrap: 'wrap', overflowY: "visible", position: 'relative' }}>
       {productos.map((item) => (
-        <Paper elevation={1} key={item.id} className='paper_container'>
+        <Paper elevation={1} key={item.id} className='paper_containerP'>
           <a href={`/posts/${item.id}`} style={{ textDecoration: 'none' }}>
             {
               item.tipo == 'R' ?

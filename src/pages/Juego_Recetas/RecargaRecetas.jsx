@@ -15,8 +15,8 @@ const RecargaRecetas = ({ recetas }) => {
   return (
     <div className="ContenedorCartas" style={{ display: 'flex', marginTop: '20px', flexDirection: 'flex-column', width: '100%', flexWrap: 'wrap', overflowY: "visible", position: 'relative' }}>
       {recetas.map((item) => (
-        <button style={{backgroundColor: 'white', padding: '0px', margin: "0px 7.5px 15px 7.5px", borderWidth: "0px", display:'flex', alignItems:'center'}} onClick={() => history('/receta', { state: item  } )}>
-        <Paper sx={{ml:'auto', mr:'auto'}}elevation={1} key={item.id} className='paper_container'>
+        <button  key={item.id} style={{backgroundColor: 'white', padding: '0px', margin: "0px 7.5px 15px 7.5px", borderWidth: "0px", display:'flex', alignItems:'center'}} onClick={() => history('/receta', { state: item  } )}>
+        <Paper sx={{ml:'auto', mr:'auto'}}elevation={1} className='paper_container'>
           <CardMedia
                           component="img"
                           sx={{ height: 120, width: 120, alignItems: 'center', textAlign: 'center', marginLeft: 'auto', mr: 'auto' }}
