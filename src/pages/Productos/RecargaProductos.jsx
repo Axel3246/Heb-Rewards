@@ -28,7 +28,7 @@ const RecargaProductos = ({ productos }) => {
     console.log(url);
     fetch(url, {method:"get"})
     console.log("se logro");
-    precioProd();
+    precioProd;
   }
 
   // Update de columna precioTotalProd

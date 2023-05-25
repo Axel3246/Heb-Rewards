@@ -12,11 +12,9 @@ import Footer from './components/Footer'
 import ReactDom from 'react-dom';
 import { useLocation } from "react-router-dom";
 
-function Home({ user }) {
+function Home() {
 
-    const location = useLocation();
-    let data = location.state;
-
+    
     return (
         <>
         <Container>
