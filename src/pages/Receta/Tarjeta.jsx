@@ -11,6 +11,8 @@ import { database, auth, signInWithGoogle } from '../../FirebaseConfig'
 import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion} from 'firebase/firestore';
 
 import IconButton from '@mui/material/IconButton';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+
 
 import CancelTwoToneIcon from '@mui/icons-material/CancelTwoTone';
 
@@ -26,6 +28,28 @@ import KeyboardIcon from '@mui/icons-material/Keyboard';
 import {Divider} from '@mui/material';
 import QRCode from 'react-qr-code';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+//Imports Modal
+import Box from '@mui/material/Box';
+import Modal from '@mui/material/Modal';
+import Zoom from '@mui/material/Zoom'; //Para animacion
+import { OpenInBrowserOutlined } from '@mui/icons-material';
+
+//Modal style
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: '60%',
+  bgcolor: 'background.paper',
+  borderRadius: '10px',
+  boxShadow: 24,
+  p: 4,
+  textAlign: 'center'
+};
+
+
 
 const autho = getAuth();
 const user = auth.currentUser;
@@ -48,8 +72,9 @@ const Tarjeta = ({ recetas, hideElements }) => {
       nuevosproductosDescubiertos[index] = true; // Actualizar el valor del elemento deseado
       if (!(nuevosproductosDescubiertos.includes(false))) {
         setCompletado(true);
+        setOpen(true);
         console.log("ya quedó");
-        hideElements(true);
+        hideElements(false); //aqui
         
       }
       return nuevosproductosDescubiertos; // Establecer el nuevo array como estado
@@ -128,13 +153,25 @@ useEffect(() => {
     }
   };
 
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
     return (
       <>
       {
-        completado ? <div style={{alignItems : "center", marginTop : "100px"}} >
+        completado ? 
 
-        <QRCode value={QRInfo} size={256} bgColor="#282c34" fgColor="#fff" level="H" /> 
-        <Typography variant='h4' sx={{ fontWeight: 'bold', mt: 4, mb: 5 }}><span>¡Felicidades!</span> Canjea tu descuento en caja</Typography></div> : 
+        <Modal open={open} onClose={handleClose}>
+        <Box sx={style}>
+          <div style={{alignItems : "center", marginTop : "20px"}} >
+          <QRCode value={QRInfo} size={'80%'} bgColor="#282c34" fgColor="#fff" level="H" /> 
+          <Typography variant='h4' sx={{ fontWeight: 'bold', mt: 3}}><span>¡Felicidades!</span> Canjea tu descuento en caja</Typography></div>
+        </Box>
+        </Modal>
+        
+
+         : 
         <> {
       
           show ? <div className="App">
@@ -191,35 +228,23 @@ useEffect(() => {
   
       
           {productos.map((item) => (
-            <Card key={item.id} sx={{ width: '160px', height: '200px', ml: 1, mr: 1, mb: 2}}>
-  
+            <Card key={item.id} sx={{ width: '160px', height: '200px', ml: 1, mr: 1, mb: 2, position: 'relative'}}>
+            
+            
+            <CardMedia
+                sx={{ height: 140 }}
+                image={item.url_imagen}
+              />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">{item.nombre}</Typography>
+            </CardContent>
             
             {
             
-              
-              productosDescubiertos.at(receta.productos.indexOf(item.id)) ?  
-              <>
-              <CardMedia
-                sx={{ height: 140 }}
-                image={item.url_imagen}
-              />
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">Encontrado</Typography>
-              </CardContent>
-              </>
-              : 
-              <>
-              <CardMedia
-                sx={{ height: 140 }}
-                image={item.url_imagen}
-              />
-              <CardContent>
-                <Typography variant="body2" color="text.secondary">{item.nombre}</Typography>
-              </CardContent>
-              </>
-  
-  
+              productosDescubiertos.at(receta.productos.indexOf(item.id)) ? <><Box sx={{position: 'absolute', zIndex: 10, bgcolor: '#fff', width: '160px', height: '200px', bottom: '0px', opacity: '0.6  '}}><CheckCircleOutlineIcon sx={{color: '#009e22', mt: '75px', width: '50px', height: '50px'}}/></Box></> : null
+
             }
+            
             </Card >
           ))}
       </div>
