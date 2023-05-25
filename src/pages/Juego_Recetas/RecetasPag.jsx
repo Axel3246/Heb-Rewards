@@ -25,7 +25,7 @@ const RecetasPag = ({ recipes }) => {
     
   return (
     <>
-    <Container sx={{ display: 'flex',  justifyContent: 'center'}}>
+    <Container sx={{ display: 'flex',  justifyContent: 'center', p: 0}}>
       <RecargaRecetas
         recetas={recipes.slice(pagesVisited, pagesVisited + recipesPerPage)}
       />    

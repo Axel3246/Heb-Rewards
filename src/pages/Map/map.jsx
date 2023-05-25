@@ -94,7 +94,8 @@ const map = () => {
 
   const fetchUserData = (email) => {
     console.log(email);
-    fetch(`http://localhost:3000/programming-languages/getStoreName/'` + email + `'`)
+    fetch(`https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getStoreName/'` + email + `'`)
+    //fetch(`http://localhost:3000/programming-languages/getStoreName/'` + email + `'`)
       .then(response => {
         return response.json()
       })
@@ -108,7 +109,7 @@ const map = () => {
   function changeUserData(prop) {
     document.getElementById("perry").innerHTML = prop; // y perry?
     console.log(prop);
-    let url = `http://localhost:3000/programming-languages/putSucursal/'` + prop + `'/'` + correo + `'`;
+    let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/putSucursal/'` + prop + `'/'` + correo + `'`;
     // console.log(prop);
     fetch(url, {method: 'get'})
     console.log("cambio realizado");

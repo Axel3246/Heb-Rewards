@@ -90,7 +90,7 @@ export default function InsetDividers() {
 
   // Get de Productos (SQL)
   const fetchUserData = async () => {
-    
+
     fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getProductosLista/6")
       .then(response => {
         return response.json()
