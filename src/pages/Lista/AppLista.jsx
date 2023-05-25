@@ -1,5 +1,7 @@
 // Se importa React
-import React, { useState } from 'react';
+import React, { useEffect, useState} from 'react';
+import { Alert } from '@mui/material';
+import { auth } from '../../FirebaseConfig'
 
 // Se importa el archivo Modal
 import Modal from './Modal';
@@ -12,12 +14,32 @@ import PrecioLista from './PrecioLista';
 import AlertaEliminar from './AlertaEliminar';
 
 export default function App() {
-  const[show, setShow] = useState(false)
+  const [show, setShow] = useState(false)
+  const [userExist, setUserExist] = useState(false)
 
+
+
+  
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        setUserExist(true);
+      }
+    })
+
+    return unsubscribe
+  }, [])
+
+  
   return (
     <div className="Content">
       <AppBarList/>
-      <ListaDiv/>
+      {
+        userExist ? <ListaDiv/> : <Alert variant="filled" severity="error">
+        ¡Debes iniciar sesión para usar esta función!
+      </Alert>
+      }
+      
       
       <PrecioLista/>
     </div>

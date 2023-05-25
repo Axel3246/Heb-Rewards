@@ -18,7 +18,7 @@ import IconButton from '@mui/material/IconButton';
 import { images } from '../../constants'
 import { collection, doc, where, setDoc, getDocs, addDoc, startAt, endAt, limit, documentId, onSnapshot, QuerySnapshot, orderBy, query, arrayUnion } from 'firebase/firestore';
 import ProductoPag from './ProductoPag';
-import './productos.css'
+
 import Footer from '../../pages/Home/components/Footer'
 
 

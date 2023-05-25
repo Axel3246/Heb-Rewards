@@ -24,10 +24,16 @@
 }
 
 
-.paper_container {
+.paper_containerP {
     position: relative;
+<<<<<<< Updated upstream
     height: 400px;
     max-height: 350px;
+=======
+    height: 346px;
+    max-height: 360px;
+    min-height: 346px;
+>>>>>>> Stashed changes
     width: 100%;
     text-overflow: clip;
     min-width: 100px;

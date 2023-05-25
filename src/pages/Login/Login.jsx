@@ -18,7 +18,7 @@ function SignIn() {
 
     return (
       <div className="SignIn">
-        {user ? <Home user={user}/> : <LoginComponent/>}
+       <LoginComponent/>
       </div>
     );
   }

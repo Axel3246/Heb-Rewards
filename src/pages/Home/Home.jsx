@@ -10,8 +10,14 @@ import MenuBox from './components/MenuBox'
 import SucSelec from './components/SucSelec'
 import Footer from './components/Footer'
 
+<<<<<<< Updated upstream
 function Home({ user }) {
 
+=======
+function Home() {
+
+    
+>>>>>>> Stashed changes
     return (
         <>
         <Container>

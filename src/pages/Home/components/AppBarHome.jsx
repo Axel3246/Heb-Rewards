@@ -55,6 +55,31 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function ButtonAppBar() {
+<<<<<<< Updated upstream
+=======
+    let navigate = useNavigate(); 
+    var userC = auth.currentUser;
+
+    getAuth().onAuthStateChanged((user) => {
+        if (user) {
+          // console.log(user.email);
+          userC = user
+          console.log("obtenido");
+        }
+      });
+  
+    
+    const routeChange = () =>{
+        console.log(userC)
+        
+        let path = `/lista`; 
+        navigate(path);
+        
+
+
+        
+    }
+>>>>>>> Stashed changes
     return (
         <AppBar position="fixed" sx={{ bgcolor: '#FE231F' }}>  
             <Toolbar disableGutters>    
