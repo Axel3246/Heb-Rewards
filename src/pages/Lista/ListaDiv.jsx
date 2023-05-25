@@ -47,7 +47,7 @@ export default function InsetDividers() {
 
   // Get de Productos (SQL)
   const fetchUserData = async () => {
-    fetch("http://localhost:3000/programming-languages/getProductosLista/6")
+    fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getProductosLista/6")
       .then(response => {
         return response.json()
       })
@@ -63,7 +63,7 @@ export default function InsetDividers() {
 
 
   function deleteUserData(idprod){
-    let url ="http://localhost:3000/programming-languages/deleteProductosLista/6/" + idprod;
+    let url ="https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/deleteProductosLista/6/" + idprod;
     console.log(url);
     fetch(url, {method:"delete"})
     console.log("se logro borrar");
@@ -74,7 +74,7 @@ export default function InsetDividers() {
 
   // Agregar cantidad
   function agregaCant(idprod) {
-    let url = `http://localhost:3000/programming-languages/masCantidad/6/` + idprod ;
+    let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/masCantidad/6/` + idprod ;
     fetch(url, {method: 'get'})
     console.log("cambio cant");
     precioProd();
@@ -83,7 +83,7 @@ export default function InsetDividers() {
   // Restar cantidad
   function restarCant(idprod, cantidad) {
     if(cantidad != 1) {
-      let url = `http://localhost:3000/programming-languages/menosCantidad/6/` + idprod ;
+      let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/menosCantidad/6/` + idprod ;
       fetch(url, {method: 'get'})
       precioProd();
     }
@@ -91,7 +91,7 @@ export default function InsetDividers() {
 
   // Update de columna precioTotalProd
   function precioProd() {
-    let url = `http://localhost:3000/programming-languages/precioTotalProd/`;
+    let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/precioTotalProd/`;
     fetch(url, {method: 'get'})
     window.location.reload(false);
   }

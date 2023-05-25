@@ -52,7 +52,7 @@ function SwipeableEdgeDrawer(props) {
 
   // Get de Total (SQL)
   const fetchUserData = () => {
-    fetch("http://localhost:3000/programming-languages/getPrecioTotal")
+    fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getPrecioTotal")
       .then(response => {
         return response.json()
       })
@@ -70,7 +70,7 @@ function SwipeableEdgeDrawer(props) {
 
   // Get de Cantidad (SQL)
   const fetchCantProd = () => {
-    fetch("http://localhost:3000/programming-languages/getCantidadTotal")
+    fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getCantidadTotal")
       .then(response => {
         return response.json()
       })
