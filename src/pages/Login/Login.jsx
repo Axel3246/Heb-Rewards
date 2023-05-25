@@ -3,16 +3,28 @@ import firebase from 'firebase/compat/app';
 import LoginComponent from './LoginComponent'
 import Home from '../Home/Home'
 
+import { auth} from '../../FirebaseConfig'
+
+import { useNavigate } from 'react-router-dom';
+
 
 function SignIn() {
 
   const [user, setUser] = useState(null);
+  
+const history = useNavigate();
 
+  
   useEffect(() => {
-    firebase.auth().onAuthStateChanged(user => {
-      setUser(user);
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        setUser(user);
+        history('/', { state: user  } )
+      }
     })
-  }, [])
+
+    return unsubscribe
+  }, [user])
 
   console.log(user);
 

@@ -11,6 +11,7 @@ import Productos from './pages/Productos/products'
 import Recetas from './pages/Juego_Recetas/Recetas'
 
 
+
 import Receta from './pages/Receta/receta'
 
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";

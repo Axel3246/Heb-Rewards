@@ -9,8 +9,13 @@ import Swipe from './components/Swipe'
 import MenuBox from './components/MenuBox'
 import SucSelec from './components/SucSelec'
 import Footer from './components/Footer'
+import ReactDom from 'react-dom';
+import { useLocation } from "react-router-dom";
 
 function Home({ user }) {
+
+    const location = useLocation();
+    let data = location.state;
 
     return (
         <>
