@@ -29,6 +29,7 @@ export default function ButtonAppBar() {
                     <IconButton
                         size="large"
                         color="inherit"
+                        href='/'
                     >
                         <ArrowBackIcon />
                     </IconButton>

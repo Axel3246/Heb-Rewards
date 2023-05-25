@@ -8,7 +8,16 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import LogoutIcon from '@mui/icons-material/Logout';
 import InputBase from '@mui/material/InputBase';
 import { images } from '../../../constants'
-import { auth } from '../../../FirebaseConfig'
+import { auth  } from '../../../FirebaseConfig'
+
+import { getAuth } from "firebase/auth";
+
+import { useNavigate } from "react-router-dom";
+import {useEffect, useState} from 'react';
+
+const autho = getAuth();
+
+
 
 
 //Queda ajustar los botones para que no queden ovalados
@@ -55,17 +64,37 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function ButtonAppBar() {
+    let navigate = useNavigate(); 
+    var userC = auth.currentUser;
+
+    getAuth().onAuthStateChanged((user) => {
+        if (user) {
+          // console.log(user.email);
+          userC = user
+          console.log("obtenido");
+        }
+      });
+  
+    
+    const routeChange = () =>{
+        console.log(userC)
+        if (userC != null) {
+            let path = `/lista`; 
+            navigate(path);
+        }
+        
+    }
     return (
         <AppBar position="fixed" sx={{ bgcolor: '#FE231F' }}>  
             <Toolbar disableGutters>    
                 <Box sx={{ display: 'flex', p: 1, flexGrow: 1 }}>
-                    <IconButton size="large" color="inherit" onClick={() => auth.signOut()}>
+                    <IconButton size="large" color="inherit" onClick={() => auth.signOut()} href='login'>
                         <LogoutIcon />
                     </IconButton>
                     <IconButton sx={{ml:'auto', mr:'auto'}} href='/'>
                         <Box component="img" src={images.heb_svg} sx={{maxHeight: 120, height: 1, width: 1}}/>
                     </IconButton>
-                    <IconButton color="inherit" href='/lista'>
+                    <IconButton color="inherit"  onClick={routeChange}>
                     <ShoppingCartOutlinedIcon />
                     </IconButton>
                 </Box>

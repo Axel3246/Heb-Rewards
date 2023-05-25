@@ -106,7 +106,7 @@ const map = () => {
   
   // Put Sucursal (SQL)
   function changeUserData(prop) {
-    document.getElementById("perry").innerHTML = prop;
+    document.getElementById("perry").innerHTML = prop; // y perry?
     console.log(prop);
     let url = `http://localhost:3000/programming-languages/putSucursal/'` + prop + `'/'` + correo + `'`;
     // console.log(prop);
