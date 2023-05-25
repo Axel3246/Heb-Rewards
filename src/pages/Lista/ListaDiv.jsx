@@ -34,10 +34,53 @@ import CustomizedSnackbars from './AlertaEliminar';
 import PrecioLista from './PrecioLista';
 
 // Se importa la base de datos
+var correo;
+import { getAuth } from "firebase/auth";
 
+import { auth  } from '../../FirebaseConfig'
 
 export default function InsetDividers() {
   const theme = useTheme();
+
+  const [fid, fsetID] = useState([6])
+  const [id, setID] = useState([6])
+
+  var userC = auth.currentUser;
+
+    getAuth().onAuthStateChanged((user) => {
+        if (user) {
+          // console.log(user.email);
+          userC = user
+          console.log("obtenido");
+        }
+      });
+
+  useEffect(() => {
+      console.log("aquistoy")
+      console.log(userC)
+      if (userC) {
+        // console.log(user.email);
+        correo = userC.email;
+        console.log(correo)
+        console.log("https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getId/'" + correo + "'")
+        fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getId/'" + correo + "'")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        fsetID(data.usuarioID)
+        console.log("fid be like")
+      console.log(fid)
+        
+      })
+      
+      }
+  }, [])
+
+  useEffect(() => {
+    setID(fid)
+    console.log(id)
+  }, [fid])
 
   // API
   const [productos, setProductos] = useState([])
@@ -47,7 +90,8 @@ export default function InsetDividers() {
 
   // Get de Productos (SQL)
   const fetchUserData = async () => {
-    fetch("http://localhost:3000/programming-languages/getProductosLista/6")
+    
+    fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getProductosLista/6")
       .then(response => {
         return response.json()
       })
@@ -63,7 +107,7 @@ export default function InsetDividers() {
 
 
   function deleteUserData(idprod){
-    let url ="http://localhost:3000/programming-languages/deleteProductosLista/6/" + idprod;
+    let url ="https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/deleteProductosLista/6/" + idprod;
     console.log(url);
     fetch(url, {method:"delete"})
     console.log("se logro borrar");
@@ -74,7 +118,7 @@ export default function InsetDividers() {
 
   // Agregar cantidad
   function agregaCant(idprod) {
-    let url = `http://localhost:3000/programming-languages/masCantidad/6/` + idprod ;
+    let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/masCantidad/6/` + idprod ;
     fetch(url, {method: 'get'})
     console.log("cambio cant");
     precioProd();
@@ -83,7 +127,7 @@ export default function InsetDividers() {
   // Restar cantidad
   function restarCant(idprod, cantidad) {
     if(cantidad != 1) {
-      let url = `http://localhost:3000/programming-languages/menosCantidad/6/` + idprod ;
+      let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/menosCantidad/6/` + idprod ;
       fetch(url, {method: 'get'})
       precioProd();
     }
@@ -91,7 +135,7 @@ export default function InsetDividers() {
 
   // Update de columna precioTotalProd
   function precioProd() {
-    let url = `http://localhost:3000/programming-languages/precioTotalProd/`;
+    let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/precioTotalProd/`;
     fetch(url, {method: 'get'})
     window.location.reload(false);
   }
