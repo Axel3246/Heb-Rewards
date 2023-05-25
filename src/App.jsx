@@ -9,7 +9,7 @@ import Map from './pages/Map/map'
 import Scan from './pages/Scan/scan'
 import Productos from './pages/Productos/products'
 import Recetas from './pages/Juego_Recetas/Recetas'
-
+import WhatsTP from './pages/WhatsTP/WhatsTP'
 
 import Receta from './pages/Receta/receta'
 
@@ -36,6 +36,7 @@ export default function App() {
           <Route path="/recetas" element={<Recetas/>}></Route>
 
           <Route path="/Receta" element={<Receta/>}></Route>
+          <Route path="/WhatsTP" element={<WhatsTP/>}></Route>
 
         </Routes>
       </Router> 
