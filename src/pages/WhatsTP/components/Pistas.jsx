@@ -11,8 +11,6 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-
-import './pistas.css'
 import ModalNuevaPista from './ModalNuevaPista';
 
 const drawerBleeding = 56;
