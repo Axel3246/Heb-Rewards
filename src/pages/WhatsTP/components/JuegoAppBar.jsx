@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import HomeIcon from '@mui/icons-material/Home';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import InputBase from '@mui/material/InputBase';
 import { images } from '../../../constants'
@@ -60,8 +59,8 @@ export default function ButtonAppBar() {
         <AppBar position="fixed" sx={{ bgcolor: '#FE231F' }}>  
             <Toolbar disableGutters>    
                 <Box sx={{ display: 'flex', p: 1, flexGrow: 1 }}>
-                    <IconButton size="large" color="inherit" href='/'>
-                        <HomeIcon/>
+                    <IconButton size="large" color="inherit" href='/WhatsTP'>
+                        <ArrowBackIcon/>
                     </IconButton>
                     <IconButton sx={{ml:'auto', mr:'auto'}} href='/'>
                         <Box component="img" src={images.heb_svg} sx={{maxHeight: 120, height: 1, width: 1}}/>

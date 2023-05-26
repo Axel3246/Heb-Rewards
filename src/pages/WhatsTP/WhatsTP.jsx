@@ -1,12 +1,17 @@
+// Pagina principal WTP
+// Axel Hdz, Lau Hdz Y Ricardo Rdz 25/05/2023
 import React from 'react'
-import WTPAppBar from '../WhatsTP/components/WTPAppBar'
 import { Container } from '@mui/material';
+
+// Se importan documentos de componentes
+import WTPAppBar from '../WhatsTP/components/WTPAppBar'
+import SwiperWelcome from '../WhatsTP/components/SwipeBarAbajo'
 
 const WhatsTP = () => {
   return (
     <Container>
-        <WTPAppBar/>
-        <h1>Hello</h1>
+      <WTPAppBar/>
+      <SwiperWelcome/>
     </Container>
   )
 }
