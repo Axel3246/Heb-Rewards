@@ -30,7 +30,7 @@ const MenuBox = () => {
             </a>
             </Grid>
             <Grid item xs={12} align="center">
-            <a className="menulink" href='#'>
+            <a className="menulink" href='/WhatsTP'>
                 <Card sx={{ width: 285}}>
                     <CardActionArea>
                         <CardMedia component="img" image={images.wtp} alt="Minijuegos" sx={{ height: 120 }} />
