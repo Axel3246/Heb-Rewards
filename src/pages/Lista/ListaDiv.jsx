@@ -42,8 +42,8 @@ import { auth  } from '../../FirebaseConfig'
 export default function InsetDividers() {
   const theme = useTheme();
 
-  const [fid, fsetID] = useState([6])
-  const [id, setID] = useState([6])
+  const [fid, fsetID] = useState(null)
+  const [id, setID] = useState(null)
 
   var userC = auth.currentUser;
 
@@ -51,36 +51,30 @@ export default function InsetDividers() {
         if (user) {
           // console.log(user.email);
           userC = user
-          console.log("obtenido");
         }
       });
 
   useEffect(() => {
-      console.log("aquistoy")
-      console.log(userC)
       if (userC) {
         // console.log(user.email);
         correo = userC.email;
-        console.log(correo)
-        console.log("https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getId/'" + correo + "'")
         fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getId/'" + correo + "'")
       .then(response => {
         return response.json()
       })
       .then(data => {
-        fsetID(data.usuarioID)
-        console.log("fid be like")
-      console.log(fid)
-        
+        fsetID(data[0].usuarioID); 
       })
       
       }
   }, [])
 
   useEffect(() => {
-    setID(fid)
-    console.log(id)
+    if (fid != null) {
+      setID(fid)
+    }
   }, [fid])
+
 
   // API
   const [productos, setProductos] = useState([])
@@ -90,8 +84,7 @@ export default function InsetDividers() {
 
   // Get de Productos (SQL)
   const fetchUserData = async () => {
-
-    fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getProductosLista/6")
+    fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getProductosLista/" + id)
       .then(response => {
         return response.json()
       })
@@ -102,12 +95,14 @@ export default function InsetDividers() {
   }
 
   useEffect(() => {
-    fetchUserData()
-  }, [])
+    if (id != null && id != null) {
+      fetchUserData()
+    }
+  }, [id])
 
 
   function deleteUserData(idprod){
-    let url ="https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/deleteProductosLista/6/" + idprod;
+    let url ="https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/deleteProductosLista/"+ id +"/" + idprod;
     console.log(url);
     fetch(url, {method:"delete"})
     console.log("se logro borrar");
@@ -118,7 +113,7 @@ export default function InsetDividers() {
 
   // Agregar cantidad
   function agregaCant(idprod) {
-    let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/masCantidad/6/` + idprod ;
+    let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/masCantidad/`+ id + `/` + idprod ;
     fetch(url, {method: 'get'})
     console.log("cambio cant");
     precioProd();
@@ -127,7 +122,7 @@ export default function InsetDividers() {
   // Restar cantidad
   function restarCant(idprod, cantidad) {
     if(cantidad != 1) {
-      let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/menosCantidad/6/` + idprod ;
+      let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/menosCantidad/` + id + `/` + idprod ;
       fetch(url, {method: 'get'})
       precioProd();
     }
