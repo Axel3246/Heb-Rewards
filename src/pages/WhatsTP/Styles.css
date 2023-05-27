@@ -1,0 +1,8 @@
+.bod {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url(/src/assets/bam.png);
+  background-repeat: no-repeat;
+  background-position: -10px 50px;
+}

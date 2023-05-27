@@ -60,7 +60,7 @@ export default function ButtonAppBar() {
             <Toolbar disableGutters>    
                 <Box sx={{ display: 'flex', p: 1, flexGrow: 1 }}>
                     <IconButton size="large" color="inherit">
-                        <a href='/' style={{color: '#ffffff !important'}}><HomeIcon/></a>
+                        <HomeIcon/>
                     </IconButton>
                     <IconButton sx={{ml:'auto', mr:'auto'}} href='/'>
                         <Box component="img" src={images.heb_svg} sx={{maxHeight: 120, height: 1, width: 1}}/>
