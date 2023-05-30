@@ -14,8 +14,9 @@ import PrecioLista from './PrecioLista';
 import AlertaEliminar from './AlertaEliminar';
 
 export default function App() {
-  const [show, setShow] = useState(false)
-  const [userExist, setUserExist] = useState(false)
+
+  const [show, setShow] = useState(false);
+  const [userExist, setUserExist] = useState(false);
 
 
 
