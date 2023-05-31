@@ -185,7 +185,7 @@ useEffect(() => {
               />
             )}
           </>
-        </div> : <div style={{ display: 'flex', flexDirection: 'flex-column', width: '78%', flexWrap: 'wrap', overflowY: "visible", alignItems: "center", justifyContent: "center", position: 'relative' }}>
+        </div> : <div style={{ display: 'flex', flexDirection: 'flex-column', width: '95%', flexWrap: 'wrap', overflowY: "visible", alignItems: "center", justifyContent: "center", position: 'relative' }}>
         
         <IconButton onClick = {() => { 
           if (showtf) {
@@ -228,7 +228,7 @@ useEffect(() => {
   
       
           {productos.map((item) => (
-            <Card key={item.id} sx={{ width: '160px', height: '200px', ml: 1, mr: 1, mb: 2, position: 'relative'}}>
+            <Card key={item.id} sx={{ width: '150px', height: '200px', ml: 1, mr: 1, mb: 2, position: 'relative'}}>
             
             
             <CardMedia
