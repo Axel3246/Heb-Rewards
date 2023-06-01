@@ -153,6 +153,7 @@ const Tarjeta = ({ recetas, hideElements }) => {
     if (result) {
       findCode(result.text);
       setShow(false);
+      hideElements(false);
     }
   };
 

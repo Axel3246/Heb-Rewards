@@ -7,8 +7,10 @@ style {
     text-align: center;
 }
 
-.cam {
+video {
     position: fixed;
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    left: 0;
 }
