@@ -1,6 +1,7 @@
 // Modal Nueva pista
 // Lau Hdz 25/05/2023
 import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -33,26 +34,55 @@ function IconoLuz(props) {
     );
 }
 
-export default function BasicModal() {
+export default function BasicModal(pistas) {
+  console.log('MODALLL', pistas);
+
   const [open, setOpen] = React.useState(false);
+  const [clickOne, setClickOne] = useState(false);
+  const [clickTwo, setClickTwo] = useState(false);
+  const [clickThree, setClickThree] = useState(false);
+  const [clickFour, setClickFour] = useState(false);
+  const [data, setData] = useState('')
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+
+  
+
 
   return (
     <div>
       {/* Declaracion de botones que despliegan las pistas */}
-      <Button variant="contained" color="error" onClick={handleOpen}> 
+      <Button variant="contained" color="error" onClick={() => {setData(pistas.props[0]); setClickOne(true);  setOpen(true);}}> 
         Pista 1
       </Button>
-      <Button variant="outlined" color="error" onClick={handleOpen}> 
+      {clickOne === true ?
+      <Button variant="outlined"  color="error" onClick={() => {setData(pistas.props[1]); setClickTwo(true);  setOpen(true);}}> 
         Pista 2
       </Button>
-      <Button variant="contained" color="error" onClick={handleOpen}> 
+      :
+      <Button variant="outlined" disabled color="error"> 
+        Pista 2
+      </Button>
+      }
+      {clickTwo === true ?
+      <Button variant="contained"  color="error" onClick={() => {setData(pistas.props[2]); setClickThree(true);  setOpen(true);}}> 
         Pista 3
       </Button>
-      <Button variant="outlined" color="error" onClick={handleOpen}> 
+      :
+      <Button variant="outlined" disabled color="error"> 
+        Pista 3
+      </Button>
+      }
+      {clickThree === true ?
+      <Button variant="outlined"  color="error" onClick={() => {setData(pistas.props[3]); setClickFour(true);  setOpen(true);}}> 
         Pista 4
       </Button>
+      :
+      <Button variant="outlined" disabled color="error"> 
+        Pista 4
+      </Button>
+      }
 
       {/* Declaracion de Modal */}
       <Modal
@@ -68,7 +98,7 @@ export default function BasicModal() {
               ¡Nueva Pista!
             </Typography>
             <Typography id="modal-modal-description" sx={{fontWeight: 'bold', mt: 2, color: 'text.secondary'}}>
-              San Juan
+              {data}
             </Typography>
         </Box>
       </Modal>

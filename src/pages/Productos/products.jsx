@@ -105,17 +105,17 @@ const Productos = () => {
 
         const collectionRef = collection(database, 'Productos');
 
-        if (departamento == '' && hayOferta == '') {
-            q = query(collectionRef, where("sucursal", '==', "ESL"), orderBy('producto'), startAt(nombre), endAt(nombre + '\uf8ff'))
+        if (departamento == '' && hayOferta == '' && localStorage.getItem('sucursal')) {
+            q = query(collectionRef, where("sucursal", '==', localStorage.getItem('sucursal')), orderBy('producto'), startAt(nombre), endAt(nombre + '\uf8ff'))
         }
         else if (departamento != '' && hayOferta == '') {
-            q = query(collectionRef, where("sucursal", '==', "ESL"), where("departamento", '==', departamento), orderBy('producto'), startAt(nombre), endAt(nombre + '\uf8ff'))
+            q = query(collectionRef, where("sucursal", '==', localStorage.getItem('sucursal')), where("departamento", '==', departamento), orderBy('producto'), startAt(nombre), endAt(nombre + '\uf8ff'))
         }
         else if (departamento == '' && hayOferta != '') {
-            q = query(collectionRef, where("sucursal", '==', "ESL"), where("tipo", 'in', ['M', 'R']), orderBy('producto'), startAt(nombre), endAt(nombre + '\uf8ff'))
+            q = query(collectionRef, where("sucursal", '==', localStorage.getItem('sucursal')), where("tipo", 'in', ['M', 'R']), orderBy('producto'), startAt(nombre), endAt(nombre + '\uf8ff'))
         }
         else if (departamento != '' && hayOferta != '') {
-            q = query(collectionRef, where("sucursal", '==', "ESL"), where("tipo", 'in', ['M', 'R']), where("departamento", '==', departamento), orderBy('producto'), startAt(nombre), endAt(nombre + '\uf8ff'))
+            q = query(collectionRef, where("sucursal", '==', localStorage.getItem('sucursal')), where("tipo", 'in', ['M', 'R']), where("departamento", '==', departamento), orderBy('producto'), startAt(nombre), endAt(nombre + '\uf8ff'))
         }
 
         //const q = query(collectionRef,  where("sucursal", '==', "ESL"));

@@ -22,6 +22,7 @@ import four from '../assets/img/swipers/4.png'
 import five from '../assets/img/swipers/5.png'
 import six from '../assets/img/swipers/6.png'
 import mapp from '../assets/img/suc/mapp.png'
+import bam from "../assets/bam.png";
 
 
 export default {
@@ -47,6 +48,7 @@ export default {
     five,
     six,
     mapp,
-    wtp
+    wtp,
+    bam
 
   };

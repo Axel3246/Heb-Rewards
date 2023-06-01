@@ -134,6 +134,7 @@ const Recetas = () => {
                     </div>
                 </div>
             </Container>
+            <Footer/>
         </>
     )
 }
