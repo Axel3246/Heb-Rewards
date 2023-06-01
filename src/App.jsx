@@ -18,6 +18,7 @@ import Prueba from './Prueba'
 
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import './App.css'
+import Footer from './pages/Home/components/Footer';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -26,6 +27,7 @@ import '@fontsource/roboto/700.css';
 export default function App() {
   const [count, setCount] = useState(0)
   return (
+    <>
       <Router>
         <Routes>
           <Route path="/signup" element={<SignUp/>}></Route>
@@ -44,6 +46,7 @@ export default function App() {
           <Route path="/Prueba" element={<Prueba/>}></Route>
         </Routes>
       </Router> 
+      </>
     );
 
   }

@@ -7,6 +7,7 @@ import './productos.css'
 import Button from '@mui/material/Button';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Box from '@mui/material/Box';
+import { Alert } from '@mui/material';
 
 // Se importan iconos para botones
 import IconButton from '@mui/material/IconButton';
@@ -54,10 +55,11 @@ const RecargaProductos = ({ productos }) => {
   }, [boton]);*/
 
   return (
-    <div className="ContenedorCartas" style={{ display: 'flex', flexDirection: 'flex-column', width: '78vw', flexWrap: 'wrap', overflowY: "visible", position: 'relative' }}>
+    <>
+    {
+      localStorage.getItem('sucursal') ?  <> { productos[0] != null ? <div className="ContenedorCartas" style={{ display: 'flex', flexDirection: 'flex-column', width: '78vw', flexWrap: 'wrap', overflowY: "visible", position: 'relative' }}>
       {productos.map((item) => (
         <Paper elevation={1} key={item.id} className='paper_containerP'>
-          <a href={`/posts/${item.id}`} style={{ textDecoration: 'none' }}>
             {
               item.tipo == 'R' ?
                 <div className='flyerDesc'>
@@ -96,7 +98,7 @@ const RecargaProductos = ({ productos }) => {
                 </p>
             }
 
-          </a>
+
 
 
           {/*Boton agregar a lista*/}
@@ -109,7 +111,15 @@ const RecargaProductos = ({ productos }) => {
         </Paper>
 
       ))}
-    </div>
+    </div> : <Alert variant="filled" severity="error" style={{marginTop: 200, marginBottom: 200}}>
+        ¡Lo sentimos! No existen productos de esta categoría.
+      </Alert> } </> 
+      
+       : <Alert variant="filled" severity="error" style={{marginTop: 200, marginBottom: 200}}>
+        ¡Asegúrate de haber escogido una sucursal!
+      </Alert>
+    }
+   </>
   )
 }
 export default RecargaProductos;

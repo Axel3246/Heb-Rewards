@@ -44,7 +44,7 @@ const Receta = ({ recetas }) => {
   return (
     <div className="App">
 
-      <AppBarList codes = {data} />
+      <AppBarList/>
 
       <div className="Content">
         { hide ?  null : 

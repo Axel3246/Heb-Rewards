@@ -79,7 +79,7 @@ const Recetas = () => {
   const variable = async () => {
     try {
       const coll = collection(database, 'Recetas');
-        const q = query(coll, orderBy(documentId()));
+        const q = query(coll, where('sucursal', '==', localStorage.getItem('sucursal')),orderBy(documentId()));
         const unsuscribe = onSnapshot(q, querySnapshot => {
             setRecetas(
               querySnapshot.docs.map(doc => ({
@@ -133,6 +133,7 @@ const Recetas = () => {
                         <RecetasPag recipes={recetas} />
                     </div>
                 </div>
+                
             </Container>
             <Footer/>
         </>
