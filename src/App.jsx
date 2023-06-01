@@ -14,6 +14,7 @@ import WTPJuego from './pages/WhatsTP/WTPJuego'
 
 
 import Receta from './pages/Receta/receta'
+import Prueba from './Prueba'
 
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import './App.css'
@@ -40,6 +41,7 @@ export default function App() {
           <Route path="/Receta" element={<Receta/>}></Route>
           <Route path="/WhatsTP" element={<WhatsTP/>}></Route>
           <Route path="/WTPJuego" element={<WTPJuego/>}></Route>
+          <Route path="/Prueba" element={<Prueba/>}></Route>
         </Routes>
       </Router> 
     );
