@@ -7,6 +7,10 @@ style {
     text-align: center;
 }
 
+.Cam {
+    display: block;
+}
+
 video {
     position: fixed;
     width: 100%;

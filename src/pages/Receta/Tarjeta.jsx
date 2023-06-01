@@ -33,10 +33,12 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Zoom from '@mui/material/Zoom'; //Para animacion
-import { OpenInBrowserOutlined } from '@mui/icons-material';
+import { Block, OpenInBrowserOutlined } from '@mui/icons-material';
 
 
 import './receta.css'
+import Container from '@mui/material/Container';
+
 
 
 //Modal style
@@ -158,8 +160,8 @@ const Tarjeta = ({ recetas, hideElements }) => {
   };
 
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleClosetf = () => setShowtf(false);
   const [manualText, setManualText] = useState("Ingresar manualmente");
 
 
@@ -188,35 +190,39 @@ const Tarjeta = ({ recetas, hideElements }) => {
           
           <>
             {show && (
-              <BarcodeScannerComponent className="cam" onUpdate={(err, result) => onUpdateScreen(err, result)}/>
+              <BarcodeScannerComponent onUpdate={(err, result) => onUpdateScreen(err, result)}/>
             )}
           </>
 
           
-          <Button variant="outlined" onClick = {() => { 
+          <Button  variant="contained" onClick = {() => { 
+            setShow(!show);
+            hideElements(false);
+            setShowtf(false);
+            setManualText("Ingresar manualmente")
+            } } sx={{bgcolor: "#F3231F", display: 'Block', m: 'auto', mt: '25px'}}>
+              Cerrar
+          </Button>
+          
+          
+
+          <Button sx={{position: 'fixed',bottom: 80, left: 0, ml: 'auto', mr: 'auto', textTransform: 'none', maxWidth: '300px'}} onClick = {() => { 
             if (showtf) {
               setShowtf(false);
-              setManualText("Ingresar manualmente");
+              setManualText("Ingresar manualmente"); // ya no es necesario
             } else {
               setShowtf(true);
               setManualText("Cerrar ingreso manual")
             }
             }} >
-              {manualText}
+              <Typography>Escanea el producto deseado. Lorem ipsum dolor sit amet, consectetur.<br/> <u>Ingresar manualmente</u></Typography>
+
           </Button>
 
-          <Button variant="contained" onClick = {() => { 
-            setShow(!show);
-            hideElements(false);
-            setShowtf(false);
-            setManualText("Ingresar manualmente")
-            } } sx={{bgcolor: "#F3231F"}}>
-              Cerrar
-          </Button>
-
-          {
-            showtf ? <>
-              <TextField margin="normal"
+          <Modal open={showtf} onClose={handleClosetf}>
+            <Box sx={style}>
+            <Typography variant='h6'>Codigo del producto</Typography>
+            <TextField margin="normal"
                 onChange={(e) => setNewCode(e.target.value)}
                 required
                 fullWidth={true}
@@ -231,10 +237,12 @@ const Tarjeta = ({ recetas, hideElements }) => {
                 setShow(!show);
                 hideElements(false);
                 findCode(newCode);
-                } } sx={{bgcolor: "#F3231F"}}>
-                  Ingresar
-              </Button></>: null
-          }
+                } } sx={{bgcolor: "#F3231F", mt: 2}}>
+                  Ingresar Codigo
+              </Button>
+            </Box>
+          </Modal>
+          
 
 
         
