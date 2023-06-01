@@ -1,4 +1,14 @@
+style {
+    background-color: black;
+}
+
 .Content {
     margin-top: 70px;
     text-align: center;
+}
+
+.cam {
+    position: fixed;
+    width: 100%;
+    height: 100%;
 }
