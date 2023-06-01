@@ -9,8 +9,6 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import InputBase from '@mui/material/InputBase';
 import { images } from '../../../constants'
 
-
-
 //Queda ajustar los botones para que no queden ovalados
 
 //Search bar
