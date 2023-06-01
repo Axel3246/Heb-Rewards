@@ -38,6 +38,8 @@ import { OpenInBrowserOutlined } from '@mui/icons-material';
 
 import './receta.css'
 
+
+//hola
 //Modal style
 const style = {
   position: 'absolute',
