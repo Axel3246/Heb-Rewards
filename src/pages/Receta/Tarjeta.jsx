@@ -39,7 +39,6 @@ import { OpenInBrowserOutlined } from '@mui/icons-material';
 import './receta.css'
 
 
-//hola
 //Modal style
 const style = {
   position: 'absolute',
@@ -136,12 +135,12 @@ const Tarjeta = ({ recetas, hideElements }) => {
     } else {
       setUid("guest");
     }
-}, [])
+  }, [])
 
-useEffect(() => {
+  useEffect(() => {
   setQRInfo(uid+"-"+recetas.id+"-"+recetas.descuento)
   console.log(QRInfo)
-}, [uid])
+  }, [uid])
 
   const[show, setShow] = useState(false)
   const[showtf, setShowtf] = useState(false)
@@ -162,9 +161,11 @@ useEffect(() => {
   const handleClose = () => setOpen(false);
   const [manualText, setManualText] = useState("Ingresar manualmente");
 
+
   return (
     <>
       {
+
         completado ? 
 
         <Modal open={open} onClose={handleClose}>
@@ -177,7 +178,8 @@ useEffect(() => {
 
         </Modal> : 
 
-        <>   
+        <> 
+          
         {
       
           show ? <div className="App">
@@ -205,21 +207,13 @@ useEffect(() => {
           <Button variant="contained" onClick = {() => { 
             setShow(!show);
             hideElements(false);
+            setShowtf(false);
+            setManualText("Ingresar manualmente")
             } } sx={{bgcolor: "#F3231F"}}>
               Cerrar
           </Button>
 
-
           {
-
-        </div> : <div style={{ display: 'flex', flexDirection: 'flex-column', width: '95%', flexWrap: 'wrap', overflowY: "visible", alignItems: "center", justifyContent: "center", position: 'relative' }}>
-        
-        <IconButton onClick = {() => { 
-          if (showtf) {
-            findCode(newCode);
-            setShowtf(false);
-
-            
             showtf ? <>
               <TextField margin="normal"
                 onChange={(e) => setNewCode(e.target.value)}
@@ -241,7 +235,11 @@ useEffect(() => {
               </Button></>: null
           }
 
-          </div> : <div style={{ display: 'flex', flexDirection: 'flex-column', width: '100%', flexWrap: 'wrap', overflowY: "visible", alignItems: "center", justifyContent: "center", position: 'relative' }}>
+
+        
+        
+
+        </div> : <div style={{ display: 'flex', flexDirection: 'flex-column', width: '100%', flexWrap: 'wrap', overflowY: "visible", alignItems: "center", justifyContent: "center", position: 'relative' }}>
         
 
           <Button variant="contained" onClick={() => {setShow(true); hideElements(true);}} sx={{bgcolor: "#F3231F", mb: 2}}>Escanear codigo</Button>
@@ -266,12 +264,17 @@ useEffect(() => {
             </Card >
           ))}
           
-          </div>   
-        }
+        </div> 
+
+        }  
+
+        </>
+
+      }
+
       </>
-    }
-  </>
-)
+
+  )
 }
 
 export default Tarjeta;
