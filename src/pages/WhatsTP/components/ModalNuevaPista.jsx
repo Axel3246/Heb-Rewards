@@ -34,7 +34,7 @@ function IconoLuz(props) {
     );
 }
 
-export default function BasicModal(pistas) {
+const BasicModal = ({pistas, descuento}) => {
   console.log('MODALLL', pistas);
 
   const [open, setOpen] = React.useState(false);
@@ -53,11 +53,11 @@ export default function BasicModal(pistas) {
   return (
     <div>
       {/* Declaracion de botones que despliegan las pistas */}
-      <Button variant="contained" color="error" onClick={() => {setData(pistas.props[0]); setClickOne(true);  setOpen(true);}}> 
+      <Button variant="contained" color="error" onClick={() => {setData(pistas.pistas[0]); setClickOne(true);  setOpen(true); descuento(40);}}> 
         Pista 1
       </Button>
       {clickOne === true ?
-      <Button variant="outlined"  color="error" onClick={() => {setData(pistas.props[1]); setClickTwo(true);  setOpen(true);}}> 
+      <Button variant="outlined"  color="error" onClick={() => {setData(pistas.pistas[1]); setClickTwo(true);  setOpen(true); descuento(30);}}> 
         Pista 2
       </Button>
       :
@@ -66,7 +66,7 @@ export default function BasicModal(pistas) {
       </Button>
       }
       {clickTwo === true ?
-      <Button variant="contained"  color="error" onClick={() => {setData(pistas.props[2]); setClickThree(true);  setOpen(true);}}> 
+      <Button variant="contained"  color="error" onClick={() => {setData(pistas.pistas[2]); setClickThree(true);  setOpen(true); descuento(20);}}> 
         Pista 3
       </Button>
       :
@@ -75,7 +75,7 @@ export default function BasicModal(pistas) {
       </Button>
       }
       {clickThree === true ?
-      <Button variant="outlined"  color="error" onClick={() => {setData(pistas.props[3]); setClickFour(true);  setOpen(true);}}> 
+      <Button variant="outlined"  color="error" onClick={() => {setData(pistas.pistas[3]); setClickFour(true);  setOpen(true); descuento(10);}}> 
         Pista 4
       </Button>
       :
@@ -105,3 +105,5 @@ export default function BasicModal(pistas) {
     </div>
   );
 }
+
+export default BasicModal;
