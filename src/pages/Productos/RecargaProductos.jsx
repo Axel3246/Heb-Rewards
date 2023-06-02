@@ -16,16 +16,54 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 import './RecargaProductos.css'
 
-
 import { Card, Paper, Typography } from '@mui/material';
 
+import { getAuth } from "firebase/auth";
+
+var correo;
 
 const RecargaProductos = ({ productos }) => {
 
-  // Post Sucursal
-  
-  function insertUserData(id){
-    let url ="http://localhost:3000/programming-languages/agregarproducto/6/" + id;
+  const [fid, fsetID] = useState(null)
+  const [id, setID] = useState(null)
+
+  var userC = auth.currentUser;
+
+    getAuth().onAuthStateChanged((user) => {
+        if (user) {
+          // console.log(user.email);
+          userC = user
+        }
+      });
+
+  useEffect(() => {
+      if (userC) {
+        console.log("ola ",userC.email );
+        correo = userC.email;
+        console.log(correo)
+        fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getId/'" + correo + "'")
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        fsetID(data[0].usuarioID); 
+        console.log(fid);
+      })
+      
+      }
+  }, [])
+
+  useEffect(() => {
+    if (fid != null) {
+      setID(fid)
+      console.log(id);
+    }
+  }, [fid])
+
+  // Post Sucursal  
+  function insertUserData(idP){
+    console.log(id)
+    let url = "https://api-heb-rewards.ricardojorgejo1.repl.co/api/agregarproducto/" + id + "/" + idP;
     console.log(url);
     fetch(url, {method:"get"})
     console.log("se logro");
@@ -35,7 +73,7 @@ const RecargaProductos = ({ productos }) => {
   // Update de columna precioTotalProd
   const precioProd = (event) => {
     event.preventDefault();
-    let url = `http://localhost:3000/programming-languages/precioTotalProd/`;
+    let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/precioTotalProd/`;
     fetch(url, {method: 'put'})
     window.location.reload(false);
   }

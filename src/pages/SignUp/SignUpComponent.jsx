@@ -45,7 +45,7 @@ const SignUp = () => {
 
     // POST usuario (SQL)
     function postUserData(email) {
-        let url = `http://localhost:3000/programming-languages//postUsuario/'` + email + `'/1`;
+        let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/postUsuario/'` + email + `'/1`;
         fetch(url, {method: 'get'})
         console.log("usuario agregado");
     } 
