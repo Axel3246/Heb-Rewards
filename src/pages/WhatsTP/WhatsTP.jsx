@@ -6,15 +6,16 @@ import { Container } from '@mui/material';
 // Se importan documentos de componentes
 import WTPAppBar from '../WhatsTP/components/WTPAppBar'
 import SwiperWelcome from '../WhatsTP/components/SwipeBarAbajo'
-import backgroundImg from '../WhatsTP/components/wtpimagen.png'
+import backgroundImg from '../WhatsTP/components/explosionHeb.jpg'
+import sombra from '../WhatsTP/components/sombraJuego.png'
 
 const WhatsTP = () => {
   const background = {
-    backgroundImage:`url(${backgroundImg})`,
+    backgroundImage:`url(${sombra}), url(${backgroundImg})`,
     width: '100vw',
-    height: '50vh',
-    backgroundPosition: 'center',
-    backgroundSize: 'cover',
+    height: '90vh',
+    backgroundPosition: '-70px 150px, center',
+    backgroundSize: 'cover center',
     backgroundRepeat: 'no-repeat',
   };
 
