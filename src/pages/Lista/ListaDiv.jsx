@@ -58,7 +58,7 @@ export default function InsetDividers() {
       if (userC) {
         // console.log(user.email);
         correo = userC.email;
-        fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getId/'" + correo + "'")
+        fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getId/'" + correo + "'")
       .then(response => {
         return response.json()
       })
@@ -84,7 +84,7 @@ export default function InsetDividers() {
 
   // Get de Productos (SQL)
   const fetchUserData = async () => {
-    fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/getProductosLista/" + id)
+    fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getProductosLista/" + id)
       .then(response => {
         return response.json()
       })
@@ -102,7 +102,7 @@ export default function InsetDividers() {
 
 
   function deleteUserData(idprod){
-    let url ="https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/deleteProductosLista/"+ id +"/" + idprod;
+    let url ="https://api-heb-rewards.ricardojorgejo1.repl.co/api/deleteProductosLista/"+ id +"/" + idprod;
     console.log(url);
     fetch(url, {method:"delete"})
     console.log("se logro borrar");
@@ -113,7 +113,7 @@ export default function InsetDividers() {
 
   // Agregar cantidad
   function agregaCant(idprod) {
-    let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/masCantidad/`+ id + `/` + idprod ;
+    let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/masCantidad/`+ id + `/` + idprod ;
     fetch(url, {method: 'get'})
     console.log("cambio cant");
     precioProd();
@@ -122,7 +122,7 @@ export default function InsetDividers() {
   // Restar cantidad
   function restarCant(idprod, cantidad) {
     if(cantidad != 1) {
-      let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/menosCantidad/` + id + `/` + idprod ;
+      let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/menosCantidad/` + id + `/` + idprod ;
       fetch(url, {method: 'get'})
       precioProd();
     }
@@ -130,7 +130,7 @@ export default function InsetDividers() {
 
   // Update de columna precioTotalProd
   function precioProd() {
-    let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/programming-languages/precioTotalProd/`;
+    let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/precioTotalProd/`;
     fetch(url, {method: 'get'})
     window.location.reload(false);
   }
