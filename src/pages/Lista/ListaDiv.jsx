@@ -47,6 +47,10 @@ export default function InsetDividers() {
 
   var userC = auth.currentUser;
 
+  useEffect(() => {
+    userC = auth.currentUser;
+  }, [])
+
     getAuth().onAuthStateChanged((user) => {
         if (user) {
           // console.log(user.email);
@@ -67,7 +71,7 @@ export default function InsetDividers() {
       })
       
       }
-  }, [])
+  }, [userC])
 
   useEffect(() => {
     if (fid != null) {
