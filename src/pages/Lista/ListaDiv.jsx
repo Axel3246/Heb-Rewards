@@ -104,7 +104,7 @@ export default function InsetDividers() {
   function deleteUserData(idprod){
     let url ="https://api-heb-rewards.ricardojorgejo1.repl.co/api/deleteProductosLista/"+ id +"/" + idprod;
     console.log(url);
-    fetch(url, {method:"delete"})
+    fetch(url, {method:"get"})
     console.log("se logro borrar");
     precioProd();
     window.location.reload(false);
