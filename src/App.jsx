@@ -12,7 +12,6 @@ import Recetas from './pages/Juego_Recetas/Recetas'
 import WhatsTP from './pages/WhatsTP/WhatsTP'
 import WTPJuego from './pages/WhatsTP/WTPJuego'
 
-
 import Receta from './pages/Receta/receta'
 
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
