@@ -35,10 +35,16 @@ const Puller = styled(Box)(({ theme }) => ({
   left: 'calc(50% - 15px)',
 }));
 
-function SwipeableEdgeDrawer(props) {
+const SwipeableEdgeDrawer= ({props, descuentos}) => {
   {/* Declaracion de estado*/}
-  console.log('PROPS EN CHILD', props.props[0].pistas[0])
+  console.log('PROPS EN CHILD', props[0])
   const[show, setShow] = useState(false)
+
+  
+
+  const descuento = (num) => {
+    descuentos(num);
+  }
 
   return (
     <div className="Content">
@@ -78,7 +84,7 @@ function SwipeableEdgeDrawer(props) {
                 >
                     <Box sx={{ textAlign: 'center'}}>
                         <Typography sx={{ p: 2, color: 'text.secondary'}}>¿Necesitas ayuda? <span className="red_two" >Selecciona una pista</span></Typography>
-                        <ModalNuevaPista props={props.props[0].pistas} onClose={() => setShow(false)} show={show} />
+                        <ModalNuevaPista pistas={props[0]} onClose={() => setShow(false)} show={show} descuento={descuento}/>
                     </Box>
                 </StyledBox>
         </Root>
