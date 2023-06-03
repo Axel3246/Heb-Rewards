@@ -11,7 +11,7 @@ import { Block, OpenInBrowserOutlined } from '@mui/icons-material';
 
 const WhatsTP = () => {
   return (
-    <Container>
+    <Container className='bode'>
       <WTPAppBar/>
       <SwiperWelcome/>
     </Container>
