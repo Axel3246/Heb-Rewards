@@ -7,6 +7,8 @@ import { Container } from '@mui/material';
 import WTPAppBar from '../WhatsTP/components/WTPAppBar'
 import SwiperWelcome from '../WhatsTP/components/SwipeBarAbajo'
 
+import { Block, OpenInBrowserOutlined } from '@mui/icons-material';
+
 const WhatsTP = () => {
   return (
     <Container>

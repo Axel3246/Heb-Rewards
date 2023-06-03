@@ -15,6 +15,8 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 
+import { Divider} from '@mui/material';
+
 
 const Receta = ({ recetas }) => {
   
@@ -42,7 +44,7 @@ const Receta = ({ recetas }) => {
   return (
     <div className="App">
 
-      <AppBarList codes = {data} />
+      <AppBarList/>
 
       <div className="Content">
         { hide ?  null : 
@@ -54,25 +56,26 @@ const Receta = ({ recetas }) => {
                 image={data.url_imagen}
               />
               <CardContent>
-                <Typography variant="body2" color="text.primary">
+                
+            <Divider sx={{width:130, mb:2, ml: 'auto', mr: 'auto', backgroundColor:'#FE231F'}}></Divider>
+                <Typography gutterBottom variant="h6" component="div" sx={{fontWeight: 'bold', fontSize: 20}}>
                   {data.nombre}
-                </Typography>
+            </Typography>
               </CardContent>
             </Card>
 
-            <ArrowUpwardIcon fontSize="large" sx={{ m: 2 }} />
-
-            <Typography variant="body2" color="text.primary">
+            <Typography variant='h4' sx={{ fontWeight: 'bold', fontSize: '30px', m: 2 }}>
               Ingredientes
             </Typography>
           </>
         }
 
         <Box sx={{ flexGrow: 1, m: 1}} alignItems="center" display={"flex"}>
-          <Grid container spacing={2} style={{display:'flex', flexDirection: 'column', alignContent: 'center', width: "100%", margin: "0px"}}>
+          <Grid container spacing={1} style={{display:'flex', flexDirection: 'column', alignContent: 'center', width: "100%", margin: "0px"}}>
             <Tarjeta recetas={data} hideElements={hideElements}/>
           </Grid>
         </Box>
+
       </div>
     </div>
   );

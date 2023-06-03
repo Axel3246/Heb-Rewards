@@ -4,6 +4,7 @@ import { images } from '../../constants/'
 import { database, auth } from '../../FirebaseConfig'
 import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
+import { Alert } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -38,25 +39,50 @@ const SignUp = () => {
     const [password, setPassword] = useState("");
     const [nombre, setNombre] = useState("");
     const [apellido, setApellido] = useState("");
+    const [show, setShow] = useState(false);
+    const [message, setMessage] = useState("");
+    const [errorMss, setError] = useState("");
 
     // POST usuario (SQL)
     function postUserData(email) {
-        let url = `http://localhost:3000/programming-languages//postUsuario/'` + email + `'/1`;
+        let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/postUsuario/'` + email + `'/1`;
         fetch(url, {method: 'get'})
         console.log("usuario agregado");
     } 
 
     const signUp = (e) => {
         e.preventDefault();
-        createUserWithEmailAndPassword(auth, email, password)
+        if (nombre === "" || apellido === "")
+        {
+            setMessage("Datos faltantes. Inténtelo nuevamente.");
+            setShow(true);
+        }
+        else{
+            
+            createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 console.log(userCredential);
                 postUserData(email);
-                navigate("/login");
+                navigate("/");
             })
             .catch((error) => {
+                if (error.message.includes("already in use"))
+                {
+                    setMessage("Este correo ya tiene una cuenta asociada.");
+                }
+                else if (error.message.includes("least 6 characters"))
+                {
+                    setMessage("Contraseña insegura. Incluye al menos 6 caracteres."); 
+                }
+                else 
+                {
+                    setMessage("Datos incorrectos. Inténtelo nuevamente.")
+                }
+                setShow(true);
                 console.log(error);
-            });
+            }); 
+        }
+        
     };   
 
     const classes = useStyles();
@@ -138,6 +164,7 @@ const SignUp = () => {
                         </div>
                         <br />
                     </Box>
+                    {show ? <Alert severity="error" sx={{ mt: 2 }}>{message}</Alert> : null}
                     <Button
                         type="submit"
                         onClick={signUp}

@@ -7,6 +7,7 @@ import './productos.css'
 import Button from '@mui/material/Button';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import Box from '@mui/material/Box';
+import { Alert } from '@mui/material';
 
 // Se importan iconos para botones
 import IconButton from '@mui/material/IconButton';
@@ -15,23 +16,18 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 import './RecargaProductos.css'
 
-import { getAuth } from "firebase/auth";
-
-
 import { Card, Paper, Typography } from '@mui/material';
 
+import { getAuth } from "firebase/auth";
+
+var correo;
 
 const RecargaProductos = ({ productos }) => {
 
   const [fid, fsetID] = useState(null)
-  const [Uid, setID] = useState(null)
+  const [id, setID] = useState(null)
 
   var userC = auth.currentUser;
-  var correo;
-
-  useEffect(() => {
-    userC = auth.currentUser;
-  }, [])
 
     getAuth().onAuthStateChanged((user) => {
         if (user) {
@@ -42,31 +38,32 @@ const RecargaProductos = ({ productos }) => {
 
   useEffect(() => {
       if (userC) {
-        // console.log(user.email);
+        console.log("ola ",userC.email );
         correo = userC.email;
-        console.log("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getId/'" + correo + "'")
+        console.log(correo)
         fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getId/'" + correo + "'")
       .then(response => {
         return response.json()
       })
       .then(data => {
         fsetID(data[0].usuarioID); 
+        console.log(fid);
       })
       
       }
-  }, [userC])
+  }, [])
 
   useEffect(() => {
     if (fid != null) {
-      console.log(fid)
       setID(fid)
+      console.log(id);
     }
   }, [fid])
 
-  // Post Sucursal
-  
-  function insertUserData(id){
-    let url ="https://api-heb-rewards.ricardojorgejo1.repl.co/api/agregarproducto/"+ Uid +"/" + id;
+  // Post Sucursal  
+  function insertUserData(idP){
+    console.log(id)
+    let url = "https://api-heb-rewards.ricardojorgejo1.repl.co/api/agregarproducto/" + id + "/" + idP;
     console.log(url);
     fetch(url, {method:"get"})
     console.log("se logro");
@@ -96,10 +93,11 @@ const RecargaProductos = ({ productos }) => {
   }, [boton]);*/
 
   return (
-    <div className="ContenedorCartas" style={{ display: 'flex', flexDirection: 'flex-column', width: '78vw', flexWrap: 'wrap', overflowY: "visible", position: 'relative' }}>
+    <>
+    {
+      localStorage.getItem('sucursal') ?  <> { productos[0] != null ? <div className="ContenedorCartas" style={{ display: 'flex', flexDirection: 'flex-column', width: '78vw', flexWrap: 'wrap', overflowY: "visible", position: 'relative' }}>
       {productos.map((item) => (
         <Paper elevation={1} key={item.id} className='paper_containerP'>
-          <a href={`/posts/${item.id}`} style={{ textDecoration: 'none' }}>
             {
               item.tipo == 'R' ?
                 <div className='flyerDesc'>
@@ -138,7 +136,7 @@ const RecargaProductos = ({ productos }) => {
                 </p>
             }
 
-          </a>
+
 
 
           {/*Boton agregar a lista*/}
@@ -151,7 +149,15 @@ const RecargaProductos = ({ productos }) => {
         </Paper>
 
       ))}
-    </div>
+    </div> : <Alert variant="filled" severity="error" style={{marginTop: 200, marginBottom: 200}}>
+        ¡Lo sentimos! No existen productos de esta categoría.
+      </Alert> } </> 
+      
+       : <Alert variant="filled" severity="error" style={{marginTop: 200, marginBottom: 200}}>
+        ¡Asegúrate de haber escogido una sucursal!
+      </Alert>
+    }
+   </>
   )
 }
 export default RecargaProductos;

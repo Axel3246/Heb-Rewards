@@ -33,7 +33,13 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Zoom from '@mui/material/Zoom'; //Para animacion
-import { OpenInBrowserOutlined } from '@mui/icons-material';
+import { Block, OpenInBrowserOutlined } from '@mui/icons-material';
+
+
+import './receta.css'
+import Container from '@mui/material/Container';
+
+
 
 //Modal style
 const style = {
@@ -74,7 +80,6 @@ const Tarjeta = ({ recetas, hideElements }) => {
         setCompletado(true);
         setOpen(true);
         console.log("ya quedó");
-        hideElements(false); //aqui
         
       }
       return nuevosproductosDescubiertos; // Establecer el nuevo array como estado
@@ -132,12 +137,12 @@ const Tarjeta = ({ recetas, hideElements }) => {
     } else {
       setUid("guest");
     }
-}, [])
+  }, [])
 
-useEffect(() => {
+  useEffect(() => {
   setQRInfo(uid+"-"+recetas.id+"-"+recetas.descuento)
   console.log(QRInfo)
-}, [uid])
+  }, [uid])
 
   const[show, setShow] = useState(false)
   const[showtf, setShowtf] = useState(false)
@@ -150,111 +155,135 @@ useEffect(() => {
     if (result) {
       findCode(result.text);
       setShow(false);
+      hideElements(false);
     }
   };
 
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const handleClosetf = () => setShowtf(false);
+  const [manualText, setManualText] = useState("Ingresar manualmente");
 
-    return (
-      <>
+
+  return (
+    <>
       {
+
         completado ? 
 
         <Modal open={open} onClose={handleClose}>
-        <Box sx={style}>
-          <div style={{alignItems : "center", marginTop : "20px"}} >
-          <QRCode value={QRInfo} size={'80%'} bgColor="#282c34" fgColor="#fff" level="H" /> 
-          <Typography variant='h4' sx={{ fontWeight: 'bold', mt: 3}}><span>¡Felicidades!</span> Canjea tu descuento en caja</Typography></div>
-        </Box>
-        </Modal>
         
+          <Box sx={style}>
+            <div style={{alignItems : "center", marginTop : "20px"}} >
+            <QRCode value={QRInfo} size={'80%'} bgColor="#282c34" fgColor="#fff" level="H" /> 
+            <Typography variant='h4' sx={{ fontWeight: 'bold', mt: 3}}><span>¡Felicidades!</span> Canjea tu descuento en caja</Typography></div>
+          </Box>
 
-         : 
-        <> {
+        </Modal> : 
+
+        <> 
+          
+        {
       
           show ? <div className="App">
-          <h1>Scan BarCode</h1>
+
+          
           <>
             {show && (
-              <BarcodeScannerComponent
-                width={400}
-                height={400}
-                onUpdate={(err, result) => onUpdateScreen(err, result)}
-              />
+              <BarcodeScannerComponent onUpdate={(err, result) => onUpdateScreen(err, result)}/>
             )}
           </>
-        </div> : <div style={{ display: 'flex', flexDirection: 'flex-column', width: '78%', flexWrap: 'wrap', overflowY: "visible", alignItems: "center", justifyContent: "center", position: 'relative' }}>
-        
-        <IconButton onClick = {() => { 
-          if (showtf) {
-            findCode(newCode);
+
+          
+          <Button  variant="contained" onClick = {() => { 
+            setShow(!show);
+            hideElements(false);
             setShowtf(false);
-            
-          } else {
-            setShowtf(true);
-          }
-        }
-        }
-                          size="large"
-                          color="inherit"
-                      >
-                          <KeyboardIcon />
-                          
-                      </IconButton>
-        <IconButton onClick={() => setShow(true) }
-                          size="large"
-                          color="inherit"
-                      >
-                          <PhotoCameraIcon />
-                          
-                      </IconButton>
-                      <Divider sx={{width:"90%", mb:2}}></Divider>
-                      {
-                        showtf ? <TextField margin="normal"
-                        onChange={(e) => setNewCode(e.target.value)}
-                        required
-                        fullWidth={true}
-                        id="code"
-                        label="Código"
-                        name="code"
-                        value={newCode}
-                        autoComplete="code"
-                        autoFocus
-                    /> : null
-                      }
+            setManualText("Ingresar manualmente")
+            } } sx={{bgcolor: "#F3231F", display: 'Block', m: 'auto', mt: '25px'}}>
+              Cerrar
+          </Button>
+          
+          
+
+          <Button sx={{position: 'fixed',bottom: 80, left: 0, ml: 'auto', mr: 'auto', textTransform: 'none', maxWidth: '300px'}} onClick = {() => { 
+            if (showtf) {
+              setShowtf(false);
+              setManualText("Ingresar manualmente"); // ya no es necesario
+            } else {
+              setShowtf(true);
+              setManualText("Cerrar ingreso manual")
+            }
+            }} >
+              <Typography>Escanea el producto deseado. Lorem ipsum dolor sit amet, consectetur.<br/> <u>Ingresar manualmente</u></Typography>
+
+          </Button>
+
+          <Modal open={showtf} onClose={handleClosetf}>
+            <Box sx={style}>
+            <Typography variant='h6'>Codigo del producto</Typography>
+            <TextField margin="normal"
+                onChange={(e) => setNewCode(e.target.value)}
+                required
+                fullWidth={true}
+                id="code"
+                label="Código"
+                name="code"
+                value={newCode}
+                autoComplete="code"
+                autoFocus
+              /> 
+              <Button variant="contained" onClick = {() => { 
+                setShow(!show);
+                hideElements(false);
+                findCode(newCode);
+                } } sx={{bgcolor: "#F3231F", mt: 2}}>
+                  Ingresar Codigo
+              </Button>
+            </Box>
+          </Modal>
+          
+
+
         
-  
-      
+        
+
+        </div> : <div style={{ display: 'flex', flexDirection: 'flex-column', width: '100%', flexWrap: 'wrap', overflowY: "visible", alignItems: "center", justifyContent: "center", position: 'relative' }}>
+        
+
+          <Button variant="contained" onClick={() => {setShow(true); hideElements(true);}} sx={{bgcolor: "#F3231F", mb: 2}}>Escanear codigo</Button>
+
+
+          <Divider sx={{width:"90%", mb:2}}/>
+        
+        
           {productos.map((item) => (
-            <Card key={item.id} sx={{ width: '160px', height: '200px', ml: 1, mr: 1, mb: 2, position: 'relative'}}>
+            <Card key={item.id} sx={{ width: '150px', height: '200px', ml: 1, mr: 1, mb: 2, position: 'relative'}}>
             
-            
-            <CardMedia
-                sx={{ height: 140 }}
-                image={item.url_imagen}
-              />
+            <CardMedia sx={{ height: 140 }} image={item.url_imagen}/>
+
             <CardContent>
               <Typography variant="body2" color="text.secondary">{item.nombre}</Typography>
             </CardContent>
             
             {
-            
-              productosDescubiertos.at(receta.productos.indexOf(item.id)) ? <><Box sx={{position: 'absolute', zIndex: 10, bgcolor: '#fff', width: '160px', height: '200px', bottom: '0px', opacity: '0.6  '}}><CheckCircleOutlineIcon sx={{color: '#009e22', mt: '75px', width: '50px', height: '50px'}}/></Box></> : null
-
+              productosDescubiertos.at(receta.productos.indexOf(item.id)) ? <><Box sx={{position: 'absolute', zIndex: 10, bgcolor: '#fff', width: '160px', height: '200px', bottom: '0px', opacity: '0.6  '}}><CheckCircleOutlineIcon sx={{color: '#58b56c', mt: '75px', width: '50px', height: '50px'}}/></Box></> : null
             }
             
             </Card >
           ))}
-      </div>
-        }
+          
+        </div> 
+
+        }  
+
         </>
+
       }
-      
-      
+
       </>
-    )
+
+  )
 }
 
 export default Tarjeta;

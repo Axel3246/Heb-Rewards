@@ -5,9 +5,10 @@ span{
 
 footer {
   background-color: #ff3232;
-  padding: 20px;
+  padding: 20px 0px 20px 0px;
   text-align: center;
-  margin-top: 3rem;
+  position: relative;
+  width: 100%;
 }
 
 .red{

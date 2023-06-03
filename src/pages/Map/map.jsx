@@ -81,7 +81,8 @@ const map = () => {
           horario: doc.data().horario,
           latitud: doc.data().latitud,
           longitud: doc.data().longitud,
-          nombre: doc.data().nombre,
+          nombre: doc.id,
+          siglas: doc.data().nombre,
         }))   
     )})
 
@@ -196,7 +197,7 @@ const map = () => {
               <AppBarHome />
               <Container component="main" maxWidth="m">
                   <Box sx={{
-                      border: 1, borderColor: 'white', borderRadius: '1px', boxShadow: 3, display: 'flex', flexDirection: 'column', mt: 19, px: 3, py: 1.5, background: '#ffffff'
+                      border: 1, borderColor: 'white', borderRadius: '1px', boxShadow: 3, display: 'flex', flexDirection: 'column', mt: 11, px: 3, py: 1.5, background: '#ffffff'
                   }}>
                       <Box sx={{ mb: 2 }}>
                           <MapIcon sx={{ fontSize: 40, color: '#ff3232' }} />
@@ -247,7 +248,7 @@ const map = () => {
                                       ariaLabel="SpeedDial openIcon example"
                                       sx={{ position: 'absolute', bottom: 16, right: 16, severity: 'error' }}
                                       icon={<LocalMallIcon />}
-                                      onClick={() => changeUserData(item.nombre)}
+                                      onClick={() => {changeUserData(item.nombre); localStorage.setItem('sucursal', item.siglas)}}
                                       FabProps={{
                                         sx: {
                                           bgcolor: '#ff3232',
