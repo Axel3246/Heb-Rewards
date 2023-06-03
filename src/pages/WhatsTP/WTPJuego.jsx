@@ -77,7 +77,8 @@ const WTPJuego = ({  }) => {
   }, [])
 
   useEffect(() => {
-    setQRInfo(uid+"-"+pistas[0].id+"-"+descuento.toString())
+    console.log('El id es ++++', uid);
+    setQRInfo(uid+"-"+productos.id+"-"+descuento.toString())
     console.log(descuento)
     }, [uid, descuento])
 
@@ -109,13 +110,13 @@ const WTPJuego = ({  }) => {
   useEffect(() => {
     fetchRandom();
   }, []);
-
+  
   // Data Randomization
   const fetchRandom = async () => {
     try {
       const coll = collection(database, 'Productos');
       const snapshot = await getCountFromServer(coll);
-      let randomInteger = 29;
+      let randomInteger = Math.floor(Math.random() * 31) + 1;
       console.log(randomInteger);
       await fetchProd(randomInteger);
       await fetchPist(randomInteger);
@@ -255,11 +256,10 @@ const WTPJuego = ({  }) => {
             </Container>
 
             <Container maxWidth="sm">
-              <h1>{productos[0].nombre}</h1>
-              <Box sx={{ mt: 8, backgroundColor: "white", alignContent: "center", p:5, mb: 13 }}>
-                <Card sx={{ maxWidth: 345, backgroundColor: 'red' }}>
+              <Box sx={{ mt: 20, backgroundColor: "transparent", alignContent: "center", p:5, mb: 13 }}>
+                <Card sx={{ maxWidth: 360, backgroundColor: 'transparent' }}>
                   <CardMedia
-                    sx={{ height: 180, p: 2, mt: 2 }}
+                    sx={{ height: 210, p: 2, mt: 2 }}
                     image={productos[0].imag}
                   />
                 </Card>
