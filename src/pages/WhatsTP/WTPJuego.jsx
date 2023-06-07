@@ -63,6 +63,91 @@ const WTPJuego = ({  }) => {
   const [uid, setUid] = useState("guest")
   const [descuento, setDescuento] = useState(0)
 
+  const [imageStyle, setImageStyle] = useState({});
+
+  
+
+  useEffect(() => {
+    const newStyle = {
+      position: 'absolute',
+      zIndex: '2',
+      filter: 'brightness(0%)',
+      width: '300px',
+      height: '210px',
+      objectFit: 'none',
+      bottom: '0',
+      left: '0',
+      objectFit: 'contain',
+    };
+
+    const newStyle1 = {
+      position: 'absolute',
+      zIndex: '2',
+      filter: 'brightness(0%)',
+      width: '300px',
+      height: '210px',
+      objectFit: 'none',
+      bottom: '0',
+      left: '0',
+      objectFit: 'contain',
+      clipPath: 'polygon(57% 9%, 100% 0, 86% 62%, 100% 100%, 63% 85%, 32% 100%, 0 100%, 18% 45%, 0 0)', 
+
+    };
+
+    const newStyle2 = {
+      position: 'absolute',
+      zIndex: '2',
+      filter: 'brightness(0%)',
+      width: '300px',
+      height: '210px',
+      objectFit: 'none',
+      bottom: '0',
+      left: '0',
+      objectFit: 'contain',
+      clipPath: 'polygon(41% 20%, 100% 0, 75% 53%, 100% 100%, 69% 75%, 35% 90%, 9% 91%, 21% 58%, 0 0)', 
+     
+    };
+
+    const newStyle3 = {
+      position: 'absolute',
+      zIndex: '2',
+      filter: 'brightness(0%)',
+      width: '300px',
+      height: '210px',
+      objectFit: 'none',
+      bottom: '0',
+      left: '0',
+      objectFit: 'contain',
+      clipPath: 'polygon(41% 25%, 79% 21%, 68% 49%, 91% 87%, 69% 75%, 35% 80%, 9% 91%, 26% 54%, 10% 16%)', 
+    };
+
+    const newStyle4 = {
+      position: 'absolute',
+      zIndex: '2',
+      filter: 'brightness(0%)',
+      width: '300px',
+      height: '210px',
+      objectFit: 'none',
+      bottom: '0',
+      left: '0',
+      objectFit: 'contain',
+      clipPath: 'polygon(56% 41%, 71% 34%, 63% 50%, 75% 64%, 67% 67%, 47% 51%, 23% 78%, 37% 44%, 26% 30%)',  
+    };
+
+    setImageStyle(newStyle);
+
+    if (descuento == 40) {
+      setImageStyle(newStyle1);
+    } else if (descuento == 30) {
+      setImageStyle(newStyle2);
+    } else if (descuento == 20) {
+      setImageStyle(newStyle3); 
+    } else if (descuento == 10) {
+      setImageStyle(newStyle4);
+    }
+
+  }, [descuento]);
+
   const descuentos = (num) => {
     setDescuento(num);
   }
@@ -257,15 +342,14 @@ const WTPJuego = ({  }) => {
 
             <Container maxWidth="sm">
               <Box sx={{ mt: 20, backgroundColor: "transparent", alignContent: "center", p:5, mb: 13 }}>
-                <Card sx={{ maxWidth: 360, backgroundColor: 'transparent' }}>
-                  <CardMedia
-                    sx={{ height: 210, p: 2, mt: 2 }}
-                    image={productos[0].imag}
-                  />
+                <Card sx={{ maxWidth: 360, height: 210, backgroundColor: 'transparent'  , position: 'relative', boxShadow: 0}}>
+                  
+                  <img src={productos[0].imag} alt="Imagen" className="imagenProducto"/>
+                  <img src={productos[0].imag} style={imageStyle} alt="Imagen Negra"/>
                 </Card>
               </Box>
             
-            </Container>
+            </Container>|
             <Box sx={{zIndex: 4, position: "relative", borderTop: '2'}}>
             <Pistas props={pistas} descuentos={descuentos}/>
             </Box>
