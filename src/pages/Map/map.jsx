@@ -16,8 +16,6 @@ import LocalMallIcon from  '@mui/icons-material/LocalMall';
 import { getAuth } from "firebase/auth";
 import { CircularProgress } from '@mui/material';
 
-
-
 const mapTheme = createTheme({
     palette: {
         background: {
@@ -143,7 +141,7 @@ const map = () => {
 
   // API Key de Google
   const { isLoaded } = useLoadScript ({
-    googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg"
+    // googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg"
   });
     
   if (!isLoaded) {
