@@ -60,7 +60,7 @@ export default function InsetDividers() {
   useEffect(() => {
     fetchUserData();
     console.log("actualizando");
-  }, [])
+  })
 
   // API
   const [productos, setProductos] = useState([])
@@ -84,7 +84,7 @@ export default function InsetDividers() {
   function deleteUserData(idP){
     let url ="https://api-heb-rewards.ricardojorgejo1.repl.co/api/deleteProductosLista/"+ id +"/" + idP;
     console.log(url);
-    fetch(url, {method:"get"})
+    fetch(url, { method:"get", mode: "cors" })
     console.log("producto eliminado");
     precioProd();
     window.location.reload(false);
@@ -93,7 +93,7 @@ export default function InsetDividers() {
   // Aumentar en 1 la cantidad de un producto
   function agregaCant(idP) {
     let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/masCantidad/`+ id + `/` + idP ;
-    fetch(url, {method: 'get'})
+    fetch(url, { method: 'get', mode: "cors" })
     console.log("cambio cant");
     precioProd();
   }
@@ -102,7 +102,7 @@ export default function InsetDividers() {
   function restarCant(idP, cantidad) {
     if(cantidad != 1) {
       let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/menosCantidad/` + id + `/` + idP ;
-      fetch(url, {method: 'get'})
+      fetch(url, { method: 'get', mode: "cors" })
       precioProd();
     }
   }
@@ -110,7 +110,7 @@ export default function InsetDividers() {
   // Obtener nuevo precio total por producto (update de precioTotalProd)
   function precioProd() {
     let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/precioTotalProd/`;
-    fetch(url, {method: 'get'})
+    fetch(url, { method: 'get', mode: "cors" })
     window.location.reload(false);
   }
 
