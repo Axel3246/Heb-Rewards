@@ -17,13 +17,6 @@
     z-index: 1;
   }
 
-  .imagen-negra {
-    position: absolute;
-    z-index: 2;
-    filter: brightness(0%);
-    width: 400px;
-    height: 400px;
-    clip-path: polygon(78% 72%, 24% 25%, 80% 29%, 23% 67%, 80% 100%, 20% 100%, 57% 82%);
-  }
+  
 
   

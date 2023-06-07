@@ -30,7 +30,7 @@ const RecargaRecetas = ({ recetas }) => {
             </Typography>
             </div>
             <Button variant="contained" style={{position: 'absolute',backgroundColor:'#FE231F', zIndex: 1, top: -10, right: -10, marginRight:'auto', marginLeft:'auto', height: '32px', minWidth: "40px", width: "40px"}}>
-             <SoupKitchenIcon style={{marginLeft:0}} />
+             {item.descuento}%
             </Button>
           </Paper>
          

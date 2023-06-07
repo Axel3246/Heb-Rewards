@@ -260,7 +260,7 @@ const Tarjeta = ({ recetas, hideElements }) => {
           {productos.map((item) => (
             <Card key={item.id} sx={{ width: '150px', height: '200px', ml: 1, mr: 1, mb: 2, position: 'relative'}}>
             
-            <CardMedia sx={{ height: 140 }} image={item.url_imagen}/>
+            <CardMedia sx={{ height: 140 , objectFit: 'cover'}} image={item.url_imagen}/>
 
             <CardContent>
               <Typography variant="body2" color="text.secondary">{item.nombre}</Typography>

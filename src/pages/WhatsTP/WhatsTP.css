@@ -27,3 +27,9 @@ video {
     object-fit: cover;
     left: 0;
 }
+
+.imagenProducto {
+  width: 300px;
+  height: 210px;
+  object-fit: contain;
+}
