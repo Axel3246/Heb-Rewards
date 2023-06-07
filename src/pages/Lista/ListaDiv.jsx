@@ -59,7 +59,6 @@ export default function InsetDividers() {
     });
   }, []);
 
-  
   useEffect(() => {
     console.log("i tried so hard")
     if (id == null) {
