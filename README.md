@@ -64,12 +64,7 @@ HEB is a supermarket chain with presence in Mexico since 1997. Currently, the co
 Within Mexico, there is an increasing competition in the commercial field which leads chains to consider an adopt different alternatives, mainly technological, that are capable of offering a greater benefit to the consumer, so that it is not only possible to innovate in this field, but also to capture the attention of different audiences.
 
 That leads us to the purpose of this project, which is to carry out an AR mobile-first web application using REACT and VITE to gamify and enhance HEB's in-store shopping experience. To achive this, the team has created two simple, yet powerful, fun minigames to hook customers into walking and experiencing more in-store shooping, while getting a discount along their way:
-<br></br>
 
-* <strong>What's That Product?</strong>: <i>To be redacted</i>
-
-* <strong>Dine n' Dash</strong>: <i>To be redacted</i>
-<br>
 Through HEB Rewards, we expect to achieve greater customer flow and interaction in face-to-face shopping, in addition to maintaining HEB as one of the main competitors in the Mexican supermarket industry.
 
 <p align="right">(<a href="#readme-top">Take me up!</a>)</p>
@@ -90,10 +85,26 @@ The technologies that made possible this project are shown below.
 
 <!-- GETTING STARTED -->
 ## Getting Started
-<i>To be redacted</i>
 
-### Prerequisites
-<i>To be redacted</i>
+To use this repository, follow the steps below:
+
+1. Clone the repository to your local machine using the following command:
+
+   ```bash
+   git clone https://github.com/Axel3246/Heb-Rewards
+   ```
+   
+2. Access the repository in your computer by following the clone path and using the command:
+
+  ```bash
+  cd Heb-Rewards
+  ```
+  
+3. Run the following command to install dependecies and you're good to go.
+
+ ```bash
+  npm install --force
+  ```
 
 <!-- CONTRIBUTING -->
 ## The Team
