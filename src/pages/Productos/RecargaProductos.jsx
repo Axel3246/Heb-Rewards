@@ -24,46 +24,28 @@ var correo;
 
 const RecargaProductos = ({ productos }) => {
 
-  const [fid, fsetID] = useState(null)
   const [id, setID] = useState(null)
 
-  var userC = auth.currentUser;
-
+  // Obtener el ID y lista del usuario actual
+  useEffect(() => {
     getAuth().onAuthStateChanged((user) => {
-        if (user) {
-          // console.log(user.email);
-          userC = user
-        }
-      });
-
-  useEffect(() => {
-      if (userC) {
-        console.log("ola ",userC.email );
-        correo = userC.email;
-        console.log(correo)
+      if (user) {
+        correo = user.email;
         fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getId/'" + correo + "'")
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        fsetID(data[0].usuarioID); 
-        console.log(fid);
-      })
-      
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setID(data[0].usuarioID); 
+        })
       }
-  }, [])
-
-  useEffect(() => {
-    if (fid != null) {
-      setID(fid)
-      console.log(id);
-    }
-  }, [fid])
+    });
+  }, []);
 
   // Post Sucursal  
-  function insertUserData(idP){
+  function insertUserData(idP, pr){
     console.log(id)
-    let url = "https://api-heb-rewards.ricardojorgejo1.repl.co/api/agregarproducto/" + id + "/" + idP;
+    let url = "https://api-heb-rewards.ricardojorgejo1.repl.co/api/agregarproducto/" + id + "/" + idP + "/" + pr;
     console.log(url);
     fetch(url, {method:"get"})
     console.log("se logro");
@@ -140,7 +122,7 @@ const RecargaProductos = ({ productos }) => {
 
 
           {/*Boton agregar a lista*/}
-          <Button variant="contained" color="error" onClick={() => insertUserData(item.id)} startIcon={<AddShoppingCartIcon color="disabled"/>} >
+          <Button variant="contained" color="error" onClick={() => insertUserData(item.id, item.precio)} startIcon={<AddShoppingCartIcon color="disabled"/>} >
             Agregar
           </Button>
 

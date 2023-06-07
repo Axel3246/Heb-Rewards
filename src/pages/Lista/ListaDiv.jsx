@@ -1,7 +1,6 @@
-// Aqui muevele
-
 // Lista con división: Lau Hdz 15/05/2023
-// Modificado por: Ricardo Rdz 06/06/2023
+// Última modificación: Ricardo Rdz 06/06/2023
+
 import { React, useState, useEffect } from 'react'
 import { useTheme } from '@mui/material/styles';
 
@@ -20,30 +19,29 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { CircularProgress } from '@mui/material';
+
 import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 
 // Se importan archivos 
 import './ListaDiv.css'
 import { Margin } from '@mui/icons-material';
 import CustomizedSnackbars from './AlertaEliminar';
-
 import PrecioLista from './PrecioLista';
 
-// Se importa lo necesario para obtener el usuario actual
+// Se importa lo relacionado con la autenticación
 import { getAuth } from "firebase/auth";
 import { auth  } from '../../FirebaseConfig'
+import { idID } from '@mui/material/locale';
 
-// Correo del usuario actual
 var correo;
 
-// Función principal
 export default function InsetDividers() {
   const theme = useTheme();
 
-  // Obtener el ID del usuario
   const [id, setID] = useState(null)
 
+  // Obtener el ID y lista del usuario actual
   useEffect(() => {
     getAuth().onAuthStateChanged((user) => {
       if (user) {
@@ -56,16 +54,21 @@ export default function InsetDividers() {
           setID(data[0].usuarioID); 
         })
       }
-    })
-  }, [id]);
+    });
+  }, []);
+
+  useEffect(() => {
+    fetchUserData();
+    console.log("actualizando");
+  }, [])
 
   // API
   const [productos, setProductos] = useState([])
 
-  // State para ver si se cargo 
+  // State para confirmar que cargó 
   const [cargar, setCargar] = useState(false);
 
-  // Get de Productos (SQL)
+  // Obtener productos de la lista
   const fetchUserData = async () => {
     fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getProductosLista/" + id)
       .then(response => {
@@ -77,52 +80,39 @@ export default function InsetDividers() {
     setCargar(true);
   }
 
-  useEffect(() => {
-      fetchUserData()
-  }, [])
-
-  // Eliminar un producto
-  function deleteUserData(idP) {
+  // Eliminar un producto de la lista
+  function deleteUserData(idP){
     let url ="https://api-heb-rewards.ricardojorgejo1.repl.co/api/deleteProductosLista/"+ id +"/" + idP;
+    console.log(url);
     fetch(url, {method:"get"})
     console.log("producto eliminado");
     precioProd();
     window.location.reload(false);
   }
 
-  // Aumentar cantidad de producto
+  // Aumentar en 1 la cantidad de un producto
   function agregaCant(idP) {
     let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/masCantidad/`+ id + `/` + idP ;
     fetch(url, {method: 'get'})
-    console.log("+1");
+    console.log("cambio cant");
     precioProd();
   }
 
-  // Disminuir cantidad de producto
+  // Disminuir en 1 la cantidad de un producto
   function restarCant(idP, cantidad) {
     if(cantidad != 1) {
       let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/menosCantidad/` + id + `/` + idP ;
       fetch(url, {method: 'get'})
-      console.log("-1");
       precioProd();
     }
   }
 
-  // Obtener precio total por producto (Update de precioTotalProd)
+  // Obtener nuevo precio total por producto (update de precioTotalProd)
   function precioProd() {
     let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/precioTotalProd/`;
     fetch(url, {method: 'get'})
-    
-    
-    
     window.location.reload(false);
   }
-
-  /*
-  useEffect(() => {
-    precioProd()
-  }, [])
-  */
 
   if (!cargar){
     return <CircularProgress></CircularProgress>
