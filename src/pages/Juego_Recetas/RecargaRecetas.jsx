@@ -6,6 +6,8 @@ import { Card, CardMedia, Divider, Paper, Typography, Button} from '@mui/materia
 import { useNavigate } from 'react-router-dom';
 import SoupKitchenIcon from '@mui/icons-material/SoupKitchen';
 
+import { Alert } from '@mui/material';
+
 
 const RecargaRecetas = ({ recetas }) => {
   const history = useNavigate();
@@ -14,6 +16,9 @@ const RecargaRecetas = ({ recetas }) => {
 
   return (
     <div className="ContenedorCartas" style={{ display: 'flex', marginTop: '20px', flexDirection: 'flex-column', width: '100%', flexWrap: 'wrap', overflowY: "visible", position: 'relative' }}>
+
+    {
+      recetas[0] != null ? <>
       {recetas.map((item) => (
         <button  key={item.id} style={{backgroundColor: 'white', padding: '0px', margin: "0px 7.5px 15px 7.5px", borderWidth: "0px", display:'flex', alignItems:'center'}} onClick={() => history('/receta', { state: item  } )}>
         <Paper sx={{ml:'auto', mr:'auto'}}elevation={1} className='paper_container'>
@@ -36,6 +41,14 @@ const RecargaRecetas = ({ recetas }) => {
          
           </button>
       ))}
+      </> : <>
+      <Alert variant="filled" severity="error" style={{marginTop: 200, marginBottom: 200}}>
+        ¡Lo sentimos! No hay recetas disponibles.
+      </Alert>
+      </>
+    }
+
+      
     </div>
   )
 }
