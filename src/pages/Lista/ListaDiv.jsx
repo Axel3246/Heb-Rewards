@@ -40,6 +40,7 @@ export default function InsetDividers() {
   const theme = useTheme();
 
   const [id, setID] = useState(null)
+  const [prueba, setPrueba] = useState(true);
 
   // Obtener el ID y lista del usuario actual
   useEffect(() => {
@@ -51,16 +52,26 @@ export default function InsetDividers() {
           return response.json()
         })
         .then(data => {
-          setID(data[0].usuarioID); 
+          setID(data[0].usuarioID);
+          setPrueba(true)
         })
       }
     });
   }, []);
 
+  
   useEffect(() => {
-    fetchUserData();
-    console.log("actualizando");
-  })
+    console.log("i tried so hard")
+    if (id == null) {
+      setPrueba(false)
+    }
+    if (prueba && id!=null) {
+      fetchUserData();
+      console.log("actualizando");
+    }
+    
+  }, [prueba])
+  
 
   // API
   const [productos, setProductos] = useState([])
@@ -70,21 +81,25 @@ export default function InsetDividers() {
 
   // Obtener productos de la lista
   const fetchUserData = async () => {
+    console.log("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getProductosLista/" + id)
     fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getProductosLista/" + id)
       .then(response => {
         return response.json()
       })
       .then(data => {
+        console.log(data)
         setProductos(data)
       })
     setCargar(true);
+    console.log("actualicé prueba")
+    setPrueba(false);
   }
 
   // Eliminar un producto de la lista
   function deleteUserData(idP){
     let url ="https://api-heb-rewards.ricardojorgejo1.repl.co/api/deleteProductosLista/"+ id +"/" + idP;
     console.log(url);
-    fetch(url, { method:"get", mode: "cors" })
+    fetch(url, { method:"get" })
     console.log("producto eliminado");
     precioProd();
     window.location.reload(false);
@@ -93,7 +108,7 @@ export default function InsetDividers() {
   // Aumentar en 1 la cantidad de un producto
   function agregaCant(idP) {
     let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/masCantidad/`+ id + `/` + idP ;
-    fetch(url, { method: 'get', mode: "cors" })
+    fetch(url, { method: 'get' })
     console.log("cambio cant");
     precioProd();
   }
@@ -102,7 +117,7 @@ export default function InsetDividers() {
   function restarCant(idP, cantidad) {
     if(cantidad != 1) {
       let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/menosCantidad/` + id + `/` + idP ;
-      fetch(url, { method: 'get', mode: "cors" })
+      fetch(url, { method: 'get' })
       precioProd();
     }
   }
@@ -110,7 +125,8 @@ export default function InsetDividers() {
   // Obtener nuevo precio total por producto (update de precioTotalProd)
   function precioProd() {
     let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/precioTotalProd/`;
-    fetch(url, { method: 'get', mode: "cors" })
+    fetch(url, { method: 'get' })
+    setPrueba(true);
     window.location.reload(false);
   }
 
