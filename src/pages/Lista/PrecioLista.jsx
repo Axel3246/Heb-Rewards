@@ -1,7 +1,6 @@
-// Aqui muevele
+// Precio lista: Lau Hdz 15/05/2023
+// Última modificación: Ricardo Rdz 07/06/2023
 
-// Precio lista
-// Lau Hdz 15/05/2023
 import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { Global } from '@emotion/react';
@@ -13,6 +12,7 @@ import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
 import Typography from '@mui/material/Typography';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
+import { getAuth } from "firebase/auth";
 
 const drawerBleeding = 56;
 
@@ -36,25 +36,50 @@ const Puller = styled(Box)(({ theme }) => ({
   left: 'calc(50% - 15px)',
 }));
 
+var correo;
+
+// Inicio de función principal
 function SwipeableEdgeDrawer(props) {
   const { window } = props;
   const [open, setOpen] = React.useState(false);
+
+  const [id, setID] = useState(null)
+
+  // Obtener el ID del usuario actual
+  useEffect(() => {
+    getAuth().onAuthStateChanged((user) => {
+      if (user) {
+        correo = user.email;
+        fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getId/'" + correo + "'")
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setID(data[0].usuarioID);
+        })
+      }
+    });
+    fetchUserData()
+    fetchCantProd()
+  }, [id]);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
+  const [total, setTotal] = useState('');
+  const [totalCant, setTotalCant] = useState('');
+
   // This is used only for the example
   const container = window !== undefined ? () => window().document.body : undefined;
-
-  const [total, setTotal] = useState('');
 
   // State para ver si se cargo 
   const [cargar, setCargar] = useState(false);
 
-  // Get de Total (SQL)
+  // Get del Total (SQL)
   const fetchUserData = () => {
-    fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getPrecioTotal")
+    console.log("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getPrecioTotal/" + id)
+    fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getPrecioTotal/" + id)
       .then(response => {
         return response.json()
       })
@@ -64,15 +89,15 @@ function SwipeableEdgeDrawer(props) {
       })
     setCargar(true);
   }
+  /*
   useEffect(() => {
     fetchUserData()
   }, [])
+  */
 
-  const [totalCant, setTotalCant] = useState('');
-
-  // Get de Cantidad (SQL)
+  // Get de la Cantidad (SQL)
   const fetchCantProd = () => {
-    fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getCantidadTotal")
+    fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getCantidadTotal/" + id)
       .then(response => {
         return response.json()
       })
@@ -81,12 +106,14 @@ function SwipeableEdgeDrawer(props) {
         console.log(data[0].totalCant)
       })
   }
+  /*
   useEffect(() => {
     fetchCantProd()
   }, [])
+  */
 
   if (!cargar){
-    return <h1>Estoy cargando</h1>
+    return <h1> </h1>
   }
 
   return (
