@@ -85,6 +85,7 @@ function SwipeableEdgeDrawer(props) {
       })
       .then(data => {
         setTotal(data[0].total)
+        console.log("si")
         console.log(data[0].total)
       })
     setCargar(true);
@@ -103,6 +104,7 @@ function SwipeableEdgeDrawer(props) {
       })
       .then(data => {
         setTotalCant(data[0].totalCant)
+        console.log("no")
         console.log(data[0].totalCant)
       })
   }
