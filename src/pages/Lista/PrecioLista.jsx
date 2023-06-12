@@ -43,7 +43,8 @@ function SwipeableEdgeDrawer(props) {
   const { window } = props;
   const [open, setOpen] = React.useState(false);
 
-  const [id, setID] = useState(null)
+  const [id, setID] = useState(null);
+  const [prueba, setPrueba] = useState(true);
 
   // Obtener el ID del usuario actual
   useEffect(() => {
@@ -56,12 +57,21 @@ function SwipeableEdgeDrawer(props) {
         })
         .then(data => {
           setID(data[0].usuarioID);
+          setPrueba(true)
         })
       }
     });
-    fetchUserData()
-    fetchCantProd()
-  }, [id]);
+  }, []);
+
+  useEffect(() => {
+    if (id == null) {
+      setPrueba(false)
+    }
+    if (prueba && id!=null) {
+      fetchUserData();
+      fetchCantProd();
+    }
+  }, [prueba])
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -85,17 +95,11 @@ function SwipeableEdgeDrawer(props) {
       })
       .then(data => {
         setTotal(data[0].total)
-        console.log("si")
         console.log(data[0].total)
       })
     setCargar(true);
   }
-  /*
-  useEffect(() => {
-    fetchUserData()
-  }, [])
-  */
-
+  
   // Get de la Cantidad (SQL)
   const fetchCantProd = () => {
     fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getCantidadTotal/" + id)
@@ -104,15 +108,9 @@ function SwipeableEdgeDrawer(props) {
       })
       .then(data => {
         setTotalCant(data[0].totalCant)
-        console.log("no")
         console.log(data[0].totalCant)
       })
-  }
-  /*
-  useEffect(() => {
-    fetchCantProd()
-  }, [])
-  */
+  }  
 
   if (!cargar){
     return <h1> </h1>

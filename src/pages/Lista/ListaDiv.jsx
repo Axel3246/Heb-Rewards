@@ -90,7 +90,6 @@ export default function InsetDividers() {
         setProductos(data)
       })
     setCargar(true);
-    console.log("actualicé prueba")
     setPrueba(false);
   }
 
@@ -108,7 +107,14 @@ export default function InsetDividers() {
   function agregaCant(idP) {
     let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/masCantidad/`+ id + `/` + idP ;
     fetch(url, { method: 'get' })
-    console.log("cambio cant");
+    console.log("+1");
+    const newProds = productos.map((prod) => {
+      if (prod.productoID == idP) {
+        return {...prod,cantidad: prod.cantidad+1}
+      }
+      return prod;
+    });
+    setProductos(newProds);
     precioProd();
   }
 
@@ -117,6 +123,14 @@ export default function InsetDividers() {
     if(cantidad != 1) {
       let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/menosCantidad/` + id + `/` + idP ;
       fetch(url, { method: 'get' })
+      console.log("-1");
+      const newProds = productos.map((prod) => {
+        if (prod.productoID == idP) {
+          return {...prod,cantidad: prod.cantidad-1}
+        }
+        return prod;
+      });
+      setProductos(newProds);
       precioProd();
     }
   }
@@ -126,7 +140,7 @@ export default function InsetDividers() {
     let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/precioTotalProd/`;
     fetch(url, { method: 'get' })
     setPrueba(true);
-    window.location.reload(false);
+    // window.location.reload(false);
   }
 
   if (!cargar){
