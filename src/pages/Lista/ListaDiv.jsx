@@ -41,6 +41,7 @@ export default function InsetDividers() {
 
   const [id, setID] = useState(null)
   const [prueba, setPrueba] = useState(true);
+  const [switcher, setSwitcher] = useState(true);
 
   // Obtener el ID y lista del usuario actual
   useEffect(() => {
@@ -101,6 +102,7 @@ export default function InsetDividers() {
     console.log("Producto eliminado");
     const newProds = productos.filter((prod) => prod.productoID !== idP);
     setProductos(newProds);
+    setSwitcher(!switcher);
   }
 
   // Aumentar en 1 la cantidad de un producto
@@ -116,6 +118,7 @@ export default function InsetDividers() {
     });
     setProductos(newProds);
     precioProd();
+    setSwitcher(!switcher);
   }
 
   // Disminuir en 1 la cantidad de un producto
@@ -132,6 +135,7 @@ export default function InsetDividers() {
       });
       setProductos(newProds);
       precioProd();
+      setSwitcher(!switcher);
     }
   }
 
@@ -196,7 +200,7 @@ export default function InsetDividers() {
             </List>
 
         ))}
-        <PrecioLista/>
+        <PrecioLista switcherPrecio = {switcher}/>
     </div>
 
   );

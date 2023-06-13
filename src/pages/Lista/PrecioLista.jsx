@@ -49,6 +49,10 @@ function SwipeableEdgeDrawer(props) {
   const [id, setID] = useState(null);
   const [prueba, setPrueba] = useState(true);
 
+  // State para ver si se cargo 
+  const [cargar, setCargar] = useState(false);
+  
+
   // Obtener el ID del usuario actual
   useEffect(() => {
     getAuth().onAuthStateChanged((user) => {
@@ -67,15 +71,19 @@ function SwipeableEdgeDrawer(props) {
   }, []);
 
   useEffect(() => {
-    if (id == null) {
-      setPrueba(false)
+    if (props.switcherPrecio != undefined) {
+      if (id == null) {
+        setPrueba(false)
+      }
+      if (prueba && id!=null) {
+        console.log("tu tranquil");
+        fetchUserData();
+        fetchCantProd();
+      }
     }
-    if (prueba && id!=null) {
-      console.log("tu tranquilo");
-      fetchUserData();
-      fetchCantProd();
-    }
-  })
+  }, [props.switcherPrecio, prueba])
+
+
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -84,8 +92,7 @@ function SwipeableEdgeDrawer(props) {
   // This is used only for the example
   const container = window !== undefined ? () => window().document.body : undefined;
 
-  // State para ver si se cargo 
-  const [cargar, setCargar] = useState(false);
+  
 
   // Get del Total (SQL)
   const fetchUserData = () => {
@@ -96,8 +103,9 @@ function SwipeableEdgeDrawer(props) {
       .then(data => {
         setTotal(data[0].total);
         //document.getElementById("perry").innerHTML = total;
+        setCargar(true);
       })
-    setCargar(true);
+    
   }
   
   // Get de la Cantidad (SQL)
@@ -113,64 +121,63 @@ function SwipeableEdgeDrawer(props) {
   }  
 
   if (!cargar){
-    return <h1> </h1>
+    return (<h1> </h1>)
+  } else {
+    return (
+      <Root>
+        <CssBaseline />
+        <Global
+          styles={{
+            '.MuiDrawer-root > .MuiPaper-root': {
+              height: `calc(20% - ${drawerBleeding}px)`,
+              overflow: 'visible' 
+            },
+          }}
+        />
+        <SwipeableDrawer
+          container={container}
+          anchor="bottom"
+          open={open}
+          onClose={toggleDrawer(false)}
+          onOpen={toggleDrawer(true)}
+          swipeAreaWidth={drawerBleeding}
+          disableSwipeToOpen={false}
+          ModalProps={{
+            keepMounted: true,
+          }}
+        >
+          <StyledBox
+            sx={{
+              position: 'absolute',
+              top: -drawerBleeding,
+              borderTopLeftRadius: 8,
+              borderTopRightRadius: 8,
+              visibility: 'visible',
+              right: 0,
+              left: 0,
+            }}
+          >
+            <Puller />
+            <Box sx={{ textAlign: 'center'}}>
+              <Typography sx={{ p: 2, color: 'text.secondary', marginTop:'4px'}} id="perry">Total: ${total}.00 </Typography>
+            </Box>
+          </StyledBox>
+          <StyledBox
+            sx={{
+              px: 2,
+              pb: 2,
+              height: '100%',
+              overflow: 'auto',
+            }}
+          >
+            
+            <Typography sx={{ p: 2, color: 'text.secondary'}} id="agenteP">Cantidad de productos: {totalCant}</Typography>
+          </StyledBox>
+        </SwipeableDrawer>
+      </Root>
+    );
   }
-
-
-
-  return (
-    <Root>
-      <CssBaseline />
-      <Global
-        styles={{
-          '.MuiDrawer-root > .MuiPaper-root': {
-            height: `calc(20% - ${drawerBleeding}px)`,
-            overflow: 'visible' 
-          },
-        }}
-      />
-      <SwipeableDrawer
-        container={container}
-        anchor="bottom"
-        open={open}
-        onClose={toggleDrawer(false)}
-        onOpen={toggleDrawer(true)}
-        swipeAreaWidth={drawerBleeding}
-        disableSwipeToOpen={false}
-        ModalProps={{
-          keepMounted: true,
-        }}
-      >
-        <StyledBox
-          sx={{
-            position: 'absolute',
-            top: -drawerBleeding,
-            borderTopLeftRadius: 8,
-            borderTopRightRadius: 8,
-            visibility: 'visible',
-            right: 0,
-            left: 0,
-          }}
-        >
-          <Puller />
-          <Box sx={{ textAlign: 'center'}}>
-            <Typography sx={{ p: 2, color: 'text.secondary', marginTop:'4px'}} id="perry">Total: ${total}.00 </Typography>
-          </Box>
-        </StyledBox>
-        <StyledBox
-          sx={{
-            px: 2,
-            pb: 2,
-            height: '100%',
-            overflow: 'auto',
-          }}
-        >
-          
-          <Typography sx={{ p: 2, color: 'text.secondary'}} id="agenteP">Cantidad de productos: {totalCant}</Typography>
-        </StyledBox>
-      </SwipeableDrawer>
-    </Root>
-  );
+  
 }
 
 SwipeableEdgeDrawer.propTypes = {
