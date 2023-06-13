@@ -43,6 +43,9 @@ function SwipeableEdgeDrawer(props) {
   const { window } = props;
   const [open, setOpen] = React.useState(false);
 
+  const [total, setTotal] = useState('');
+  const [totalCant, setTotalCant] = useState('');
+
   const [id, setID] = useState(null);
   const [prueba, setPrueba] = useState(true);
 
@@ -68,17 +71,15 @@ function SwipeableEdgeDrawer(props) {
       setPrueba(false)
     }
     if (prueba && id!=null) {
+      console.log("tu tranquilo");
       fetchUserData();
       fetchCantProd();
     }
-  }, [prueba])
+  })
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
-
-  const [total, setTotal] = useState('');
-  const [totalCant, setTotalCant] = useState('');
 
   // This is used only for the example
   const container = window !== undefined ? () => window().document.body : undefined;
@@ -88,14 +89,13 @@ function SwipeableEdgeDrawer(props) {
 
   // Get del Total (SQL)
   const fetchUserData = () => {
-    console.log("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getPrecioTotal/" + id)
     fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getPrecioTotal/" + id)
       .then(response => {
         return response.json()
       })
       .then(data => {
-        setTotal(data[0].total)
-        console.log(data[0].total)
+        setTotal(data[0].total);
+        //document.getElementById("perry").innerHTML = total;
       })
     setCargar(true);
   }
@@ -107,14 +107,16 @@ function SwipeableEdgeDrawer(props) {
         return response.json()
       })
       .then(data => {
-        setTotalCant(data[0].totalCant)
-        console.log(data[0].totalCant)
+        setTotalCant(data[0].totalCant);
+        //document.getElementById("agenteP").innerHTML = totalCant;
       })
   }  
 
   if (!cargar){
     return <h1> </h1>
   }
+
+
 
   return (
     <Root>
@@ -152,7 +154,7 @@ function SwipeableEdgeDrawer(props) {
         >
           <Puller />
           <Box sx={{ textAlign: 'center'}}>
-            <Typography sx={{ p: 2, color: 'text.secondary', marginTop:'4px'}}>Total: ${total}.00 </Typography>
+            <Typography sx={{ p: 2, color: 'text.secondary', marginTop:'4px'}} id="perry">Total: ${total}.00 </Typography>
           </Box>
         </StyledBox>
         <StyledBox
@@ -164,7 +166,7 @@ function SwipeableEdgeDrawer(props) {
           }}
         >
           
-          <Typography sx={{ p: 2, color: 'text.secondary'}}>Cantidad de productos: {totalCant}</Typography>
+          <Typography sx={{ p: 2, color: 'text.secondary'}} id="agenteP">Cantidad de productos: {totalCant}</Typography>
         </StyledBox>
       </SwipeableDrawer>
     </Root>

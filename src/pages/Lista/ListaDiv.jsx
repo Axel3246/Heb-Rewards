@@ -98,9 +98,9 @@ export default function InsetDividers() {
     let url ="https://api-heb-rewards.ricardojorgejo1.repl.co/api/deleteProductosLista/"+ id +"/" + idP;
     console.log(url);
     fetch(url, { method:"get" })
-    console.log("producto eliminado");
-    precioProd();
-    window.location.reload(false);
+    console.log("Producto eliminado");
+    const newProds = productos.filter((prod) => prod.productoID !== idP);
+    setProductos(newProds);
   }
 
   // Aumentar en 1 la cantidad de un producto
@@ -140,7 +140,6 @@ export default function InsetDividers() {
     let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/precioTotalProd/`;
     fetch(url, { method: 'get' })
     setPrueba(true);
-    // window.location.reload(false);
   }
 
   if (!cargar){

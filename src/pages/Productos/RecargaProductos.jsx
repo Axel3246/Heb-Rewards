@@ -42,7 +42,7 @@ const RecargaProductos = ({ productos }) => {
     });
   }, []);
 
-  // Post Sucursal  
+  // Post del producto en la Lista  
   function insertUserData(idP, pr){
     console.log(id)
     let url = "https://api-heb-rewards.ricardojorgejo1.repl.co/api/agregarproducto/" + id + "/" + idP + "/" + pr;
@@ -59,20 +59,6 @@ const RecargaProductos = ({ productos }) => {
     fetch(url, {method: 'put'})
     window.location.reload(false);
   }
-  
-  /*
-  const [boton, usarBoton] = useState([])
-
-  useEffect(() => {
-    fetch('http://localhost:3000/programming-languages/agregarproducto/4/1')
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  }, [boton]);*/
 
   return (
     <>
