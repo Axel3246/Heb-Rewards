@@ -41,6 +41,7 @@ export default function InsetDividers() {
 
   const [id, setID] = useState(null)
   const [prueba, setPrueba] = useState(true);
+  const [switcher, setSwitcher] = useState(true);
 
   // Obtener el ID y lista del usuario actual
   useEffect(() => {
@@ -90,7 +91,6 @@ export default function InsetDividers() {
         setProductos(data)
       })
     setCargar(true);
-    console.log("actualicé prueba")
     setPrueba(false);
   }
 
@@ -99,17 +99,26 @@ export default function InsetDividers() {
     let url ="https://api-heb-rewards.ricardojorgejo1.repl.co/api/deleteProductosLista/"+ id +"/" + idP;
     console.log(url);
     fetch(url, { method:"get" })
-    console.log("producto eliminado");
-    precioProd();
-    window.location.reload(false);
+    console.log("Producto eliminado");
+    const newProds = productos.filter((prod) => prod.productoID !== idP);
+    setProductos(newProds);
+    setSwitcher(!switcher);
   }
 
   // Aumentar en 1 la cantidad de un producto
   function agregaCant(idP) {
     let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/masCantidad/`+ id + `/` + idP ;
     fetch(url, { method: 'get' })
-    console.log("cambio cant");
+    console.log("+1");
+    const newProds = productos.map((prod) => {
+      if (prod.productoID == idP) {
+        return {...prod,cantidad: prod.cantidad+1}
+      }
+      return prod;
+    });
+    setProductos(newProds);
     precioProd();
+    setSwitcher(!switcher);
   }
 
   // Disminuir en 1 la cantidad de un producto
@@ -117,7 +126,16 @@ export default function InsetDividers() {
     if(cantidad != 1) {
       let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/menosCantidad/` + id + `/` + idP ;
       fetch(url, { method: 'get' })
+      console.log("-1");
+      const newProds = productos.map((prod) => {
+        if (prod.productoID == idP) {
+          return {...prod,cantidad: prod.cantidad-1}
+        }
+        return prod;
+      });
+      setProductos(newProds);
       precioProd();
+      setSwitcher(!switcher);
     }
   }
 
@@ -126,7 +144,6 @@ export default function InsetDividers() {
     let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/precioTotalProd/`;
     fetch(url, { method: 'get' })
     setPrueba(true);
-    window.location.reload(false);
   }
 
   if (!cargar){
@@ -183,7 +200,7 @@ export default function InsetDividers() {
             </List>
 
         ))}
-        <PrecioLista/>
+        <PrecioLista switcherPrecio = {switcher}/>
     </div>
 
   );

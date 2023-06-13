@@ -94,7 +94,6 @@ const map = () => {
   const fetchUserData = (email) => {
     console.log(email);
     fetch(`https://api-heb-rewards.ricardojorgejo1.repl.co/api/getStoreName/'` + email + `'`)
-    //fetch(`http://localhost:3000/programming-languages/getStoreName/'` + email + `'`)
       .then(response => {
         return response.json()
       })
@@ -109,7 +108,6 @@ const map = () => {
     document.getElementById("perry").innerHTML = prop; // y perry?
     console.log(prop);
     let url = `https://api-heb-rewards.ricardojorgejo1.repl.co/api/putSucursal/'` + prop + `'/'` + correo + `'`;
-    // console.log(prop);
     fetch(url, {method: 'get'})
     console.log("cambio realizado");
   }
@@ -117,38 +115,16 @@ const map = () => {
   // query de firebase
   var q;
 
-  /*
-  useEffect(() => {
-    const coll = collection(database, 'SucursalesHEBMTY');
-    q = query(coll);
-
-    const unsuscribe = onSnapshot(q, querySnapshot => {
-      setSucursales(
-        querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ciudad: doc.data().ciudad,
-          direccion: doc.data().direccion,
-          horario: doc.data().horario,
-          latitud: doc.data().latitud,
-          longitud: doc.data().longitud,
-          nombre: doc.data().nombre,
-        }))   
-    )})
-    console.log("información de sucursales")
-    return unsuscribe;
-  }, [nombre])
-  */
-
   // API Key de Google
   const { isLoaded } = useLoadScript ({
-    // googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg"
+    googleMapsApiKey: "AIzaSyCVLU4FFbvQ8g88L619Kj6nQ4YF0Bexrwg"
   });
     
   if (!isLoaded) {
     return "Hay un error"
   }
     
-  // ubicación de cada HEB (de manera manual)
+  // ubicación del usuario (de manera manual)
   const markers = [
     {
       id: 0,
@@ -240,7 +216,6 @@ const map = () => {
                                   { item.direccion }
                                   <br />
                                   {/*Update de la información*/}
-                                  {/*<button onClick={changeUserData}>Seleccionar</button>*/}
                                   <Box sx={{ height: 90, transform: 'translateZ(0px)', flexGrow: 1 }}>
                                     <SpeedDial
                                       ariaLabel="SpeedDial openIcon example"
