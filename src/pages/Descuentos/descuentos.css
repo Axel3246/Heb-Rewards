@@ -1,0 +1,39 @@
+* {
+    font-family: 'Roboto';
+}
+
+.grid-container {
+    grid-template-columns: 1000px;
+    grid-template-rows: 22% 78%;
+    margin-top: 110px;
+    flex-direction: column;
+}
+
+.item-1 {
+    height: 60px;
+}
+
+.item-2 {
+    width: 100%;
+    min-height: 78%;
+}
+
+.ContenedorCartas {
+    justify-content: center;
+}
+
+.paper_container {
+    position: relative;
+    height: 280px;
+    min-height: 220px;
+    width: 100%;
+    text-overflow: clip;
+    min-width: 180px;
+    max-width: 180px;
+    border-color: #9393933c;
+    border-width: 1px;
+    border-style: solid;
+    text-align: center;
+    border-radius: 10px;
+    margin: 0;
+}

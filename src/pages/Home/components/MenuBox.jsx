@@ -29,6 +29,18 @@ const MenuBox = () => {
                 </Card>
             </a>
             </Grid>
+            <Grid item xs={6}  sx={{ m: 'auto' }} align="center">
+            <a className="menulink" href='/descuentos'>
+                <Card sx={{ width: 140 }}>
+                    <CardActionArea>
+                        <CardMedia component="img" image={images.qrheb} alt="Descuentos" sx={{ height: 90, objectFit: "contain" }} />
+                        <CardContent sx={{ p: 0 }}>
+                        <Typography variant="subtitle2" component="div"> Usa <span className='red_two'>¡Descuentos!</span> </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                </Card>
+            </a>
+            </Grid>
             <Grid item xs={12} align="center">
             <a className="menulink" href='/WhatsTP'>
                 <Card sx={{ width: 285}}>
