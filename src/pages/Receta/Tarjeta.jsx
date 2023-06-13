@@ -56,9 +56,9 @@ const style = {
 };
 
 
-
-const autho = getAuth();
-const user = auth.currentUser;
+var correo;
+//const autho = getAuth();
+//const user = auth.currentUser;
 
 const Tarjeta = ({ recetas, hideElements }) => {
 
@@ -91,6 +91,22 @@ const Tarjeta = ({ recetas, hideElements }) => {
   const [productoEncontradoID, setproductoEncontradoID] = useState("-1");
   const [uid, setUid] = useState("guest")
   const [QRInfo, setQRInfo] = useState(" ")
+
+  useEffect(() => {
+    getAuth().onAuthStateChanged((user) => {
+      if (user) {
+        correo = user.email;
+        fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getId/'" + correo + "'")
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setUid(data[0].usuarioID);
+          console.log(data[0].usuarioID);
+        })
+      }
+    });
+  }, []);
 
   const findCode =  (code) => { 
     var i = 0;
@@ -130,19 +146,9 @@ const Tarjeta = ({ recetas, hideElements }) => {
 
   }, [])
 
-  useEffect(() => {
-    if (user != null) {
-      const helper = user.uid.slice(0, 10);
-      setUid(user.uid);
-    } else {
-      setUid("guest");
-    }
-  }, [])
 
-  useEffect(() => {
-  setQRInfo(uid+"-"+recetas.id+"-"+recetas.descuento)
-  console.log(QRInfo)
-  }, [uid])
+
+  
 
   const[show, setShow] = useState(false)
   const[showtf, setShowtf] = useState(false)
@@ -150,6 +156,15 @@ const Tarjeta = ({ recetas, hideElements }) => {
   const hStyle = { color: 'black' , textAlign: "center"};
 
   const [data, setData] = useState("Capture : ...");
+
+  useEffect(() => {
+    setQRInfo(uid+"-"+recetas.id+"-"+recetas.descuento);
+    if (completado) {
+      let url = "https://api-heb-rewards.ricardojorgejo1.repl.co/api/postDescuento/"+ uid +"/1/" + recetas.id + "/" + recetas.descuento;
+      console.log(url);
+      fetch(url, { method:"get" });
+    }
+  }, [uid, completado])
 
   const onUpdateScreen = (err, result) => {
     if (result) {
@@ -175,7 +190,7 @@ const Tarjeta = ({ recetas, hideElements }) => {
         
           <Box sx={style}>
             <div style={{alignItems : "center", marginTop : "20px"}} >
-            <QRCode value={QRInfo} size={'80%'} bgColor="#282c34" fgColor="#fff" level="H" /> 
+            <QRCode value={QRInfo} size={160} bgColor="#282c34" fgColor="#fff" level="H" /> 
             <Typography variant='h4' sx={{ fontWeight: 'bold', mt: 3}}><span>¡Felicidades!</span> Canjea tu descuento en caja</Typography></div>
           </Box>
 

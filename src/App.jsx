@@ -11,7 +11,7 @@ import Productos from './pages/Productos/products'
 import Recetas from './pages/Juego_Recetas/Recetas'
 import WhatsTP from './pages/WhatsTP/WhatsTP'
 import WTPJuego from './pages/WhatsTP/WTPJuego'
-
+import Descuentos from './pages/Descuentos/descuentos'
 import Receta from './pages/Receta/receta'
 import Prueba from './Prueba'
 
@@ -43,6 +43,7 @@ export default function App() {
           <Route path="/WhatsTP" element={<WhatsTP/>}></Route>
           <Route path="/WTPJuego" element={<WTPJuego/>}></Route>
           <Route path="/Prueba" element={<Prueba/>}></Route>
+          <Route path="/descuentos" element={<Descuentos/>}></Route>
         </Routes>
       </Router> 
       </>

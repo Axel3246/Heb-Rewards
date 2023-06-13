@@ -36,13 +36,15 @@ const style = {
   textAlign: 'center'
 };
 
+var correo;
+var pid;
+
 const WTPJuego = ({  }) => {
 
   // Hooks declaration
   const location = useLocation();
   let receta = location.state;
 
-  const user = auth.currentUser;
   const [cargarProd, setCargarProd] = useState(false);
   const [cargarPist, setCargarPist] = useState(false);
   const [done, setDone] = useState(false);
@@ -61,7 +63,7 @@ const WTPJuego = ({  }) => {
   const [hide, setHide] = useState(false);
   const [QRInfo, setQRInfo] = useState(" ")
   const [uid, setUid] = useState("guest")
-  const [descuento, setDescuento] = useState(0)
+  const [descuento, setDescuento] = useState(40)
 
   const [imageStyle, setImageStyle] = useState({});
 
@@ -74,7 +76,6 @@ const WTPJuego = ({  }) => {
       filter: 'brightness(0%)',
       width: '300px',
       height: '210px',
-      objectFit: 'none',
       bottom: '0',
       left: '0',
       objectFit: 'contain',
@@ -86,7 +87,6 @@ const WTPJuego = ({  }) => {
       filter: 'brightness(0%)',
       width: '300px',
       height: '210px',
-      objectFit: 'none',
       bottom: '0',
       left: '0',
       objectFit: 'contain',
@@ -100,7 +100,6 @@ const WTPJuego = ({  }) => {
       filter: 'brightness(0%)',
       width: '300px',
       height: '210px',
-      objectFit: 'none',
       bottom: '0',
       left: '0',
       objectFit: 'contain',
@@ -114,7 +113,6 @@ const WTPJuego = ({  }) => {
       filter: 'brightness(0%)',
       width: '300px',
       height: '210px',
-      objectFit: 'none',
       bottom: '0',
       left: '0',
       objectFit: 'contain',
@@ -127,7 +125,6 @@ const WTPJuego = ({  }) => {
       filter: 'brightness(0%)',
       width: '300px',
       height: '210px',
-      objectFit: 'none',
       bottom: '0',
       left: '0',
       objectFit: 'contain',
@@ -153,19 +150,22 @@ const WTPJuego = ({  }) => {
   }
 
   useEffect(() => {
-    if (user != null) {
-      const helper = user.uid.slice(0, 10);
-      setUid(user.uid);
-    } else {
-      setUid("guest");
-    }
-  }, [])
+    getAuth().onAuthStateChanged((user) => {
+      if (user) {
+        correo = user.email;
+        fetch("https://api-heb-rewards.ricardojorgejo1.repl.co/api/getId/'" + correo + "'")
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setUid(data[0].usuarioID);
+          console.log(data[0].usuarioID);
+        })
+      }
+    });
+  }, []);
 
-  useEffect(() => {
-    console.log('El id es ++++', uid);
-    setQRInfo(uid+"-"+productos.id+"-"+descuento.toString())
-    console.log(descuento)
-    }, [uid, descuento])
+
 
   const hideElements = (rBool) => {
     setHide(rBool);
@@ -184,12 +184,26 @@ const WTPJuego = ({  }) => {
   // Buscar código
   const findCode =  (code) => { 
     if (productos[0].codigo == code) {
+      pid = productos[0].id;
       // Código encontrado
       setCompletado(true);
       setOpen(true);
 
+
     }
   }
+  
+  useEffect(() => {
+    setQRInfo(uid+"-"+pid+"-"+descuento.toString());
+  }, [uid, descuento, pid])
+
+  useEffect(() => {
+    if (completado) {
+      let url = "https://api-heb-rewards.ricardojorgejo1.repl.co/api/postDescuento/"+ uid +"/2/"+ pid + "/" + descuento.toString();
+      console.log(url);
+      fetch(url, { method:"get" });
+    }
+  }, [QRInfo]);
 
   // Data FETCH
   useEffect(() => {
@@ -203,6 +217,7 @@ const WTPJuego = ({  }) => {
       const snapshot = await getCountFromServer(coll);
       let randomInteger = Math.floor(Math.random() * 31) + 1;
       console.log(randomInteger);
+      
       await fetchProd(randomInteger);
       await fetchPist(randomInteger);
     } catch (error) {

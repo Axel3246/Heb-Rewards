@@ -20,8 +20,8 @@ const RecetasPag = ({ recipes }) => {
   };
 
 
-    const [nombre, onChange] = useState('')
-    const [recetas, setRecetas] = useState([])
+  const [nombre, onChange] = useState('')
+  const [recetas, setRecetas] = useState([])
     
   return (
     <>

@@ -23,6 +23,7 @@ import five from '../assets/img/swipers/5.png'
 import six from '../assets/img/swipers/6.png'
 import mapp from '../assets/img/suc/mapp.png'
 import bam from "../assets/bam.png";
+import qrheb from "../assets/qrheb.jpg"
 
 
 export default {
@@ -49,6 +50,7 @@ export default {
     six,
     mapp,
     wtp,
-    bam
+    bam,
+    qrheb
 
   };
