@@ -221,7 +221,7 @@ const Tarjeta = ({ recetas, hideElements }) => {
           
           
 
-          <Button sx={{position: 'fixed',bottom: 80, left: 0, ml: 'auto', mr: 'auto', textTransform: 'none', maxWidth: '300px'}} onClick = {() => { 
+          <Button sx={{position: 'fixed',bottom: 80, left: 0, textTransform: 'none', maxWidth: '300px'}} onClick = {() => { 
             if (showtf) {
               setShowtf(false);
               setManualText("Ingresar manualmente"); // ya no es necesario
@@ -230,7 +230,7 @@ const Tarjeta = ({ recetas, hideElements }) => {
               setManualText("Cerrar ingreso manual")
             }
             }} >
-              <Typography>Escanea el producto deseado. Lorem ipsum dolor sit amet, consectetur.<br/> <u>Ingresar manualmente</u></Typography>
+              <Typography>Escanea el producto deseado.<br/> <u>Ingresar manualmente</u></Typography>
 
           </Button>
 
